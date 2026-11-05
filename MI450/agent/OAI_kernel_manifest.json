@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "generated_at": "2026-11-05T00:00:00Z",
+    "triton_repo": "https://github.com/triton-lang/triton.git",
+    "triton_branch": "main",
+    "triton_commit": "32f06df4bf1c30885ff61ee3488836ca81ed65f0",
+    "target_arch": "gfx1250"
+  },
+  "models": {
+    "oai": {
+      "aiter_config_files": [],
+      "kernels": [
+        {
+          "op_type": "flash_attention",
+          "label": "OAI #7 GQA Prefill e4m3/e4m3 B1 Q8192 K8192",
+          "shapes": {
+            "batch": 1,
+            "seqlen_q": 8192,
+            "seqlen_k": 8192,
+            "num_q_heads": 64,
+            "num_k_heads": 2,
+            "head_sz": 128,
+            "q_type": "e4m3",
+            "kv_type": "e4m3"
+          },
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 8192 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "compile_call": "run_attention(q_type='e4m3', kv_type='e4m3', batch=1, seqlen_q=8192, seqlen_k=8192, num_q_heads=64, num_k_heads=2, head_sz=128, pipelined=True, pingpong=False, scale_type='block', disable_p_scaling=True, profile=True)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "OAI #8 MQA Prefill e4m3/e4m3 B1 Q8192 K8192",
+          "shapes": {
+            "batch": 1,
+            "seqlen_q": 8192,
+            "seqlen_k": 8192,
+            "num_q_heads": 64,
+            "num_k_heads": 1,
+            "head_sz": 128,
+            "q_type": "e4m3",
+            "kv_type": "e4m3"
+          },
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 8192 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "compile_call": "run_attention(q_type='e4m3', kv_type='e4m3', batch=1, seqlen_q=8192, seqlen_k=8192, num_q_heads=64, num_k_heads=1, head_sz=128, pipelined=True, pingpong=False, scale_type='block', disable_p_scaling=True, profile=True)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "OAI #1 GQA Decode e4m3/e4m3 B64 Q1 K8192",
+          "shapes": {
+            "batch": 64,
+            "seqlen_q": 1,
+            "seqlen_k": 8192,
+            "num_q_heads": 64,
+            "num_k_heads": 2,
+            "head_sz": 128,
+            "q_type": "e4m3",
+            "kv_type": "e4m3"
+          },
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "compile_call": "run_attention(q_type='e4m3', kv_type='e4m3', batch=64, seqlen_q=1, seqlen_k=8192, num_q_heads=64, num_k_heads=2, head_sz=128, pipelined=True, pingpong=False, scale_type='block', disable_p_scaling=True, profile=True)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "OAI #2 GQA Decode e4m3/e2m1 B64 Q1 K8192",
+          "shapes": {
+            "batch": 64,
+            "seqlen_q": 1,
+            "seqlen_k": 8192,
+            "num_q_heads": 64,
+            "num_k_heads": 2,
+            "head_sz": 128,
+            "q_type": "e4m3",
+            "kv_type": "e2m1"
+          },
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "compile_call": "run_attention(q_type='e4m3', kv_type='e2m1', batch=64, seqlen_q=1, seqlen_k=8192, num_q_heads=64, num_k_heads=2, head_sz=128, pipelined=True, pingpong=False, scale_type='block', disable_p_scaling=True, profile=True)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "OAI #3 GQA Decode e4m3/e4m3 B64 Q1 K32768",
+          "shapes": {
+            "batch": 64,
+            "seqlen_q": 1,
+            "seqlen_k": 32768,
+            "num_q_heads": 64,
+            "num_k_heads": 2,
+            "head_sz": 128,
+            "q_type": "e4m3",
+            "kv_type": "e4m3"
+          },
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 32768 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "compile_call": "run_attention(q_type='e4m3', kv_type='e4m3', batch=64, seqlen_q=1, seqlen_k=32768, num_q_heads=64, num_k_heads=2, head_sz=128, pipelined=True, pingpong=False, scale_type='block', disable_p_scaling=True, profile=True)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "OAI #4 MQA Decode e4m3/e4m3 B64 Q1 K8192",
+          "shapes": {
+            "batch": 64,
+            "seqlen_q": 1,
+            "seqlen_k": 8192,
+            "num_q_heads": 64,
+            "num_k_heads": 1,
+            "head_sz": 128,
+            "q_type": "e4m3",
+            "kv_type": "e4m3"
+          },
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "compile_call": "run_attention(q_type='e4m3', kv_type='e4m3', batch=64, seqlen_q=1, seqlen_k=8192, num_q_heads=64, num_k_heads=1, head_sz=128, pipelined=True, pingpong=False, scale_type='block', disable_p_scaling=True, profile=True)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "OAI #5 MQA Decode e4m3/e2m1 B64 Q1 K8192",
+          "shapes": {
+            "batch": 64,
+            "seqlen_q": 1,
+            "seqlen_k": 8192,
+            "num_q_heads": 64,
+            "num_k_heads": 1,
+            "head_sz": 128,
+            "q_type": "e4m3",
+            "kv_type": "e2m1"
+          },
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "compile_call": "run_attention(q_type='e4m3', kv_type='e2m1', batch=64, seqlen_q=1, seqlen_k=8192, num_q_heads=64, num_k_heads=1, head_sz=128, pipelined=True, pingpong=False, scale_type='block', disable_p_scaling=True, profile=True)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "OAI #6 MQA Decode e4m3/e4m3 B64 Q1 K65536",
+          "shapes": {
+            "batch": 64,
+            "seqlen_q": 1,
+            "seqlen_k": 65536,
+            "num_q_heads": 64,
+            "num_k_heads": 1,
+            "head_sz": 128,
+            "q_type": "e4m3",
+            "kv_type": "e4m3"
+          },
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 65536 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "compile_call": "run_attention(q_type='e4m3', kv_type='e4m3', batch=64, seqlen_q=1, seqlen_k=65536, num_q_heads=64, num_k_heads=1, head_sz=128, pipelined=True, pingpong=False, scale_type='block', disable_p_scaling=True, profile=True)"
+          },
+          "triton": null
+        }
+      ]
+    }
+  }
+}

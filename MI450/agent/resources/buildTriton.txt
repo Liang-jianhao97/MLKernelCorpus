@@ -1,0 +1,17 @@
+# Build Base Triton
+
+
+pip install -r python/requirements.txt
+pip install -e . --no-build-isolation
+
+
+# Build Triton AMD CodeGen library from LLVM
+
+
+LLVM=/path/to/your/llvm-project/build 
+cmake -G Ninja -S third_party/amd/backend/codegen -B build-amd-codegen \
+  -DLLVM_DIR=$LLVM/lib/cmake/llvm \
+  -DCMAKE_BUILD_TYPE=Release \
+
+
+ninja -C build-amd-codegen
