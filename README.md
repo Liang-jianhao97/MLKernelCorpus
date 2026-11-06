@@ -64,9 +64,11 @@ An agent will parse the triton source repo to undestand which ML ops are support
 
 The agent will also try to look for hints for known best configs. Typically, we may find such information in tutorials/
 
-### Generating the kernels
+## Generating the kernels
 
-The agent will, in the container, 1. install triton and 2. take the manifests and use each to generate a cross compile command (with TRITON_OVERRIDE_ARCH).
+After launching the agent to regenerate the kernels, it will optionally generate the manifest. 
+
+Then the agent will, in the container, 1. install triton and 2. take the manifests and use each to generate a cross compile command (with TRITON_OVERRIDE_ARCH).
 
 Once done, it will repopulate the kernels in the kernels/ directory
 
