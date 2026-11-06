@@ -12,6 +12,21 @@ Read `forks.txt` in your working directory to find:
 
 Check out the specified branches before proceeding.
 
+### Manifest builder script
+
+A reference script is available at `MI450/agent/resources/build_aiter_manifest.py`. It automates Phases 1–4 below: parsing aiter CSV configs for gfx1250, mapping kernels to Triton source files, constructing run commands, and writing the manifest JSON. You can use it in two ways:
+
+1. **Run it directly** — adjust the hardcoded paths at the top of the file (`AITER_ROOT`, `TRITON_ROOT`, `OUTPUT_PATH`, `TRITON_COMMIT`) to match your environment, then run it. Use its output as a starting point and apply the corrections below.
+2. **Use it as a reference** — the script contains a comprehensive model-name mapping (~96 entries), dtype inference logic, and kernel-to-source mapping that you can consult when building the manifest manually.
+
+**You must correct these known issues in the script's output:**
+- Strip `--target hip:gfx1250:64` from run commands (not a valid argparse flag for the kernel scripts)
+- Replace `--M`/`--N`/`--K` with `-M`/`-N`/`-K` (the kernel scripts use single-dash short options)
+- Quote bare `device=cuda` as `device='cuda'` in any Python one-liners
+- Enforce the 15-invocations-per-kernel-script limit (the script does not implement this)
+
+See `MI450/agent/knowledge/aiter_configs.md` for the full list of known issues and fixes.
+
 ## Phase 1: Extract model kernel requirements from aiter
 
 The aiter repo maintains per-model kernel configuration files. Start by looking in `aiter/configs/model_configs/` — this directory contains CSV files that map AI models to the kernel shapes they use. If this directory has moved or been restructured, search the repo for the model config data (look for CSV files containing columns like `gfx`, `M`, `N`, `K`, `dtype`, `kernelName`).

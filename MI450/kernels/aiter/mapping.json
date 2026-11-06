@@ -21,10 +21,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_r1_gemm_1.llir",
       "label": "deepseek-r1_gemm_1",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 4096 --N 36864 --K 7168",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 36864 -K 7168 --scale_preshuffled -BK 256",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -32,10 +32,9 @@
         "K": 7168,
         "dtype": "mxfp4"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
       "filename": "deepseek-v3_gemm_0.llir",
@@ -54,10 +53,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_gemm_0.llir",
       "label": "deepseek-v4_gemm_0",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 512 --N 32768 --K 1024",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 512 -N 32768 -K 1024 --scale_preshuffled -BK 256",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 512,
@@ -65,16 +64,15 @@
         "K": 1024,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_gemm_1.llir",
       "label": "deepseek-v4_gemm_1",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 2048 --N 16384 --K 1536",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 2048 -N 16384 -K 1536 --scale_preshuffled -BK 256",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 2048,
@@ -82,16 +80,15 @@
         "K": 1536,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_gemm_2.llir",
       "label": "deepseek-v4_gemm_2",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 16384 --N 2048 --K 7168",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 2048 -K 7168 --scale_preshuffled -BK 256",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -99,10 +96,9 @@
         "K": 7168,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
       "filename": "deepseek-v4.1_gemm_0.llir",
@@ -201,10 +197,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_1_batched_gemm_6.llir",
       "label": "deepseek-v4.1_batched_gemm_6",
       "op_type": "batched_gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 1 --N 1024 --K 4096",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 1 -N 1024 -K 4096 --scale_preshuffled -BK 128 --schedule baseline",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 1,
@@ -213,16 +209,15 @@
         "B": 8,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_1_gemm_7.llir",
       "label": "deepseek-v4.1_gemm_7",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 5 --N 1792 --K 5120",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 5 -N 1792 -K 5120 --scale_preshuffled -BK 128 --schedule baseline",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 5,
@@ -230,16 +225,15 @@
         "K": 5120,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_1_gemm_8.llir",
       "label": "deepseek-v4.1_gemm_8",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 15 --N 1792 --K 5120",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 15 -N 1792 -K 5120 --scale_preshuffled -BK 128 --schedule baseline",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 15,
@@ -247,16 +241,15 @@
         "K": 5120,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_1_gemm_9.llir",
       "label": "deepseek-v4.1_gemm_9",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 20 --N 4608 --K 5120",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 20 -N 4608 -K 5120 --scale_preshuffled -BK 128 --schedule baseline",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 20,
@@ -264,16 +257,15 @@
         "K": 5120,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_1_gemm_10.llir",
       "label": "deepseek-v4.1_gemm_10",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 64 --N 1536 --K 5120",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 64 -N 1536 -K 5120 --scale_preshuffled -BK 128 --schedule baseline",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 64,
@@ -281,16 +273,15 @@
         "K": 5120,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_1_gemm_11.llir",
       "label": "deepseek-v4.1_gemm_11",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 200 --N 4608 --K 5120",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 200 -N 4608 -K 5120 --scale_preshuffled -BK 128 --schedule baseline",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 200,
@@ -298,16 +289,15 @@
         "K": 5120,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_1_gemm_12.llir",
       "label": "deepseek-v4.1_gemm_12",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 320 --N 5120 --K 2304",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 320 -N 5120 -K 2304 --scale_preshuffled -BK 256",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 320,
@@ -315,16 +305,15 @@
         "K": 2304,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "deepseek_v4_1_gemm_13.llir",
       "label": "deepseek-v4.1_gemm_13",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 1024 --N 8192 --K 1280",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 1024 -N 8192 -K 1280 --scale_preshuffled -BK 256",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 1024,
@@ -332,10 +321,9 @@
         "K": 1280,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
       "filename": null,
@@ -485,10 +473,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "kimi_k3_gemm_1.llir",
       "label": "kimi-k3_gemm_1",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 2 --N 1536 --K 128",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 2 -N 1536 -K 128 --block_k 64",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 2,
@@ -496,10 +484,9 @@
         "K": 128,
         "dtype": "bfloat16"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip tests where K/BLOCK_K < NUM_BUFFERS"
+      "additional_files": []
     },
     {
       "filename": "kimi-k3_gemm_2.llir",
@@ -550,10 +537,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "kimi_k3_gemm_5.llir",
       "label": "kimi-k3_gemm_5",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 2 --N 7168 --K 1024",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 2 -N 7168 -K 1024 --scale_preshuffled -BK 128 --schedule baseline",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 2,
@@ -561,16 +548,15 @@
         "K": 1024,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "kimi_k3_gemm_6.llir",
       "label": "kimi-k3_gemm_6",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 32 --N 12288 --K 1536",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 32 -N 12288 -K 1536 --scale_preshuffled -BK 128 --schedule baseline",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 32,
@@ -578,16 +564,15 @@
         "K": 1536,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "kimi_k3_gemm_7.llir",
       "label": "kimi-k3_gemm_7",
       "op_type": "gemm",
-      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 128 --N 1536 --K 128",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 128 -N 1536 -K 128 --scale_preshuffled -BK 64 --schedule baseline",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 128,
@@ -595,10 +580,9 @@
         "K": 128,
         "dtype": "mxfp8"
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
       "filename": null,
@@ -849,7 +833,7 @@
   ],
   "summary": {
     "total": 45,
-    "success": 14,
-    "failed": 31
+    "success": 30,
+    "failed": 15
   }
 }

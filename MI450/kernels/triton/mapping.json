@@ -361,7 +361,7 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "seeded_dropout_n_1024.llir",
       "label": "Seeded Dropout N=1024",
       "op_type": "dropout",
       "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
@@ -374,13 +374,12 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "import_error",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "ModuleNotFoundError: No module named 'tabulate'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "seeded_dropout_n_4096.llir",
       "label": "Seeded Dropout N=4096",
       "op_type": "dropout",
       "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
@@ -393,13 +392,12 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "import_error",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "ModuleNotFoundError: No module named 'tabulate'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "seeded_dropout_n_8192.llir",
       "label": "Seeded Dropout N=8192",
       "op_type": "dropout",
       "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
@@ -412,13 +410,12 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "import_error",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "ModuleNotFoundError: No module named 'tabulate'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "seeded_dropout_n_32768.llir",
       "label": "Seeded Dropout N=32768",
       "op_type": "dropout",
       "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
@@ -431,10 +428,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "import_error",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "ModuleNotFoundError: No module named 'tabulate'"
+      "additional_files": []
     },
     {
       "filename": "layer_norm_fwd_m_4096_n_1024.llir",
@@ -921,10 +917,10 @@
       "error": "--- DUMP fallback ---"
     },
     {
-      "filename": null,
+      "filename": "production_matmul_fp16_m_1_n_4096_k_4096.llir",
       "label": "Production Matmul fp16 M=1 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(1,4096,dtype=torch.float16,device=cuda); b=torch.randn(4096,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(1,4096,dtype=torch.float16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
       "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
       "shapes": {
         "M": 1,
@@ -937,16 +933,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: matmul() missing 1 required positional argument: 'bias'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_matmul_bf16_m_1_n_4096_k_4096.llir",
       "label": "Production Matmul bf16 M=1 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(1,4096,dtype=torch.bfloat16,device=cuda); b=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(1,4096,dtype=torch.bfloat16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
       "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
       "shapes": {
         "M": 1,
@@ -959,16 +954,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: matmul() missing 1 required positional argument: 'bias'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_matmul_fp16_m_4096_n_4096_k_4096.llir",
       "label": "Production Matmul fp16 M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.float16,device=cuda); b=torch.randn(4096,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
       "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
       "shapes": {
         "M": 4096,
@@ -981,16 +975,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: matmul() missing 1 required positional argument: 'bias'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_matmul_bf16_m_4096_n_4096_k_4096.llir",
       "label": "Production Matmul bf16 M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); b=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
       "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
       "shapes": {
         "M": 4096,
@@ -1003,16 +996,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: matmul() missing 1 required positional argument: 'bias'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_matmul_fp16_m_8192_n_4096_k_4096.llir",
       "label": "Production Matmul fp16 M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.float16,device=cuda); b=torch.randn(4096,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.float16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
       "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
       "shapes": {
         "M": 8192,
@@ -1025,16 +1017,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: matmul() missing 1 required positional argument: 'bias'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_matmul_bf16_m_8192_n_4096_k_4096.llir",
       "label": "Production Matmul bf16 M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.bfloat16,device=cuda); b=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.bfloat16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
       "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
       "shapes": {
         "M": 8192,
@@ -1047,16 +1038,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: matmul() missing 1 required positional argument: 'bias'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_matmul_fp16_m_8192_n_8192_k_8192.llir",
       "label": "Production Matmul fp16 M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.float16,device=cuda); b=torch.randn(8192,8192,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.float16,device='cuda'); b=torch.randn(8192,8192,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
       "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
       "shapes": {
         "M": 8192,
@@ -1069,16 +1059,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: matmul() missing 1 required positional argument: 'bias'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_matmul_bf16_m_8192_n_8192_k_8192.llir",
       "label": "Production Matmul bf16 M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.bfloat16,device=cuda); b=torch.randn(8192,8192,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.bfloat16,device='cuda'); b=torch.randn(8192,8192,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
       "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
       "shapes": {
         "M": 8192,
@@ -1091,16 +1080,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: matmul() missing 1 required positional argument: 'bias'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_matmul_fp16_m_16384_n_4096_k_8192.llir",
       "label": "Production Matmul fp16 M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(16384,8192,dtype=torch.float16,device=cuda); b=torch.randn(8192,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(16384,8192,dtype=torch.float16,device='cuda'); b=torch.randn(8192,4096,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
       "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
       "shapes": {
         "M": 16384,
@@ -1113,16 +1101,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: matmul() missing 1 required positional argument: 'bias'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_matmul_bf16_m_16384_n_4096_k_8192.llir",
       "label": "Production Matmul bf16 M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(16384,8192,dtype=torch.bfloat16,device=cuda); b=torch.randn(8192,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+      "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(16384,8192,dtype=torch.bfloat16,device='cuda'); b=torch.randn(8192,4096,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
       "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
       "shapes": {
         "M": 16384,
@@ -1135,16 +1122,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: matmul() missing 1 required positional argument: 'bias'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_reduce_m_4096_n_1024.llir",
       "label": "Production Reduce M=4096 N=1024",
       "op_type": "reduce",
-      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,1024,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(1, 4096,1024,dtype=torch.float16,device='cuda'); reduce(x, dim=2)\"",
       "source": "python/triton_kernels/triton_kernels/reduce.py",
       "shapes": {
         "M": 4096,
@@ -1153,16 +1139,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "NotImplementedError: reduce only supports 3D inputs in this implementation"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_reduce_m_4096_n_4096.llir",
       "label": "Production Reduce M=4096 N=4096",
       "op_type": "reduce",
-      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,4096,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(1, 4096,4096,dtype=torch.float16,device='cuda'); reduce(x, dim=2)\"",
       "source": "python/triton_kernels/triton_kernels/reduce.py",
       "shapes": {
         "M": 4096,
@@ -1171,16 +1156,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "NotImplementedError: reduce only supports 3D inputs in this implementation"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_reduce_m_4096_n_8192.llir",
       "label": "Production Reduce M=4096 N=8192",
       "op_type": "reduce",
-      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,8192,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(1, 4096,8192,dtype=torch.float16,device='cuda'); reduce(x, dim=2)\"",
       "source": "python/triton_kernels/triton_kernels/reduce.py",
       "shapes": {
         "M": 4096,
@@ -1189,16 +1173,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "NotImplementedError: reduce only supports 3D inputs in this implementation"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_reduce_m_4096_n_32768.llir",
       "label": "Production Reduce M=4096 N=32768",
       "op_type": "reduce",
-      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,32768,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(1, 4096,32768,dtype=torch.float16,device='cuda'); reduce(x, dim=2)\"",
       "source": "python/triton_kernels/triton_kernels/reduce.py",
       "shapes": {
         "M": 4096,
@@ -1207,16 +1190,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "NotImplementedError: reduce only supports 3D inputs in this implementation"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_swiglu_m_4096_n_1024.llir",
       "label": "Production SwiGLU M=4096 N=1024",
       "op_type": "swiglu",
-      "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,2048,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+      "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu, PrecisionConfig; import torch; a=torch.randn(4096,2048,dtype=torch.float16,device='cuda'); swiglu(a, alpha=1.0, precision_config=PrecisionConfig(limit=float('inf')))\"",
       "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
       "shapes": {
         "M": 4096,
@@ -1227,16 +1209,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: swiglu() missing 1 required positional argument: 'precision_config'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_swiglu_m_4096_n_4096.llir",
       "label": "Production SwiGLU M=4096 N=4096",
       "op_type": "swiglu",
-      "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,8192,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+      "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu, PrecisionConfig; import torch; a=torch.randn(4096,8192,dtype=torch.float16,device='cuda'); swiglu(a, alpha=1.0, precision_config=PrecisionConfig(limit=float('inf')))\"",
       "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
       "shapes": {
         "M": 4096,
@@ -1247,16 +1228,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: swiglu() missing 1 required positional argument: 'precision_config'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "production_swiglu_m_4096_n_8192.llir",
       "label": "Production SwiGLU M=4096 N=8192",
       "op_type": "swiglu",
-      "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,16384,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+      "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu, PrecisionConfig; import torch; a=torch.randn(4096,16384,dtype=torch.float16,device='cuda'); swiglu(a, alpha=1.0, precision_config=PrecisionConfig(limit=float('inf')))\"",
       "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
       "shapes": {
         "M": 4096,
@@ -1267,10 +1247,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: swiglu() missing 1 required positional argument: 'precision_config'"
+      "additional_files": []
     },
     {
       "filename": "production_topk_n_tokens_4096_n_expts_64_k_8.llir",
@@ -1369,7 +1348,7 @@
   ],
   "summary": {
     "total": 65,
-    "success": 41,
-    "failed": 24
+    "success": 62,
+    "failed": 3
   }
 }

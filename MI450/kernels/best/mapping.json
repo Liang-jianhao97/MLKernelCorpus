@@ -5,10 +5,10 @@
   "generated_at": "2026-11-05T23:43:31.539933+00:00",
   "kernels": [
     {
-      "filename": null,
+      "filename": "best_gemm_fp8_8192x8192x8192_mxfp_gemm_slicemnk.llir",
       "label": "Best GEMM fp8 8192x8192x8192 (MXFP GEMM sliceMNK)",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -23,10 +23,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
       "filename": "best_gemm_fp16_decode_m_1_n_4096_k_4096_f16_gemm_default.llir",
@@ -135,10 +134,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "best_fa_prefill_fp16_pipeline_gqa_seqlen_8192.llir",
       "label": "Best FA Prefill FP16 pipeline GQA seqlen=8192",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 8192 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pipeline",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 8192, 'SEQLEN_K': 8192, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pipeline'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -154,10 +153,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
       "filename": null,
@@ -220,10 +218,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "best_swiglu_m_4096_n_8192_production.llir",
       "label": "Best SwiGLU M=4096 N=8192 (Production)",
       "op_type": "swiglu",
-      "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,16384,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+      "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu, PrecisionConfig; import torch; a=torch.randn(4096,16384,dtype=torch.float16,device='cuda'); swiglu(a, alpha=1.0, precision_config=PrecisionConfig(limit=float('inf')))\"",
       "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
       "shapes": {
         "M": 4096,
@@ -234,16 +232,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "TypeError: swiglu() missing 1 required positional argument: 'precision_config'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "best_reduce_m_4096_n_8192_production.llir",
       "label": "Best Reduce M=4096 N=8192 (Production)",
       "op_type": "reduce",
-      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,8192,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(1, 4096,8192,dtype=torch.float16,device='cuda'); reduce(x, dim=2)\"",
       "source": "python/triton_kernels/triton_kernels/reduce.py",
       "shapes": {
         "M": 4096,
@@ -252,10 +249,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "NotImplementedError: reduce only supports 3D inputs in this implementation"
+      "additional_files": []
     },
     {
       "filename": "best_topk_n_tokens_4096_n_expts_256_k_32_production.llir",
@@ -280,7 +276,7 @@
   ],
   "summary": {
     "total": 13,
-    "success": 8,
-    "failed": 5
+    "success": 12,
+    "failed": 1
   }
 }

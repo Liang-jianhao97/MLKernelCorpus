@@ -22,7 +22,23 @@ The main sources of truth are
 3. Vanilla triton ML op support
 4. Gluon ML op support
 
-### aiter
+The user can either specify an agent to regenerate a manifest, or use the existing one.
+
+Regenerate MI450 kernels following instructions: MI450/agent/generate_ir_corpus.md . Use docker container X
+
+The user can either specify to regenerate manifests, or use the existing ones.
+
+A manifest is a json file containing all relevant kernel locations + commands to run the kernel. 
+
+It may be useful from time to time to regenerate the manifests, as this will take a snapshot of the current state of aiter + triton directories to attempt to find all relevant kernels and best configs.
+
+On the other hand, using a stable manifest is more indicative of codegen drift caused by codegen changes, whereas regenerating may start tracking of different kernels.
+
+To launch kernel with manifest regeneration, you must explicitly tell the agent to regenerate the manifests.
+
+"Regenerate MI450 kernels following instructions: MI450/agent/generate_ir_corpus.md . Use docker container X. Before generating the kernels regenerate the manifests"
+
+### aiter manifest generation
 
 (aiter Repo + Fork specified in agents/forks.txt)
 
@@ -40,7 +56,7 @@ OAI manifest is manually defined by users. This is kernel location + command str
 
 Currently, this only tracks decode + prefill FA.
 
-### Vanilla triton & Gluon ML op support
+### Vanilla triton & Gluon manifest generation
 
 (Triton Repo + Fork specified in agents/forks.txt)
 

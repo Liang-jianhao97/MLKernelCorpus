@@ -30,7 +30,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 64 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 64 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
             "compile_call": "run_attention(q_type=e4m3, kv_type=e4m3, batch=1, seqlen_q=1024, seqlen_k=1024, num_q_heads=64, num_k_heads=64, head_sz=128, pipelined=True, pingpong=False, scale_type=block, disable_p_scaling=True, profile=True)"
           },
           "triton": null
@@ -55,7 +55,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 8 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 8 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
             "compile_call": "run_attention(q_type=e4m3, kv_type=e4m3, batch=1, seqlen_q=1024, seqlen_k=1024, num_q_heads=64, num_k_heads=8, head_sz=128, pipelined=True, pingpong=False, scale_type=block, disable_p_scaling=True, profile=True)"
           },
           "triton": null
@@ -80,7 +80,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
             "compile_call": "run_attention(q_type=e4m3, kv_type=e4m3, batch=1, seqlen_q=1024, seqlen_k=1024, num_q_heads=64, num_k_heads=2, head_sz=128, pipelined=True, pingpong=False, scale_type=block, disable_p_scaling=True, profile=True)"
           },
           "triton": null
@@ -105,7 +105,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
             "compile_call": "run_attention(q_type=e4m3, kv_type=e4m3, batch=1, seqlen_q=1024, seqlen_k=1024, num_q_heads=64, num_k_heads=1, head_sz=128, pipelined=True, pingpong=False, scale_type=block, disable_p_scaling=True, profile=True)"
           },
           "triton": null
@@ -230,7 +230,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 64 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 64 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
             "compile_call": "run_attention(q_type=e4m3, kv_type=e2m1, batch=1, seqlen_q=1024, seqlen_k=1024, num_q_heads=64, num_k_heads=64, head_sz=128, pipelined=True, pingpong=False, scale_type=block, disable_p_scaling=True, profile=True)"
           },
           "triton": null
@@ -255,7 +255,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 8 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 8 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
             "compile_call": "run_attention(q_type=e4m3, kv_type=e2m1, batch=1, seqlen_q=1024, seqlen_k=1024, num_q_heads=64, num_k_heads=8, head_sz=128, pipelined=True, pingpong=False, scale_type=block, disable_p_scaling=True, profile=True)"
           },
           "triton": null
@@ -280,7 +280,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
             "compile_call": "run_attention(q_type=e4m3, kv_type=e2m1, batch=1, seqlen_q=1024, seqlen_k=1024, num_q_heads=64, num_k_heads=2, head_sz=128, pipelined=True, pingpong=False, scale_type=block, disable_p_scaling=True, profile=True)"
           },
           "triton": null
@@ -1218,7 +1218,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 1024 --seqlen-k 1024 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type default",
+            "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 1024, 'SEQLEN_K': 1024, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'default'}, check=False)\"",
             "compile_call": "run_attention(config={BATCH:1,SEQLEN_Q:1024,SEQLEN_K:1024,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:default})"
           },
           "triton": null
@@ -1245,7 +1245,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 1024 --seqlen-k 1024 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pipeline",
+            "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 1024, 'SEQLEN_K': 1024, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pipeline'}, check=False)\"",
             "compile_call": "run_attention(config={BATCH:1,SEQLEN_Q:1024,SEQLEN_K:1024,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:pipeline})"
           },
           "triton": null
@@ -1272,7 +1272,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 1024 --seqlen-k 1024 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pingpong",
+            "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 1024, 'SEQLEN_K': 1024, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pingpong'}, check=False)\"",
             "compile_call": "run_attention(config={BATCH:1,SEQLEN_Q:1024,SEQLEN_K:1024,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:pingpong})"
           },
           "triton": null
@@ -1461,7 +1461,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 4096 --seqlen-k 4096 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type default",
+            "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 4096, 'SEQLEN_K': 4096, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'default'}, check=False)\"",
             "compile_call": "run_attention(config={BATCH:1,SEQLEN_Q:4096,SEQLEN_K:4096,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:default})"
           },
           "triton": null
@@ -1488,7 +1488,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 4096 --seqlen-k 4096 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pipeline",
+            "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 4096, 'SEQLEN_K': 4096, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pipeline'}, check=False)\"",
             "compile_call": "run_attention(config={BATCH:1,SEQLEN_Q:4096,SEQLEN_K:4096,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:pipeline})"
           },
           "triton": null
@@ -1515,7 +1515,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 4096 --seqlen-k 4096 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pingpong",
+            "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 4096, 'SEQLEN_K': 4096, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pingpong'}, check=False)\"",
             "compile_call": "run_attention(config={BATCH:1,SEQLEN_Q:4096,SEQLEN_K:4096,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:pingpong})"
           },
           "triton": null
@@ -1704,7 +1704,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 8192 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type default",
+            "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 8192, 'SEQLEN_K': 8192, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'default'}, check=False)\"",
             "compile_call": "run_attention(config={BATCH:1,SEQLEN_Q:8192,SEQLEN_K:8192,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:default})"
           },
           "triton": null
@@ -1731,7 +1731,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 8192 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pipeline",
+            "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 8192, 'SEQLEN_K': 8192, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pipeline'}, check=False)\"",
             "compile_call": "run_attention(config={BATCH:1,SEQLEN_Q:8192,SEQLEN_K:8192,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:pipeline})"
           },
           "triton": null
@@ -1758,7 +1758,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 8192 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pingpong",
+            "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 8192, 'SEQLEN_K': 8192, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pingpong'}, check=False)\"",
             "compile_call": "run_attention(config={BATCH:1,SEQLEN_Q:8192,SEQLEN_K:8192,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:pingpong})"
           },
           "triton": null
@@ -1866,7 +1866,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
             "entry_point": "run_attention",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 64 --seqlen-q 1 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type decode",
+            "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 64, 'SEQLEN_Q': 1, 'SEQLEN_K': 8192, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'decode'}, check=False)\"",
             "compile_call": "run_attention(config={BATCH:64,SEQLEN_Q:1,SEQLEN_K:8192,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:decode})"
           },
           "triton": null
@@ -1950,7 +1950,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=4096, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -1976,7 +1976,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=4096, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -2002,7 +2002,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=4096, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -2054,7 +2054,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=4096, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -2080,7 +2080,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=4096, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -2106,7 +2106,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=4096, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -2132,7 +2132,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4 --with_a_scale",
             "compile_call": "mxfp_gemm(M=4096, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=baseline, num_warps=4)"
           },
           "triton": null
@@ -2158,7 +2158,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=4096, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -2184,7 +2184,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=4096, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -2210,7 +2210,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=4096, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -2262,7 +2262,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -2288,7 +2288,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -2314,7 +2314,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -2366,7 +2366,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -2392,7 +2392,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -2418,7 +2418,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -2444,7 +2444,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4 --with_a_scale",
             "compile_call": "mxfp_gemm(M=8192, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=baseline, num_warps=4)"
           },
           "triton": null
@@ -2470,7 +2470,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -2496,7 +2496,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -2522,7 +2522,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=4096, K=4096, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -2574,7 +2574,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -2600,7 +2600,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -2626,7 +2626,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -2678,7 +2678,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -2704,7 +2704,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -2730,7 +2730,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -2756,7 +2756,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4 --with_a_scale",
             "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=baseline, num_warps=4)"
           },
           "triton": null
@@ -2782,7 +2782,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -2808,7 +2808,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -2834,7 +2834,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -2886,7 +2886,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=16384, N=4096, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -2912,7 +2912,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=16384, N=4096, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -2938,7 +2938,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=16384, N=4096, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -2990,7 +2990,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=16384, N=4096, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -3016,7 +3016,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=16384, N=4096, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -3042,7 +3042,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=16384, N=4096, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float4, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -3068,7 +3068,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4 --with_a_scale",
             "compile_call": "mxfp_gemm(M=16384, N=4096, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=baseline, num_warps=4)"
           },
           "triton": null
@@ -3094,7 +3094,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=16384, N=4096, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceK, num_warps=4)"
           },
           "triton": null
@@ -3120,7 +3120,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=16384, N=4096, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceNK, num_warps=4)"
           },
           "triton": null
@@ -3146,7 +3146,7 @@
             "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
             "entry_point": "mxgemm_tdm_pipelined_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4 --with_a_scale --scale_preshuffled",
             "compile_call": "mxfp_gemm(M=16384, N=4096, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float4, dtype_b=float4, schedule=sliceMNK, num_warps=4)"
           },
           "triton": null
@@ -3229,7 +3229,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
             "entry_point": "gemm_tdm_warp_specialized_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 1 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --warp-specialized",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 1 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 8 --num-buffers 3 --warp-specialized",
             "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=1, N=4096, K=4096)"
           },
           "triton": null
@@ -3255,7 +3255,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
             "entry_point": "gemm_tdm_pipelined_single_warp_per_simd_schedule_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 1 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 1 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule --prefetch-lds",
             "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=1, N=4096, K=4096)"
           },
           "triton": null
@@ -3333,7 +3333,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
             "entry_point": "gemm_tdm_warp_specialized_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 4096 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --warp-specialized",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 4096 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 8 --num-buffers 3 --warp-specialized",
             "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=4096, N=4096, K=4096)"
           },
           "triton": null
@@ -3359,7 +3359,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
             "entry_point": "gemm_tdm_pipelined_single_warp_per_simd_schedule_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 4096 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 4096 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule --prefetch-lds",
             "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=4096, N=4096, K=4096)"
           },
           "triton": null
@@ -3437,7 +3437,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
             "entry_point": "gemm_tdm_warp_specialized_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --warp-specialized",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 8 --num-buffers 3 --warp-specialized",
             "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=8192, N=4096, K=4096)"
           },
           "triton": null
@@ -3463,7 +3463,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
             "entry_point": "gemm_tdm_pipelined_single_warp_per_simd_schedule_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule --prefetch-lds",
             "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=8192, N=4096, K=4096)"
           },
           "triton": null
@@ -3541,7 +3541,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
             "entry_point": "gemm_tdm_warp_specialized_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 8192 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --warp-specialized",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 8192 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 8 --num-buffers 3 --warp-specialized",
             "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=8192, N=8192, K=8192)"
           },
           "triton": null
@@ -3567,7 +3567,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
             "entry_point": "gemm_tdm_pipelined_single_warp_per_simd_schedule_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 8192 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 8192 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule --prefetch-lds",
             "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=8192, N=8192, K=8192)"
           },
           "triton": null
@@ -3645,7 +3645,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
             "entry_point": "gemm_tdm_warp_specialized_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 16384 -N 4096 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --warp-specialized",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 16384 -N 4096 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 8 --num-buffers 3 --warp-specialized",
             "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=16384, N=4096, K=8192)"
           },
           "triton": null
@@ -3671,7 +3671,7 @@
             "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
             "entry_point": "gemm_tdm_pipelined_single_warp_per_simd_schedule_kernel",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 16384 -N 4096 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 16384 -N 4096 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule --prefetch-lds",
             "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=16384, N=4096, K=8192)"
           },
           "triton": null
@@ -4324,594 +4324,6 @@
             "target": "hip:gfx1250:64",
             "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 256 --dim1 5760 --dim2 5760 --n_expts_tot 8 --n_expts_act 4 --x_dtype fp8 --w_dtype mx4 --schedule sliceNK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
             "compile_call": "main(batch_per_expt=256, dim1=5760, dim2=5760, n_expts_tot=8, n_expts_act=4, x_dtype=fp8, w_dtype=mx4, schedule=sliceNK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE small fp8/fp8 baseline batch=256 expts=8",
-          "shapes": {
-            "batch_per_expt": 256,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 8,
-            "n_expts_act": 4,
-            "x_dtype": "fp8",
-            "w_dtype": "fp8",
-            "schedule": "baseline",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 256 --dim1 5760 --dim2 5760 --n_expts_tot 8 --n_expts_act 4 --x_dtype fp8 --w_dtype fp8 --schedule baseline --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=256, dim1=5760, dim2=5760, n_expts_tot=8, n_expts_act=4, x_dtype=fp8, w_dtype=fp8, schedule=baseline, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE small fp8/fp8 sliceK batch=256 expts=8",
-          "shapes": {
-            "batch_per_expt": 256,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 8,
-            "n_expts_act": 4,
-            "x_dtype": "fp8",
-            "w_dtype": "fp8",
-            "schedule": "sliceK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 256 --dim1 5760 --dim2 5760 --n_expts_tot 8 --n_expts_act 4 --x_dtype fp8 --w_dtype fp8 --schedule sliceK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=256, dim1=5760, dim2=5760, n_expts_tot=8, n_expts_act=4, x_dtype=fp8, w_dtype=fp8, schedule=sliceK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE small fp8/fp8 sliceNK batch=256 expts=8",
-          "shapes": {
-            "batch_per_expt": 256,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 8,
-            "n_expts_act": 4,
-            "x_dtype": "fp8",
-            "w_dtype": "fp8",
-            "schedule": "sliceNK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 256 --dim1 5760 --dim2 5760 --n_expts_tot 8 --n_expts_act 4 --x_dtype fp8 --w_dtype fp8 --schedule sliceNK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=256, dim1=5760, dim2=5760, n_expts_tot=8, n_expts_act=4, x_dtype=fp8, w_dtype=fp8, schedule=sliceNK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE medium bf16/mx4 baseline batch=2048 expts=128",
-          "shapes": {
-            "batch_per_expt": 2048,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 128,
-            "n_expts_act": 4,
-            "x_dtype": "bf16",
-            "w_dtype": "mx4",
-            "schedule": "baseline",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 2048 --dim1 5760 --dim2 5760 --n_expts_tot 128 --n_expts_act 4 --x_dtype bf16 --w_dtype mx4 --schedule baseline --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=2048, dim1=5760, dim2=5760, n_expts_tot=128, n_expts_act=4, x_dtype=bf16, w_dtype=mx4, schedule=baseline, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE medium bf16/mx4 sliceK batch=2048 expts=128",
-          "shapes": {
-            "batch_per_expt": 2048,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 128,
-            "n_expts_act": 4,
-            "x_dtype": "bf16",
-            "w_dtype": "mx4",
-            "schedule": "sliceK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 2048 --dim1 5760 --dim2 5760 --n_expts_tot 128 --n_expts_act 4 --x_dtype bf16 --w_dtype mx4 --schedule sliceK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=2048, dim1=5760, dim2=5760, n_expts_tot=128, n_expts_act=4, x_dtype=bf16, w_dtype=mx4, schedule=sliceK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE medium bf16/mx4 sliceNK batch=2048 expts=128",
-          "shapes": {
-            "batch_per_expt": 2048,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 128,
-            "n_expts_act": 4,
-            "x_dtype": "bf16",
-            "w_dtype": "mx4",
-            "schedule": "sliceNK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 2048 --dim1 5760 --dim2 5760 --n_expts_tot 128 --n_expts_act 4 --x_dtype bf16 --w_dtype mx4 --schedule sliceNK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=2048, dim1=5760, dim2=5760, n_expts_tot=128, n_expts_act=4, x_dtype=bf16, w_dtype=mx4, schedule=sliceNK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE medium fp8/mx4 baseline batch=2048 expts=128",
-          "shapes": {
-            "batch_per_expt": 2048,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 128,
-            "n_expts_act": 4,
-            "x_dtype": "fp8",
-            "w_dtype": "mx4",
-            "schedule": "baseline",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 2048 --dim1 5760 --dim2 5760 --n_expts_tot 128 --n_expts_act 4 --x_dtype fp8 --w_dtype mx4 --schedule baseline --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=2048, dim1=5760, dim2=5760, n_expts_tot=128, n_expts_act=4, x_dtype=fp8, w_dtype=mx4, schedule=baseline, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE medium fp8/mx4 sliceK batch=2048 expts=128",
-          "shapes": {
-            "batch_per_expt": 2048,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 128,
-            "n_expts_act": 4,
-            "x_dtype": "fp8",
-            "w_dtype": "mx4",
-            "schedule": "sliceK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 2048 --dim1 5760 --dim2 5760 --n_expts_tot 128 --n_expts_act 4 --x_dtype fp8 --w_dtype mx4 --schedule sliceK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=2048, dim1=5760, dim2=5760, n_expts_tot=128, n_expts_act=4, x_dtype=fp8, w_dtype=mx4, schedule=sliceK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE medium fp8/mx4 sliceNK batch=2048 expts=128",
-          "shapes": {
-            "batch_per_expt": 2048,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 128,
-            "n_expts_act": 4,
-            "x_dtype": "fp8",
-            "w_dtype": "mx4",
-            "schedule": "sliceNK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 2048 --dim1 5760 --dim2 5760 --n_expts_tot 128 --n_expts_act 4 --x_dtype fp8 --w_dtype mx4 --schedule sliceNK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=2048, dim1=5760, dim2=5760, n_expts_tot=128, n_expts_act=4, x_dtype=fp8, w_dtype=mx4, schedule=sliceNK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE medium fp8/fp8 baseline batch=2048 expts=128",
-          "shapes": {
-            "batch_per_expt": 2048,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 128,
-            "n_expts_act": 4,
-            "x_dtype": "fp8",
-            "w_dtype": "fp8",
-            "schedule": "baseline",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 2048 --dim1 5760 --dim2 5760 --n_expts_tot 128 --n_expts_act 4 --x_dtype fp8 --w_dtype fp8 --schedule baseline --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=2048, dim1=5760, dim2=5760, n_expts_tot=128, n_expts_act=4, x_dtype=fp8, w_dtype=fp8, schedule=baseline, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE medium fp8/fp8 sliceK batch=2048 expts=128",
-          "shapes": {
-            "batch_per_expt": 2048,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 128,
-            "n_expts_act": 4,
-            "x_dtype": "fp8",
-            "w_dtype": "fp8",
-            "schedule": "sliceK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 2048 --dim1 5760 --dim2 5760 --n_expts_tot 128 --n_expts_act 4 --x_dtype fp8 --w_dtype fp8 --schedule sliceK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=2048, dim1=5760, dim2=5760, n_expts_tot=128, n_expts_act=4, x_dtype=fp8, w_dtype=fp8, schedule=sliceK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE medium fp8/fp8 sliceNK batch=2048 expts=128",
-          "shapes": {
-            "batch_per_expt": 2048,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 128,
-            "n_expts_act": 4,
-            "x_dtype": "fp8",
-            "w_dtype": "fp8",
-            "schedule": "sliceNK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 2048 --dim1 5760 --dim2 5760 --n_expts_tot 128 --n_expts_act 4 --x_dtype fp8 --w_dtype fp8 --schedule sliceNK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=2048, dim1=5760, dim2=5760, n_expts_tot=128, n_expts_act=4, x_dtype=fp8, w_dtype=fp8, schedule=sliceNK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE large bf16/mx4 baseline batch=8192 expts=256",
-          "shapes": {
-            "batch_per_expt": 8192,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 256,
-            "n_expts_act": 8,
-            "x_dtype": "bf16",
-            "w_dtype": "mx4",
-            "schedule": "baseline",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype bf16 --w_dtype mx4 --schedule baseline --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=8192, dim1=5760, dim2=5760, n_expts_tot=256, n_expts_act=8, x_dtype=bf16, w_dtype=mx4, schedule=baseline, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE large bf16/mx4 sliceK batch=8192 expts=256",
-          "shapes": {
-            "batch_per_expt": 8192,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 256,
-            "n_expts_act": 8,
-            "x_dtype": "bf16",
-            "w_dtype": "mx4",
-            "schedule": "sliceK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype bf16 --w_dtype mx4 --schedule sliceK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=8192, dim1=5760, dim2=5760, n_expts_tot=256, n_expts_act=8, x_dtype=bf16, w_dtype=mx4, schedule=sliceK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE large bf16/mx4 sliceNK batch=8192 expts=256",
-          "shapes": {
-            "batch_per_expt": 8192,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 256,
-            "n_expts_act": 8,
-            "x_dtype": "bf16",
-            "w_dtype": "mx4",
-            "schedule": "sliceNK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype bf16 --w_dtype mx4 --schedule sliceNK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=8192, dim1=5760, dim2=5760, n_expts_tot=256, n_expts_act=8, x_dtype=bf16, w_dtype=mx4, schedule=sliceNK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE large fp8/mx4 baseline batch=8192 expts=256",
-          "shapes": {
-            "batch_per_expt": 8192,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 256,
-            "n_expts_act": 8,
-            "x_dtype": "fp8",
-            "w_dtype": "mx4",
-            "schedule": "baseline",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype fp8 --w_dtype mx4 --schedule baseline --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=8192, dim1=5760, dim2=5760, n_expts_tot=256, n_expts_act=8, x_dtype=fp8, w_dtype=mx4, schedule=baseline, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE large fp8/mx4 sliceK batch=8192 expts=256",
-          "shapes": {
-            "batch_per_expt": 8192,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 256,
-            "n_expts_act": 8,
-            "x_dtype": "fp8",
-            "w_dtype": "mx4",
-            "schedule": "sliceK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype fp8 --w_dtype mx4 --schedule sliceK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=8192, dim1=5760, dim2=5760, n_expts_tot=256, n_expts_act=8, x_dtype=fp8, w_dtype=mx4, schedule=sliceK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE large fp8/mx4 sliceNK batch=8192 expts=256",
-          "shapes": {
-            "batch_per_expt": 8192,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 256,
-            "n_expts_act": 8,
-            "x_dtype": "fp8",
-            "w_dtype": "mx4",
-            "schedule": "sliceNK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype fp8 --w_dtype mx4 --schedule sliceNK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=8192, dim1=5760, dim2=5760, n_expts_tot=256, n_expts_act=8, x_dtype=fp8, w_dtype=mx4, schedule=sliceNK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE large fp8/fp8 baseline batch=8192 expts=256",
-          "shapes": {
-            "batch_per_expt": 8192,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 256,
-            "n_expts_act": 8,
-            "x_dtype": "fp8",
-            "w_dtype": "fp8",
-            "schedule": "baseline",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype fp8 --w_dtype fp8 --schedule baseline --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=8192, dim1=5760, dim2=5760, n_expts_tot=256, n_expts_act=8, x_dtype=fp8, w_dtype=fp8, schedule=baseline, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE large fp8/fp8 sliceK batch=8192 expts=256",
-          "shapes": {
-            "batch_per_expt": 8192,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 256,
-            "n_expts_act": 8,
-            "x_dtype": "fp8",
-            "w_dtype": "fp8",
-            "schedule": "sliceK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype fp8 --w_dtype fp8 --schedule sliceK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=8192, dim1=5760, dim2=5760, n_expts_tot=256, n_expts_act=8, x_dtype=fp8, w_dtype=fp8, schedule=sliceK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
-          },
-          "triton": null
-        },
-        {
-          "op_type": "moe",
-          "label": "MoE large fp8/fp8 sliceNK batch=8192 expts=256",
-          "shapes": {
-            "batch_per_expt": 8192,
-            "dim1": 5760,
-            "dim2": 5760,
-            "n_expts_tot": 256,
-            "n_expts_act": 8,
-            "x_dtype": "fp8",
-            "w_dtype": "fp8",
-            "schedule": "sliceNK",
-            "BLOCK_M": 256,
-            "BLOCK_N": 256,
-            "BLOCK_K": 256,
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": {
-            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
-            "entry_point": "main",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype fp8 --w_dtype fp8 --schedule sliceNK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
-            "compile_call": "main(batch_per_expt=8192, dim1=5760, dim2=5760, n_expts_tot=256, n_expts_act=8, x_dtype=fp8, w_dtype=fp8, schedule=sliceNK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
           },
           "triton": null
         }

@@ -10,11 +10,11 @@
 | Manifest | Compiled | Failed | Total | .llir files |
 |----------|----------|--------|-------|-------------|
 | OAI | 8 | 0 | 8 | 8 |
-| Gluon | 100 | 88 | 188 | 151 |
-| Best | 8 | 5 | 13 | 8 |
-| Triton (vanilla) | 41 | 24 | 65 | 110 |
-| Aiter | 14 | 31 | 45 | 14 |
-| **Total** | **171** | **148** | **319** | **291** |
+| Gluon | 167 | 21 | 188 | 216 |
+| Best | 12 | 1 | 13 | 12 |
+| Triton (vanilla) | 62 | 3 | 65 | 131 |
+| Aiter | 30 | 15 | 45 | 30 |
+| **Total** | **279** | **40** | **319** | **397** |
 
 Some kernels (notably persistent GEMM) produce multiple `.llir` files per invocation, which is why the .llir file count exceeds the compiled kernel count.
 
@@ -33,10 +33,10 @@ Some kernels (notably persistent GEMM) produce multiple `.llir` files per invoca
 ```
 MI450/kernels/
 ├── OAI/          8 .llir — MXFP flash attention (prefill + decode)
-├── gluon/      151 .llir — Gluon CDNA5 kernels (FA, GEMM, MoE)
-├── best/         8 .llir — Best config per op (GEMM, FA, softmax, layernorm, topk)
-├── triton/     110 .llir — Vanilla Triton tutorials + production kernels
-└── aiter/       14 .llir — Model-specific GEMM kernels from aiter configs
+├── gluon/      216 .llir — Gluon CDNA5 kernels (FA, GEMM, MoE)
+├── best/        12 .llir — Best config per op (GEMM, FA, softmax, layernorm, topk, swiglu, reduce)
+├── triton/     131 .llir — Vanilla Triton tutorials + production kernels
+└── aiter/       30 .llir — Model-specific GEMM kernels from aiter configs
 ```
 
 Each directory contains a `mapping.json` documenting which manifest entry produced which `.llir` file, along with the run command, shapes, and status.
@@ -46,47 +46,53 @@ Each directory contains a `mapping.json` documenting which manifest entry produc
 ### OAI — 0 failures
 All 8 MXFP flash attention kernels compiled successfully.
 
-### Gluon — 88 failures (47%)
+### Gluon — 21 failures (11%)
 
-| Count | Category | Root cause |
-|-------|----------|------------|
-| 24 | SCALE_PRESHUFFLE config skip | MXFP GEMM sliceK/sliceNK modes require `--scale_preshuffled` and `--transpose_b` flags that aren't compatible with all shape configurations |
-| 18 | GPU OOM | Large MoE kernels (batch=8192, 256 experts) require >16 GB VRAM for tensor allocation before compilation |
-| 16 | fp4 skip | Kernel intentionally skips fp4 × mxfp GEMM combinations |
-| 10 | Tensor shape mismatch | FP16 FA GQA configs with head count mismatch (tensor a=8 vs b=2) |
-| 10 | AssertionError | Internal kernel assertion on shape/config validation |
-| 7 | CompiledKernel attribute | `'CompiledKernel' object has no attribute 'module'` — API change in Triton 3.9.0 |
-| 3 | make_opt_flags signature | Missing `intermediate` argument in warp-pipeline GEMM |
+| Count | Category | Root cause | Fixable? |
+|-------|----------|------------|----------|
+| 18 | GPU OOM | Medium/large MoE kernels (batch≥2048, ≥128 experts) require >16 GB VRAM for tensor allocation before compilation | No — needs ≥32 GB GPU |
+| 3 | make_opt_flags upstream bug | MoE fp8/fp8 dtype: `make_opt_flags()` missing `intermediate_out_dtype` argument | No — upstream Triton fix needed |
 
-> **Note:** The 47% failure rate is due to the sweep covering many intentionally-skipped configurations (fp4, SCALE_PRESHUFFLE) and GPU memory limits, not an environment problem. The 100 successful compilations cover all kernel families.
+> **Note:** 67 of the original 88 failures were config issues (wrong flags, missing args, reference check crashes) that were fixed by correcting the invocation commands. See `MI450/agent/knowledge/gluon_configs.md` for the full configuration reference.
 
-### Best — 5 failures
+### Best — 1 failure
 
-| Kernel | Reason |
-|--------|--------|
-| MXFP GEMM sliceMNK fp8 | SCALE_PRESHUFFLE config skip |
-| FA Prefill FP16 pipeline GQA | Tensor shape mismatch (head count) |
-| MoE fp8/mx4 large | GPU OOM (31.6 GB allocation) |
-| SwiGLU | Missing `precision_config` argument — API changed |
-| Reduce | Only supports 3D inputs in current implementation |
+| Kernel | Reason | Fixable? |
+|--------|--------|----------|
+| MoE fp8/mx4 large batch=8192 expts=256 | GPU OOM (31.6 GB allocation) | No — needs ≥32 GB GPU |
 
-### Triton (vanilla) — 24 failures
+### Triton (vanilla) — 3 failures
 
-| Count | Category | Root cause |
-|-------|----------|------------|
-| 10 | Production matmul | Missing `bias` positional argument — API changed since manifest generation |
-| 4 | Seeded dropout | Missing `tabulate` dependency |
-| 4 | Production reduce | Only supports 3D inputs |
-| 3 | Production SwiGLU | Missing `precision_config` argument |
-| 3 | Block-scaled GEMM | Compilation failed (no .llir from cache or dump) |
+| Count | Category | Root cause | Fixable? |
+|-------|----------|------------|----------|
+| 3 | Block-Scaled GEMM | Tutorial uses CDNA4-specific kernel (`gfx950`); no CDNA5 path exists. Equivalent gfx1250 functionality is in `mxfp_gemm_cdna5.py` (Gluon). | No — not applicable to gfx1250 |
 
-### Aiter — 31 failures
+### Aiter — 15 failures
 
-| Count | Category | Root cause |
-|-------|----------|------------|
-| 15 | SCALE_PRESHUFFLE config skip | MXFP GEMM sliceK/sliceNK mode limitation |
-| 15 | GPU OOM | MoE kernels need >16 GB VRAM |
-| 1 | K/BLOCK_K skip | K dimension too small for buffer count |
+| Count | Category | Root cause | Fixable? |
+|-------|----------|------------|----------|
+| 15 | GPU OOM | MoE kernels need >16 GB VRAM for tensor allocation | No — needs ≥32 GB GPU |
+
+## Config fixes applied
+
+The following issues were identified and corrected during recompilation (108 kernels recovered):
+
+| Category | Count | Fix applied |
+|----------|-------|-------------|
+| MXFP GEMM missing `--scale_preshuffled` | 36 | Added `--scale_preshuffled` flag (required for non-baseline schedules); ensured `BLOCK_K ≥ 256` |
+| MXFP GEMM fp4 missing `--with_a_scale` | 12 | Added `--with_a_scale` flag (required for fp4 × fp4 GEMM) |
+| F16 FA GQA reference check crash | 10 | Invoked via Python with `check=False` (the reference SDPA doesn't handle GQA, but the kernel compiles fine) |
+| F16 GEMM warp-specialized wrong num_warps | 5 | Changed `--num-warps 4` to `--num-warps 8` (warp-specialized requires 8 or 16) |
+| F16 GEMM single-warp missing `--prefetch-lds` | 5 | Added `--prefetch-lds` (required for single-warp-schedule mode) |
+| Production matmul missing `bias` | 10 | Added `bias=None` argument |
+| Production swiglu missing `precision_config` | 4 | Added `PrecisionConfig(limit=float("inf"))` |
+| Production reduce 2D→3D | 5 | Reshaped input to 3D with `unsqueeze(0)` |
+| MXFP FA `--profile` crash at seqlen=1024 | 7 | Removed `--profile` flag (causes `CompiledKernel.module` attribute error during cross-compilation) |
+| Seeded dropout missing `tabulate` | 4 | Installed `tabulate` dependency |
+| MXFP GEMM small M with sliceNK | 9 | Switched to `--schedule baseline` (sliceNK requires M ≥ 256) |
+| F16 GEMM small K | 1 | Reduced `--block_k` to satisfy `K/BLOCK_K ≥ NUM_BUFFERS` |
+
+See `MI450/agent/knowledge/` for detailed configuration references per kernel family.
 
 ## Environment
 
@@ -97,7 +103,7 @@ All 8 MXFP flash attention kernels compiled successfully.
 
 ## Known limitations
 
-- **MoE kernels require large GPU memory.** All MoE kernels at the "large" configuration (batch=8192, 256 experts) fail with OOM. Smaller MoE configs (batch=256, 8 experts) compile successfully in the gluon manifest.
-- **Production triton_kernels API drift.** The `matmul`, `swiglu`, and `reduce` APIs in the `triton_kernels` package changed between manifest generation and compilation. Future runs should re-generate manifests from the same Triton commit used for compilation.
-- **MXFP GEMM sliceK/sliceNK modes** are intentionally restricted to configs with `SCALE_PRESHUFFLE` and `TRANSPOSE_B`, which limits the shape combinations that can compile.
+- **MoE kernels require large GPU memory.** All MoE kernels at medium/large configurations (batch≥2048, ≥128 experts) fail with OOM on a 16 GB GPU. Tensor allocation happens before the Triton JIT sees the kernel launch. Requires ≥32 GB VRAM.
+- **MoE fp8/fp8 dtype combination is broken.** `moe_cdna5.py` calls `make_opt_flags()` without the required `intermediate_out_dtype` argument. This is an upstream bug in Triton's MoE example code. bf16/mx4 and fp8/mx4 work fine.
+- **Block-scaled matmul tutorial is CDNA4-only.** The `10-block-scaled-matmul.py` tutorial only supports `gfx950` (MI300) on the AMD path. The equivalent gfx1250 functionality is covered by `mxfp_gemm_cdna5.py` in the Gluon manifest.
 - **Some .llir files may be identical** when the kernel's shape parameters (M, N, K) are runtime arguments rather than compile-time specialization constants. The Triton JIT compiles once per unique set of meta-parameters (block sizes, num_warps, pipeline config), not per runtime shape.

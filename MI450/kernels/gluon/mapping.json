@@ -5,10 +5,10 @@
   "generated_at": "2026-11-05T23:55:57.850043+00:00",
   "kernels": [
     {
-      "filename": null,
+      "filename": "mxfp_fa_mha_prefill_e4m3_e4m3_b1_q1024_k1024_hq64_hk64.llir",
       "label": "MXFP FA MHA Prefill e4m3/e4m3 B1 Q1024 K1024 Hq64 Hk64",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 64 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 64 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
       "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -22,16 +22,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AttributeError: 'CompiledKernel' object has no attribute 'module'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_fa_gqa_prefill_e4m3_e4m3_b1_q1024_k1024_hq64_hk8.llir",
       "label": "MXFP FA GQA Prefill e4m3/e4m3 B1 Q1024 K1024 Hq64 Hk8",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 8 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 8 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
       "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -45,16 +44,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AttributeError: 'CompiledKernel' object has no attribute 'module'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_fa_gqa_prefill_e4m3_e4m3_b1_q1024_k1024_hq64_hk2.llir",
       "label": "MXFP FA GQA Prefill e4m3/e4m3 B1 Q1024 K1024 Hq64 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
       "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -68,16 +66,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AttributeError: 'CompiledKernel' object has no attribute 'module'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_fa_mqa_prefill_e4m3_e4m3_b1_q1024_k1024_hq64_hk1.llir",
       "label": "MXFP FA MQA Prefill e4m3/e4m3 B1 Q1024 K1024 Hq64 Hk1",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
       "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -91,10 +88,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AttributeError: 'CompiledKernel' object has no attribute 'module'"
+      "additional_files": []
     },
     {
       "filename": "mxfp_fa_mha_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk64.llir",
@@ -238,10 +234,10 @@
       ]
     },
     {
-      "filename": null,
+      "filename": "mxfp_fa_mha_prefill_e4m3_e2m1_b1_q1024_k1024_hq64_hk64.llir",
       "label": "MXFP FA MHA Prefill e4m3/e2m1 B1 Q1024 K1024 Hq64 Hk64",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 64 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 64 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
       "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -255,16 +251,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AttributeError: 'CompiledKernel' object has no attribute 'module'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_fa_gqa_prefill_e4m3_e2m1_b1_q1024_k1024_hq64_hk8.llir",
       "label": "MXFP FA GQA Prefill e4m3/e2m1 B1 Q1024 K1024 Hq64 Hk8",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 8 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 8 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
       "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -278,16 +273,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AttributeError: 'CompiledKernel' object has no attribute 'module'"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_fa_gqa_prefill_e4m3_e2m1_b1_q1024_k1024_hq64_hk2.llir",
       "label": "MXFP FA GQA Prefill e4m3/e2m1 B1 Q1024 K1024 Hq64 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 1 --seqlen_q 1024 --seqlen_k 1024 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling",
       "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -301,10 +295,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AttributeError: 'CompiledKernel' object has no attribute 'module'"
+      "additional_files": []
     },
     {
       "filename": "mxfp_fa_mqa_prefill_e4m3_e2m1_b1_q1024_k1024_hq64_hk1.llir",
@@ -1105,10 +1098,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_fa_gqa_default_seqlen_1024_hq8_hk2.llir",
       "label": "F16 FA GQA default seqlen=1024 Hq8 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 1024 --seqlen-k 1024 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type default",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 1024, 'SEQLEN_K': 1024, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'default'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -1124,16 +1117,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_fa_gqa_pipeline_seqlen_1024_hq8_hk2.llir",
       "label": "F16 FA GQA pipeline seqlen=1024 Hq8 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 1024 --seqlen-k 1024 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pipeline",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 1024, 'SEQLEN_K': 1024, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pipeline'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -1149,16 +1141,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_fa_gqa_pingpong_seqlen_1024_hq8_hk2.llir",
       "label": "F16 FA GQA pingpong seqlen=1024 Hq8 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 1024 --seqlen-k 1024 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pingpong",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 1024, 'SEQLEN_K': 1024, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pingpong'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -1174,10 +1165,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
       "filename": "f16_fa_mqa_default_seqlen_1024_hq8_hk1.llir",
@@ -1324,10 +1314,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_fa_gqa_default_seqlen_4096_hq8_hk2.llir",
       "label": "F16 FA GQA default seqlen=4096 Hq8 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 4096 --seqlen-k 4096 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type default",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 4096, 'SEQLEN_K': 4096, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'default'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -1343,16 +1333,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_fa_gqa_pipeline_seqlen_4096_hq8_hk2.llir",
       "label": "F16 FA GQA pipeline seqlen=4096 Hq8 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 4096 --seqlen-k 4096 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pipeline",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 4096, 'SEQLEN_K': 4096, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pipeline'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -1368,16 +1357,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_fa_gqa_pingpong_seqlen_4096_hq8_hk2.llir",
       "label": "F16 FA GQA pingpong seqlen=4096 Hq8 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 4096 --seqlen-k 4096 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pingpong",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 4096, 'SEQLEN_K': 4096, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pingpong'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -1393,10 +1381,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
       "filename": "f16_fa_mqa_default_seqlen_4096_hq8_hk1.llir",
@@ -1543,10 +1530,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_fa_gqa_default_seqlen_8192_hq8_hk2.llir",
       "label": "F16 FA GQA default seqlen=8192 Hq8 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 8192 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type default",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 8192, 'SEQLEN_K': 8192, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'default'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -1562,16 +1549,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_fa_gqa_pipeline_seqlen_8192_hq8_hk2.llir",
       "label": "F16 FA GQA pipeline seqlen=8192 Hq8 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 8192 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pipeline",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 8192, 'SEQLEN_K': 8192, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pipeline'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -1587,16 +1573,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_fa_gqa_pingpong_seqlen_8192_hq8_hk2.llir",
       "label": "F16 FA GQA pingpong seqlen=8192 Hq8 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 8192 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pingpong",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 1, 'SEQLEN_Q': 8192, 'SEQLEN_K': 8192, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'pingpong'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 1,
@@ -1612,10 +1597,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
       "filename": "f16_fa_mqa_default_seqlen_8192_hq8_hk1.llir",
@@ -1690,10 +1674,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_fa_gqa_decode_b64_q1_k8192_hq8_hk2.llir",
       "label": "F16 FA GQA decode B64 Q1 K8192 Hq8 Hk2",
       "op_type": "flash_attention",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 64 --seqlen-q 1 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type decode",
+      "run_command": "python3 -c \"import sys; sys.path.insert(0, 'third_party/amd/python/examples/gluon'); from f16_fa_cdna5 import run_attention; run_attention({'BATCH': 64, 'SEQLEN_Q': 1, 'SEQLEN_K': 8192, 'NUM_Q_HEADS': 8, 'NUM_K_HEADS': 2, 'HEAD_SZ': 128, 'BLOCK_M': 128, 'BLOCK_N': 128, 'ATTN_FN': 'decode'}, check=False)\"",
       "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
       "shapes": {
         "batch": 64,
@@ -1709,10 +1693,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+      "additional_files": []
     },
     {
       "filename": "f16_fa_mqa_decode_b64_q1_k8192_hq8_hk1.llir",
@@ -1762,10 +1745,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicek_m_4096_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/fp8 sliceK M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -1780,16 +1763,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicenk_m_4096_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/fp8 sliceNK M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -1804,16 +1786,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicemnk_m_4096_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/fp8 sliceMNK M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -1828,10 +1809,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
       "filename": "mxfp_gemm_fp8_mxfp4_baseline_m_4096_n_4096_k_4096.llir",
@@ -1857,10 +1837,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicek_m_4096_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceK M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -1875,16 +1855,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicenk_m_4096_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceNK M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -1899,16 +1878,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicemnk_m_4096_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceMNK M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -1923,16 +1901,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_baseline_m_4096_n_4096_k_4096.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 baseline M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4 --with_a_scale",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -1947,16 +1924,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicek_m_4096_n_4096_k_4096.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceK M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -1971,16 +1947,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicenk_m_4096_n_4096_k_4096.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceNK M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -1995,16 +1970,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicemnk_m_4096_n_4096_k_4096.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceMNK M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -2019,10 +1993,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
       "filename": "mxfp_gemm_fp8_fp8_baseline_m_8192_n_4096_k_4096.llir",
@@ -2048,10 +2021,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicek_m_8192_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/fp8 sliceK M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2066,16 +2039,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicenk_m_8192_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/fp8 sliceNK M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2090,16 +2062,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicemnk_m_8192_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/fp8 sliceMNK M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2114,10 +2085,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
       "filename": "mxfp_gemm_fp8_mxfp4_baseline_m_8192_n_4096_k_4096.llir",
@@ -2143,10 +2113,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicek_m_8192_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceK M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2161,16 +2131,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicenk_m_8192_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceNK M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2185,16 +2154,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicemnk_m_8192_n_4096_k_4096.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceMNK M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2209,16 +2177,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_baseline_m_8192_n_4096_k_4096.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 baseline M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4 --with_a_scale",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2233,16 +2200,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicek_m_8192_n_4096_k_4096.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceK M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2257,16 +2223,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicenk_m_8192_n_4096_k_4096.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceNK M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2281,16 +2246,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicemnk_m_8192_n_4096_k_4096.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceMNK M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 4096 -K 4096 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2305,10 +2269,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
       "filename": "mxfp_gemm_fp8_fp8_baseline_m_8192_n_8192_k_8192.llir",
@@ -2334,10 +2297,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicek_m_8192_n_8192_k_8192.llir",
       "label": "MXFP GEMM fp8/fp8 sliceK M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2352,16 +2315,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicenk_m_8192_n_8192_k_8192.llir",
       "label": "MXFP GEMM fp8/fp8 sliceNK M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2376,16 +2338,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicemnk_m_8192_n_8192_k_8192.llir",
       "label": "MXFP GEMM fp8/fp8 sliceMNK M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2400,10 +2361,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
       "filename": "mxfp_gemm_fp8_mxfp4_baseline_m_8192_n_8192_k_8192.llir",
@@ -2429,10 +2389,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicek_m_8192_n_8192_k_8192.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceK M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2447,16 +2407,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicenk_m_8192_n_8192_k_8192.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceNK M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2471,16 +2430,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicemnk_m_8192_n_8192_k_8192.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceMNK M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2495,16 +2453,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_baseline_m_8192_n_8192_k_8192.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 baseline M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4 --with_a_scale",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2519,16 +2476,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicek_m_8192_n_8192_k_8192.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceK M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2543,16 +2499,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicenk_m_8192_n_8192_k_8192.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceNK M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2567,16 +2522,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicemnk_m_8192_n_8192_k_8192.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceMNK M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -2591,10 +2545,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
       "filename": "mxfp_gemm_fp8_fp8_baseline_m_16384_n_4096_k_8192.llir",
@@ -2620,10 +2573,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicek_m_16384_n_4096_k_8192.llir",
       "label": "MXFP GEMM fp8/fp8 sliceK M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -2638,16 +2591,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicenk_m_16384_n_4096_k_8192.llir",
       "label": "MXFP GEMM fp8/fp8 sliceNK M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -2662,16 +2614,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_fp8_slicemnk_m_16384_n_4096_k_8192.llir",
       "label": "MXFP GEMM fp8/fp8 sliceMNK M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -2686,10 +2637,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
       "filename": "mxfp_gemm_fp8_mxfp4_baseline_m_16384_n_4096_k_8192.llir",
@@ -2715,10 +2665,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicek_m_16384_n_4096_k_8192.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceK M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -2733,16 +2683,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicenk_m_16384_n_4096_k_8192.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceNK M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -2757,16 +2706,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_fp8_mxfp4_slicemnk_m_16384_n_4096_k_8192.llir",
       "label": "MXFP GEMM fp8/mxfp4 sliceMNK M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float8_e4m3 --dtype_b float4 --schedule sliceMNK --num_warps 4 --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -2781,16 +2729,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_baseline_m_16384_n_4096_k_8192.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 baseline M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule baseline --num_warps 4 --with_a_scale",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -2805,16 +2752,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicek_m_16384_n_4096_k_8192.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceK M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -2829,16 +2775,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicenk_m_16384_n_4096_k_8192.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceNK M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceNK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -2853,16 +2798,15 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "mxfp_gemm_mxfp4_mxfp4_slicemnk_m_16384_n_4096_k_8192.llir",
       "label": "MXFP GEMM mxfp4/mxfp4 sliceMNK M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 4096 -K 8192 -BM 256 -BN 256 -BK 256 --dtype_a float4 --dtype_b float4 --schedule sliceMNK --num_warps 4 --with_a_scale --scale_preshuffled",
       "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -2877,10 +2821,9 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "Skipped: Skip fp4 x mxfp gemm to reduce test cases."
+      "additional_files": []
     },
     {
       "filename": "f16_gemm_default_m_1_n_4096_k_4096.llir",
@@ -2929,10 +2872,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_gemm_warp_specialized_m_1_n_4096_k_4096.llir",
       "label": "F16 GEMM warp-specialized M=1 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 1 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --warp-specialized",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 1 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 8 --num-buffers 3 --warp-specialized",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 1,
@@ -2947,16 +2890,15 @@
         "variant": "warp-specialized",
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AssertionError"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_gemm_single_warp_m_1_n_4096_k_4096.llir",
       "label": "F16 GEMM single-warp M=1 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 1 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 1 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule --prefetch-lds",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 1,
@@ -2971,10 +2913,9 @@
         "variant": "single-warp",
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AssertionError"
+      "additional_files": []
     },
     {
       "filename": "f16_gemm_default_m_4096_n_4096_k_4096.llir",
@@ -3023,10 +2964,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_gemm_warp_specialized_m_4096_n_4096_k_4096.llir",
       "label": "F16 GEMM warp-specialized M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 4096 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --warp-specialized",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 4096 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 8 --num-buffers 3 --warp-specialized",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -3041,16 +2982,15 @@
         "variant": "warp-specialized",
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AssertionError"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_gemm_single_warp_m_4096_n_4096_k_4096.llir",
       "label": "F16 GEMM single-warp M=4096 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 4096 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 4096 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule --prefetch-lds",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 4096,
@@ -3065,10 +3005,9 @@
         "variant": "single-warp",
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AssertionError"
+      "additional_files": []
     },
     {
       "filename": "f16_gemm_default_m_8192_n_4096_k_4096.llir",
@@ -3117,10 +3056,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_gemm_warp_specialized_m_8192_n_4096_k_4096.llir",
       "label": "F16 GEMM warp-specialized M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --warp-specialized",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 8 --num-buffers 3 --warp-specialized",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -3135,16 +3074,15 @@
         "variant": "warp-specialized",
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AssertionError"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_gemm_single_warp_m_8192_n_4096_k_4096.llir",
       "label": "F16 GEMM single-warp M=8192 N=4096 K=4096",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule --prefetch-lds",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -3159,10 +3097,9 @@
         "variant": "single-warp",
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AssertionError"
+      "additional_files": []
     },
     {
       "filename": "f16_gemm_default_m_8192_n_8192_k_8192.llir",
@@ -3211,10 +3148,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_gemm_warp_specialized_m_8192_n_8192_k_8192.llir",
       "label": "F16 GEMM warp-specialized M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 8192 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --warp-specialized",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 8192 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 8 --num-buffers 3 --warp-specialized",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -3229,16 +3166,15 @@
         "variant": "warp-specialized",
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AssertionError"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_gemm_single_warp_m_8192_n_8192_k_8192.llir",
       "label": "F16 GEMM single-warp M=8192 N=8192 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 8192 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 8192 -N 8192 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule --prefetch-lds",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 8192,
@@ -3253,10 +3189,9 @@
         "variant": "single-warp",
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AssertionError"
+      "additional_files": []
     },
     {
       "filename": "f16_gemm_default_m_16384_n_4096_k_8192.llir",
@@ -3305,10 +3240,10 @@
       "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_gemm_warp_specialized_m_16384_n_4096_k_8192.llir",
       "label": "F16 GEMM warp-specialized M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 16384 -N 4096 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --warp-specialized",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 16384 -N 4096 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 8 --num-buffers 3 --warp-specialized",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -3323,16 +3258,15 @@
         "variant": "warp-specialized",
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AssertionError"
+      "additional_files": []
     },
     {
-      "filename": null,
+      "filename": "f16_gemm_single_warp_m_16384_n_4096_k_8192.llir",
       "label": "F16 GEMM single-warp M=16384 N=4096 K=8192",
       "op_type": "gemm",
-      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 16384 -N 4096 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 16384 -N 4096 -K 8192 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2 --single-warp-schedule --prefetch-lds",
       "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
       "shapes": {
         "M": 16384,
@@ -3347,10 +3281,9 @@
         "variant": "single-warp",
         "waves_per_eu": 1
       },
-      "status": "compilation_failed",
+      "status": "launch_failed_ir_captured",
       "has_amdgcn": false,
-      "additional_files": [],
-      "error": "AssertionError"
+      "additional_files": []
     },
     {
       "filename": "streamk_gemm_default_m_4096_n_4096_k_4096.llir",
@@ -4459,7 +4392,7 @@
   ],
   "summary": {
     "total": 188,
-    "success": 100,
-    "failed": 88
+    "success": 167,
+    "failed": 21
   }
 }

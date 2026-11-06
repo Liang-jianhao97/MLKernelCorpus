@@ -906,75 +906,6 @@
             "run_command": "python3 python/tutorials/09-persistent-matmul.py -K 4096 --prec fp16",
             "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 4096, 4096, 4096, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
           }
-        },
-        {
-          "op_type": "block_scaled_gemm",
-          "label": "Block-Scaled GEMM mxfp4 M=4096 N=4096 K=512",
-          "shapes": {
-            "M": 4096,
-            "N": 4096,
-            "K": 512,
-            "block_scale_type": "mxfp4",
-            "mfma_nonkdim": 16,
-            "dtype": "mxfp4",
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": null,
-          "triton": {
-            "source": "python/tutorials/10-block-scaled-matmul.py",
-            "entry_point": "block_scaled_matmul_kernel",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 python/tutorials/10-block-scaled-matmul.py -K 512 --format mxfp4",
-            "compile_call": "block_scaled_matmul_kernel[grid](a_desc, a_scale_desc, b_desc, b_scale_desc, c_ptr, 4096, 4096, 512, ...)"
-          }
-        },
-        {
-          "op_type": "block_scaled_gemm",
-          "label": "Block-Scaled GEMM mxfp4 M=4096 N=4096 K=4096",
-          "shapes": {
-            "M": 4096,
-            "N": 4096,
-            "K": 4096,
-            "block_scale_type": "mxfp4",
-            "mfma_nonkdim": 16,
-            "dtype": "mxfp4",
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": null,
-          "triton": {
-            "source": "python/tutorials/10-block-scaled-matmul.py",
-            "entry_point": "block_scaled_matmul_kernel",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 python/tutorials/10-block-scaled-matmul.py -K 4096 --format mxfp4",
-            "compile_call": "block_scaled_matmul_kernel[grid](a_desc, a_scale_desc, b_desc, b_scale_desc, c_ptr, 4096, 4096, 4096, ...)"
-          }
-        },
-        {
-          "op_type": "block_scaled_gemm",
-          "label": "Block-Scaled GEMM mxfp4 M=4096 N=4096 K=8192",
-          "shapes": {
-            "M": 4096,
-            "N": 4096,
-            "K": 8192,
-            "block_scale_type": "mxfp4",
-            "mfma_nonkdim": 16,
-            "dtype": "mxfp4",
-            "num_warps": 4,
-            "waves_per_eu": 1
-          },
-          "aiter_kernel_name": null,
-          "gluon": null,
-          "triton": {
-            "source": "python/tutorials/10-block-scaled-matmul.py",
-            "entry_point": "block_scaled_matmul_kernel",
-            "target": "hip:gfx1250:64",
-            "run_command": "python3 python/tutorials/10-block-scaled-matmul.py -K 8192 --format mxfp4",
-            "compile_call": "block_scaled_matmul_kernel[grid](a_desc, a_scale_desc, b_desc, b_scale_desc, c_ptr, 4096, 4096, 8192, ...)"
-          }
         }
       ]
     },
@@ -1001,7 +932,7 @@
             "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
             "entry_point": "_matmul",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(1,4096,dtype=torch.float16,device=cuda); b=torch.randn(4096,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(1,4096,dtype=torch.float16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
             "compile_call": "matmul(a, b)  # shapes: (1,4096) x (4096,4096), dtype=fp16"
           }
         },
@@ -1025,7 +956,7 @@
             "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
             "entry_point": "_matmul",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(1,4096,dtype=torch.bfloat16,device=cuda); b=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(1,4096,dtype=torch.bfloat16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
             "compile_call": "matmul(a, b)  # shapes: (1,4096) x (4096,4096), dtype=bf16"
           }
         },
@@ -1049,7 +980,7 @@
             "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
             "entry_point": "_matmul",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.float16,device=cuda); b=torch.randn(4096,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
             "compile_call": "matmul(a, b)  # shapes: (4096,4096) x (4096,4096), dtype=fp16"
           }
         },
@@ -1073,7 +1004,7 @@
             "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
             "entry_point": "_matmul",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); b=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
             "compile_call": "matmul(a, b)  # shapes: (4096,4096) x (4096,4096), dtype=bf16"
           }
         },
@@ -1097,7 +1028,7 @@
             "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
             "entry_point": "_matmul",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.float16,device=cuda); b=torch.randn(4096,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.float16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
             "compile_call": "matmul(a, b)  # shapes: (8192,4096) x (4096,4096), dtype=fp16"
           }
         },
@@ -1121,7 +1052,7 @@
             "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
             "entry_point": "_matmul",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.bfloat16,device=cuda); b=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.bfloat16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
             "compile_call": "matmul(a, b)  # shapes: (8192,4096) x (4096,4096), dtype=bf16"
           }
         },
@@ -1145,7 +1076,7 @@
             "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
             "entry_point": "_matmul",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.float16,device=cuda); b=torch.randn(8192,8192,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.float16,device='cuda'); b=torch.randn(8192,8192,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
             "compile_call": "matmul(a, b)  # shapes: (8192,8192) x (8192,8192), dtype=fp16"
           }
         },
@@ -1169,7 +1100,7 @@
             "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
             "entry_point": "_matmul",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.bfloat16,device=cuda); b=torch.randn(8192,8192,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.bfloat16,device='cuda'); b=torch.randn(8192,8192,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
             "compile_call": "matmul(a, b)  # shapes: (8192,8192) x (8192,8192), dtype=bf16"
           }
         },
@@ -1193,7 +1124,7 @@
             "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
             "entry_point": "_matmul",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(16384,8192,dtype=torch.float16,device=cuda); b=torch.randn(8192,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(16384,8192,dtype=torch.float16,device='cuda'); b=torch.randn(8192,4096,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
             "compile_call": "matmul(a, b)  # shapes: (16384,8192) x (8192,4096), dtype=fp16"
           }
         },
@@ -1217,7 +1148,7 @@
             "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
             "entry_point": "_matmul",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(16384,8192,dtype=torch.bfloat16,device=cuda); b=torch.randn(8192,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(16384,8192,dtype=torch.bfloat16,device='cuda'); b=torch.randn(8192,4096,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
             "compile_call": "matmul(a, b)  # shapes: (16384,8192) x (8192,4096), dtype=bf16"
           }
         },
@@ -1237,7 +1168,7 @@
             "source": "python/triton_kernels/triton_kernels/reduce.py",
             "entry_point": "_reduce_forward",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,1024,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(1, 4096,1024,dtype=torch.float16,device='cuda'); reduce(x, dim=2)\"",
             "compile_call": "reduce(x, dim=1)  # shape: (4096,1024), dtype=fp16"
           }
         },
@@ -1257,7 +1188,7 @@
             "source": "python/triton_kernels/triton_kernels/reduce.py",
             "entry_point": "_reduce_forward",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,4096,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(1, 4096,4096,dtype=torch.float16,device='cuda'); reduce(x, dim=2)\"",
             "compile_call": "reduce(x, dim=1)  # shape: (4096,4096), dtype=fp16"
           }
         },
@@ -1277,7 +1208,7 @@
             "source": "python/triton_kernels/triton_kernels/reduce.py",
             "entry_point": "_reduce_forward",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,8192,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(1, 4096,8192,dtype=torch.float16,device='cuda'); reduce(x, dim=2)\"",
             "compile_call": "reduce(x, dim=1)  # shape: (4096,8192), dtype=fp16"
           }
         },
@@ -1297,7 +1228,7 @@
             "source": "python/triton_kernels/triton_kernels/reduce.py",
             "entry_point": "_reduce_forward",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,32768,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(1, 4096,32768,dtype=torch.float16,device='cuda'); reduce(x, dim=2)\"",
             "compile_call": "reduce(x, dim=1)  # shape: (4096,32768), dtype=fp16"
           }
         },
@@ -1319,7 +1250,7 @@
             "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
             "entry_point": "_swiglu",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,2048,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+            "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu, PrecisionConfig; import torch; a=torch.randn(4096,2048,dtype=torch.float16,device='cuda'); swiglu(a, alpha=1.0, precision_config=PrecisionConfig(limit=float('inf')))\"",
             "compile_call": "swiglu(a, alpha=1.0)  # shape: (4096,2048), dtype=fp16"
           }
         },
@@ -1341,7 +1272,7 @@
             "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
             "entry_point": "_swiglu",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,8192,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+            "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu, PrecisionConfig; import torch; a=torch.randn(4096,8192,dtype=torch.float16,device='cuda'); swiglu(a, alpha=1.0, precision_config=PrecisionConfig(limit=float('inf')))\"",
             "compile_call": "swiglu(a, alpha=1.0)  # shape: (4096,8192), dtype=fp16"
           }
         },
@@ -1363,7 +1294,7 @@
             "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
             "entry_point": "_swiglu",
             "target": "hip:gfx1250:64",
-            "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,16384,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+            "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu, PrecisionConfig; import torch; a=torch.randn(4096,16384,dtype=torch.float16,device='cuda'); swiglu(a, alpha=1.0, precision_config=PrecisionConfig(limit=float('inf')))\"",
             "compile_call": "swiglu(a, alpha=1.0)  # shape: (4096,16384), dtype=fp16"
           }
         },
