@@ -22,11 +22,7 @@ The main sources of truth are
 3. Vanilla triton ML op support
 4. Gluon ML op support
 
-The user can either specify an agent to regenerate a manifest, or use the existing one.
-
-Regenerate MI450 kernels following instructions: MI450/agent/generate_ir_corpus.md . Use docker container X
-
-The user can either specify to regenerate manifests, or use the existing ones.
+When launching the kernel generation agent, the user can either specify to regenerate manifests, or use the existing ones.
 
 A manifest is a json file containing all relevant kernel locations + commands to run the kernel. 
 
