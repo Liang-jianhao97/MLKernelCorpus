@@ -1,0 +1,286 @@
+{
+  "source_manifest": "best_kernel_manifest.json",
+  "target_arch": "gfx1250",
+  "triton_commit": "fd91c147ef635b9e86b87e9cf073448cf87d769d",
+  "generated_at": "2026-11-05T23:43:31.539933+00:00",
+  "kernels": [
+    {
+      "filename": null,
+      "label": "Best GEMM fp8 8192x8192x8192 (MXFP GEMM sliceMNK)",
+      "op_type": "gemm",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 8192,
+        "N": 8192,
+        "K": 8192,
+        "dtype_a": "float8_e4m3",
+        "dtype_b": "float8_e4m3",
+        "BLOCK_M": 256,
+        "BLOCK_N": 256,
+        "BLOCK_K": 128,
+        "schedule": "sliceMNK",
+        "num_warps": 4,
+        "waves_per_eu": 1
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": "best_gemm_fp16_decode_m_1_n_4096_k_4096_f16_gemm_default.llir",
+      "label": "Best GEMM fp16 decode M=1 N=4096 K=4096 (F16 GEMM default)",
+      "op_type": "gemm",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 1 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 1,
+        "N": 4096,
+        "K": 4096,
+        "dtype": "fp16",
+        "BLOCK_M": 256,
+        "BLOCK_N": 256,
+        "BLOCK_K": 128,
+        "num_warps": 4,
+        "waves_per_eu": 1
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "best_gemm_mxfp4_8192x8192x8192_warp_pipeline.llir",
+      "label": "Best GEMM mxfp4 8192x8192x8192 (Warp Pipeline)",
+      "op_type": "gemm",
+      "run_command": "python3 third_party/amd/python/examples/gluon/gemm_warp_pipeline_cdna5.py --dtype mxfp4 -M 8192 -N 8192 -K 8192 --check",
+      "source": "third_party/amd/python/examples/gluon/gemm_warp_pipeline_cdna5.py",
+      "shapes": {
+        "M": 8192,
+        "N": 8192,
+        "K": 8192,
+        "dtype": "mxfp4",
+        "num_warps": 4,
+        "waves_per_eu": 1
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "best_streamk_gemm_fp16_8192x8192x8192_f16_streamk_prefetch.llir",
+      "label": "Best StreamK GEMM fp16 8192x8192x8192 (F16 StreamK prefetch)",
+      "op_type": "gemm",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_streamk_cdna5.py -M 8192 -N 8192 -K 8192 --block-m 256 --block-n 256 --block-k 128 --num-warps 4 --num-buffers 2 --num-sms 8 --prefetch",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_streamk_cdna5.py",
+      "shapes": {
+        "M": 8192,
+        "N": 8192,
+        "K": 8192,
+        "dtype": "fp16",
+        "BLOCK_M": 256,
+        "BLOCK_N": 256,
+        "BLOCK_K": 128,
+        "num_warps": 4,
+        "num_sms": 8,
+        "prefetch": true,
+        "waves_per_eu": 1
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "best_fa_prefill_mxfp_e4m3_e4m3_gqa_b1_q8192_k8192.llir",
+      "label": "Best FA Prefill MXFP e4m3/e4m3 GQA B1 Q8192 K8192",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 8192 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "shapes": {
+        "batch": 1,
+        "seqlen_q": 8192,
+        "seqlen_k": 8192,
+        "num_q_heads": 64,
+        "num_k_heads": 2,
+        "head_sz": 128,
+        "q_type": "e4m3",
+        "kv_type": "e4m3",
+        "num_warps": 4,
+        "waves_per_eu": 1
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "best_fa_decode_mxfp_e4m3_e4m3_gqa_b64_q1_k8192.llir",
+      "label": "Best FA Decode MXFP e4m3/e4m3 GQA B64 Q1 K8192",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "shapes": {
+        "batch": 64,
+        "seqlen_q": 1,
+        "seqlen_k": 8192,
+        "num_q_heads": 64,
+        "num_k_heads": 2,
+        "head_sz": 128,
+        "q_type": "e4m3",
+        "kv_type": "e4m3",
+        "num_warps": 4,
+        "waves_per_eu": 1
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": null,
+      "label": "Best FA Prefill FP16 pipeline GQA seqlen=8192",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 8192 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pipeline",
+      "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
+      "shapes": {
+        "batch": 1,
+        "seqlen_q": 8192,
+        "seqlen_k": 8192,
+        "num_q_heads": 8,
+        "num_k_heads": 2,
+        "head_size": 128,
+        "attention_type": "pipeline",
+        "dtype": "fp16",
+        "BLOCK_M": 128,
+        "BLOCK_N": 128,
+        "num_warps": 4,
+        "waves_per_eu": 1
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (2) at non-singleton dimension 1"
+    },
+    {
+      "filename": null,
+      "label": "Best MoE fp8/mx4 large batch=8192 expts=256",
+      "op_type": "moe",
+      "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype fp8 --w_dtype mx4 --schedule sliceNK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "batch_per_expt": 8192,
+        "dim1": 5760,
+        "dim2": 5760,
+        "n_expts_tot": 256,
+        "n_expts_act": 8,
+        "x_dtype": "fp8",
+        "w_dtype": "mx4",
+        "schedule": "sliceNK",
+        "BLOCK_M": 256,
+        "BLOCK_N": 256,
+        "BLOCK_K": 256,
+        "num_warps": 4,
+        "waves_per_eu": 1
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 31.64 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.77 GiB is free. Of the allocated memory 5.62 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": "best_softmax_m_4096_n_8192_tutorial.llir",
+      "label": "Best Softmax M=4096 N=8192 (Tutorial)",
+      "op_type": "softmax",
+      "run_command": "python3 python/tutorials/02-fused-softmax.py",
+      "source": "python/tutorials/02-fused-softmax.py",
+      "shapes": {
+        "M": 4096,
+        "N": 8192,
+        "dtype": "fp32",
+        "num_warps": 8,
+        "waves_per_eu": 1
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "best_layer_norm_m_4096_n_8192_tutorial.llir",
+      "label": "Best Layer Norm M=4096 N=8192 (Tutorial)",
+      "op_type": "layer_norm",
+      "run_command": "python3 python/tutorials/05-layer-norm.py",
+      "source": "python/tutorials/05-layer-norm.py",
+      "shapes": {
+        "M": 4096,
+        "N": 8192,
+        "dtype": "fp32",
+        "num_warps": 8,
+        "waves_per_eu": 1
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": null,
+      "label": "Best SwiGLU M=4096 N=8192 (Production)",
+      "op_type": "swiglu",
+      "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,16384,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+      "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
+      "shapes": {
+        "M": 4096,
+        "N": 8192,
+        "dtype": "fp16",
+        "BLOCK_M": 16,
+        "BLOCK_N": 128,
+        "num_warps": 4,
+        "waves_per_eu": 1
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "TypeError: swiglu() missing 1 required positional argument: 'precision_config'"
+    },
+    {
+      "filename": null,
+      "label": "Best Reduce M=4096 N=8192 (Production)",
+      "op_type": "reduce",
+      "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,8192,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+      "source": "python/triton_kernels/triton_kernels/reduce.py",
+      "shapes": {
+        "M": 4096,
+        "N": 8192,
+        "dtype": "fp16",
+        "num_warps": 4,
+        "waves_per_eu": 1
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "NotImplementedError: reduce only supports 3D inputs in this implementation"
+    },
+    {
+      "filename": "best_topk_n_tokens_4096_n_expts_256_k_32_production.llir",
+      "label": "Best TopK n_tokens=4096 n_expts=256 k=32 (Production)",
+      "op_type": "topk",
+      "run_command": "python3 -c \"from triton_kernels.topk import topk; import torch; x=torch.randn(4096,256,dtype=torch.float16,device=cuda); topk(x, k=32)\"",
+      "source": "python/triton_kernels/triton_kernels/topk_details/_topk_forward.py",
+      "shapes": {
+        "n_tokens": 4096,
+        "n_expts": 256,
+        "k": 32,
+        "dtype": "fp16",
+        "BLOCK_M": 32,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "waves_per_eu": 1
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    }
+  ],
+  "summary": {
+    "total": 13,
+    "success": 8,
+    "failed": 5
+  }
+}

@@ -223,8 +223,6 @@ For **each manifest file**, process **each kernel entry** using this procedure:
    cp <path_to_llir> /root/MI450KernelCorpus/MI450/kernels/<subdirectory>/<meaningful_name>.llir
    ```
 
-   Also copy the `.amdgcn` file if present (same name, `.amdgcn` extension) — it is useful for occupancy analysis.
-
 6. **Also try TRITON_KERNEL_DUMP** as a fallback if the cache approach fails for a particular kernel:
    ```bash
    rm -rf /tmp/triton_ir_dump
@@ -273,7 +271,6 @@ In each output subdirectory under `MI450/kernels/`, create a `mapping.json` file
       "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
       "shapes": { "batch": 1, "seqlen_q": 8192, "..." : "..." },
       "status": "success",
-      "has_amdgcn": true,
       "additional_files": []
     },
     {
@@ -285,7 +282,6 @@ In each output subdirectory under `MI450/kernels/`, create a `mapping.json` file
       "shapes": {},
       "status": "compilation_failed",
       "error": "brief error description",
-      "has_amdgcn": false,
       "additional_files": []
     }
   ],
@@ -308,29 +304,17 @@ In each output subdirectory under `MI450/kernels/`, create a `mapping.json` file
 
 ## Phase 6: Final Report
 
-After processing all manifests, produce a summary report for the user:
+After processing all manifests, write a Markdown report to `MI450/Report.md` (relative to the MI450KernelCorpus repo root). The report must include:
 
-```
-IR Corpus Generation Complete
-==============================
-Target: gfx1250 (MI450)
-Triton commit: <hash>
+1. **Header** with generation date, target architecture, Triton commit, and compilation method.
+2. **Summary table** with columns: Manifest, Compiled, Failed, Total, .llir files — one row per manifest plus a total row.
+3. **Manifests section** listing each manifest file, its kernel count, and a one-line description.
+4. **Kernel directories section** showing the output directory tree with .llir counts.
+5. **Failure analysis** — for each manifest, a table of failure categories with counts and root causes. Read each `mapping.json` to extract failure counts grouped by error message. If more than 50% of kernels in any manifest failed, note whether this indicates an environment problem or expected skips (config limitations, OOM, intentional test reductions).
+6. **Environment section** documenting Docker image, Python/CMake/compiler versions, Triton version, AMD codegen revision, and the cross-compilation method used.
+7. **Known limitations** — any systemic issues discovered during generation (API drift, memory limits, identical IR from runtime-only shape args, etc.).
 
-OAI:     X/Y kernels compiled (Z failed)
-Gluon:   X/Y kernels compiled (Z failed)
-Best:    X/Y kernels compiled (Z failed)
-Triton:  X/Y kernels compiled (Z failed)
-Aiter:   X/Y kernels compiled (Z failed)
-
-Total .llir files: N
-Output: MI450/kernels/
-
-Failed kernels (if any):
-- <label>: <brief reason>
-- ...
-```
-
-If more than 50% of kernels in any manifest failed, flag this prominently — it likely indicates an installation or environment problem rather than individual kernel issues.
+Overwrite `MI450/Report.md` if it already exists. The report is the definitive record of this generation run.
 
 ## Important Notes
 

@@ -1,0 +1,1959 @@
+{
+  "metadata": {
+    "generated_at": "2026-11-05T23:28:24.359508+00:00",
+    "aiter_repo": "https://github.com/ROCm/aiter.git",
+    "aiter_branch": "main",
+    "triton_repo": "https://github.com/triton-lang/triton.git",
+    "triton_branch": "main",
+    "triton_commit": "fd91c147ef635b9e86b87e9cf073448cf87d769d",
+    "target_arch": "gfx1250",
+    "description": "Model kernel manifest mapping AI models to gfx1250 Triton/Gluon/FlyDSL kernel shapes and sources"
+  },
+  "gluon_tuning_configs": {
+    "base_path": "aiter/ops/triton/configs/gfx1250",
+    "count": 336,
+    "categories": [
+      "96cu",
+      "gluon",
+      "triton"
+    ]
+  },
+  "flydsl_kernel_sources": {
+    "base_path": "aiter/ops/flydsl",
+    "gfx1250_files": [
+      "aiter/ops/flydsl/a4w4_mxscale_bpreshuffle_gemm_gfx1250.py",
+      "aiter/ops/flydsl/batched_gemm_a8w8_gfx1250.py",
+      "aiter/ops/flydsl/bpreshuffle_gemm_gfx1250.py",
+      "aiter/ops/flydsl/conv3d_gfx1250.py",
+      "aiter/ops/flydsl/conv3d_policy_gfx1250.py",
+      "aiter/ops/flydsl/gemm_a16w16_gfx1250.py",
+      "aiter/ops/flydsl/grouped_moe_gfx1250.py",
+      "aiter/ops/flydsl/kernels/conv/conv3d_gfx1250_utils.py",
+      "aiter/ops/flydsl/kernels/conv/conv3d_implicit_gfx1250.py",
+      "aiter/ops/flydsl/kernels/fused_compress_attn_gfx1250.py",
+      "aiter/ops/flydsl/kernels/fused_compress_attn_hca_gfx1250.py",
+      "aiter/ops/flydsl/kernels/gather_kv_b_proj_gfx1250.py",
+      "aiter/ops/flydsl/kernels/gemm_a16w16_kernel_gfx1250.py",
+      "aiter/ops/flydsl/kernels/gemm_a4w4_256x256_gfx1250.py",
+      "aiter/ops/flydsl/kernels/gemm_a4w4_gfx1250.py",
+      "aiter/ops/flydsl/kernels/gemm_a8w8_256x256_gfx1250.py",
+      "aiter/ops/flydsl/kernels/gemm_a8w8_gfx1250.py",
+      "aiter/ops/flydsl/kernels/gemm_a8w8_splitk_reduce_gfx1250.py",
+      "aiter/ops/flydsl/kernels/gemm_common_gfx1250.py",
+      "aiter/ops/flydsl/kernels/gfx1250_cluster.py",
+      "aiter/ops/flydsl/kernels/mqa_logits/fp8_paged_mqa_logits_gfx1250.py",
+      "aiter/ops/flydsl/kernels/mxfp4_preshuffle_batched_gemm_gfx1250_tdm.py",
+      "aiter/ops/flydsl/kernels/mxfp4_preshuffle_gfx1250_tdm.py",
+      "aiter/ops/flydsl/kernels/splitk_fused_epilogue_gfx1250.py",
+      "aiter/ops/flydsl/kernels/tdm_ops_gfx1250.py",
+      "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+    ]
+  },
+  "gluon_kernel_sources": {
+    "triton_repo": [
+      "third_party/amd/python/examples/gluon/cdna5_utils.py",
+      "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
+      "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "third_party/amd/python/examples/gluon/f16_gemm_common_cdna5.py",
+      "third_party/amd/python/examples/gluon/f16_gemm_streamk_cdna5.py",
+      "third_party/amd/python/examples/gluon/gemm_warp_pipeline_cdna5.py",
+      "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py"
+    ],
+    "aiter_repo_gfx1250": [
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/chunk_kda/prepare.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/chunk_kda/walk.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/fp8_mqa_logits.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/kda_decode.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/mha_fp8.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/mha_mxfp8.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/mla.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/pa_decode_sparse.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/pa_prefill_sparse.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/unified_attention_2d.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/unified_attention_3d.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/attention/unified_attention_reduce.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/comms/all_reduce.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/comms/fused/all_reduce_rmsnorm_quant.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/fusions/fused_clamp_act_mul.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/fusions/fused_compress_attn.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/fusions/fused_kv_cache.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/fusions/fused_qk_norm_rope_group_quant.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/fusions/mhc.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/gemm/basic/gemm_a16w16.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/gemm/basic/gemm_a16w16_persistent.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/gemm/basic/gemm_a8w8_blockscale.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/gemm/basic/gemm_mxfp4.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/gemm/basic/gemm_mxfp8.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/gemm/batched/batched_gemm_a16w8.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/gemm/batched/batched_gemm_bf16.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/kimi_delta_attn/flash_kda_k1.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/kimi_delta_attn/flash_kda_k2.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/moe/moe_op_gemm_a16w4.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/moe/moe_op_gemm_a4w4.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/moe/moe_op_gemm_a8w4.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/moe/reduce.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/normalization/fused_add_rmsnorm_pad.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/normalization/fused_rmsnorm_add.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/quant/__init__.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/quant/fused_mxfp4_quant.py",
+      "aiter/ops/triton/_gluon_kernels/gfx1250/quant/quant.py"
+    ]
+  },
+  "models": {
+    "deepseek-r1": {
+      "aiter_config_files": [
+        "dsr1_a4w4_mxscale_bpreshuffle_tuned_gemm.csv",
+        "dsr1_bf16_tuned_gemm.csv"
+      ],
+      "kernels": [
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 1536,
+            "N": 7168,
+            "K": 18432,
+            "dtype": "fp4"
+          },
+          "aiter_kernel_name": "flydsl_a4w4_bpreshuffle_compute_wmma_t192x256x256_mw2_nw2_nb4_sk1_cm4_cn2",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 1536 --N 7168 --K 18432",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 1536 --N 7168 --K 18432",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/a4w4_mxscale_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_a4w4_bpreshuffle_compute_wmma_t192x256x256_mw2_nw2_nb4_sk1_cm4_cn2",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/a4w4_mxscale_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1"
+          },
+          "performance": {
+            "us": 40.7208,
+            "tflops": 9967.25,
+            "bw": 2510.66
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 4096,
+            "N": 36864,
+            "K": 7168,
+            "dtype": "mxfp4"
+          },
+          "aiter_kernel_name": "_ZN5aiter44f4gemm_bf16_mxfp4_BpreShuffle_256x256_4x4_psE",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 4096 --N 36864 --K 7168",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 4096 --N 36864 --K 7168",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "extra_params": {
+            "libtype": "asm",
+            "splitK": "0"
+          },
+          "performance": {
+            "us": 148.9218,
+            "tflops": 14535.57,
+            "bw": 3075.21
+          }
+        }
+      ]
+    },
+    "deepseek-v3": {
+      "aiter_config_files": [
+        "dsv3_a8w8_bpreshuffle_tuned_gemm.csv",
+        "dsv3_bf16_tuned_gemm.csv"
+      ],
+      "kernels": [
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 64,
+            "N": 7168,
+            "K": 4096,
+            "dtype": "fp8"
+          },
+          "aiter_kernel_name": "flydsl_bpreshuffle_wmma_t64x64x512_mw2_nw2_nb4_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 64 --N 7168 --K 4096",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 64 --N 7168 --K 4096",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/gemm_a16w16_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_bpreshuffle_wmma_t64x64x512_mw2_nw2_nb4_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/gemm_a16w16_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "0"
+          },
+          "performance": {
+            "us": 6.5725,
+            "tflops": 571.79,
+            "bw": 4646.6
+          }
+        }
+      ]
+    },
+    "deepseek-v4": {
+      "aiter_config_files": [
+        "dsv4_a8w8_blockscale_abpreshuffle_tuned_gemm.csv",
+        "dsv4_a8w8_blockscale_bpreshuffle_tuned_gemm.csv",
+        "dsv4_a8w8_blockscale_mxscale_bpreshuffle_tuned_gemm.csv",
+        "dsv4_a8w8_mxfp8_bpreshuffle_tuned_gemm.csv",
+        "dsv4_batched_gemm_a8w8_blockscale_mxscale_bpreshuffle_tuned.csv",
+        "dsv4_bf16_tuned_gemm.csv"
+      ],
+      "kernels": [
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 512,
+            "N": 32768,
+            "K": 1024,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_mxfp8_128_bpreshuffle_wmma_t256x256x128_mw2_nw2_nb4_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 512 --N 32768 --K 1024",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 512 --N 32768 --K 1024",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_mxfp8_128_bpreshuffle_wmma_t256x256x128_mw2_nw2_nb4_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "128x128"
+          },
+          "performance": {
+            "us": 17.3261,
+            "tflops": 1983.12,
+            "bw": 3903.54
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 2048,
+            "N": 16384,
+            "K": 1536,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_mxfp8_128_bpreshuffle_wmma_t256x256x256_mw2_nw2_nb2_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 2048 --N 16384 --K 1536",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 2048 --N 16384 --K 1536",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_mxfp8_128_bpreshuffle_wmma_t256x256x256_mw2_nw2_nb2_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "128x128"
+          },
+          "performance": {
+            "us": 32.1791,
+            "tflops": 3203.3,
+            "bw": 2965.29
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 16384,
+            "N": 2048,
+            "K": 7168,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_mxfp8_128_bpreshuffle_compute_wmma_t256x256x128_mw2_nw2_nb4_sk1_cm4_cn4_ps2",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 16384 --N 2048 --K 7168",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 16384 --N 2048 --K 7168",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_mxfp8_128_bpreshuffle_compute_wmma_t256x256x128_mw2_nw2_nb4_sk1_cm4_cn4_ps2",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "128x128"
+          },
+          "performance": {
+            "us": 80.433,
+            "tflops": 5980.58,
+            "bw": 2476.96
+          }
+        }
+      ]
+    },
+    "deepseek-v4.1": {
+      "aiter_config_files": [
+        "dsv41_a8w8_blockscale_mxscale_bpreshuffle_tuned_gemm.csv",
+        "dsv41_batched_gemm_a8w8_blockscale_mxscale_bpreshuffle_tuned.csv",
+        "dsv41_bf16_tuned_gemm.csv",
+        "dsv41_tuned_grouped_fmoe.csv"
+      ],
+      "kernels": [
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 18,
+            "N": 384,
+            "K": 5120,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "flydsl_hgemm_abf16_wbf16_bf16_t16x16x256x5_ks5_w1x1x1_bias0_ktail0_gm0_pht_gfx1250",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 18 --N 384 --K 5120",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 18 --N 384 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/gemm_a16w16_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_hgemm_abf16_wbf16_bf16_t16x16x256x5_ks5_w1x1x1_bias0_ktail0_gm0_pht_gfx1250",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/gemm_a16w16_gfx1250.py"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "flydsl",
+            "splitK": "5"
+          },
+          "performance": {
+            "us": 4.0365,
+            "tflops": 17.53,
+            "bw": 1023.24
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 36,
+            "N": 384,
+            "K": 5120,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "flydsl_hgemm_abf16_wbf16_bf16_t16x16x256x5_ks5_w1x1x1_bias0_ktail0_gm0_pft_gfx1250",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 36 --N 384 --K 5120",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 36 --N 384 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/gemm_a16w16_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_hgemm_abf16_wbf16_bf16_t16x16x256x5_ks5_w1x1x1_bias0_ktail0_gm0_pft_gfx1250",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/gemm_a16w16_gfx1250.py"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "flydsl",
+            "splitK": "5"
+          },
+          "performance": {
+            "us": 4.2087,
+            "tflops": 33.63,
+            "bw": 1028.45
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 512,
+            "N": 32,
+            "K": 5120,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "flydsl_hgemm_abf16_wbf16_bf16_t16x16x256x4_ks8_w1x1x1_bias0_ktail0_gm0_pht_gfx1250",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 512 --N 32 --K 5120",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 512 --N 32 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/gemm_a16w16_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_hgemm_abf16_wbf16_bf16_t16x16x256x4_ks8_w1x1x1_bias0_ktail0_gm0_pht_gfx1250",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/gemm_a16w16_gfx1250.py"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "flydsl",
+            "splitK": "8"
+          },
+          "performance": {
+            "us": 4.2019,
+            "tflops": 39.93,
+            "bw": 1333.52
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 768,
+            "N": 512,
+            "K": 5120,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "flydsl_hgemm_abf16_wbf16_bf16_t64x64x128x4_ks5_w4x2x1_bias0_ktail0_gm0_pht_gfx1250",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 768 --N 512 --K 5120",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 768 --N 512 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/gemm_a16w16_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_hgemm_abf16_wbf16_bf16_t64x64x128x4_ks5_w4x2x1_bias0_ktail0_gm0_pht_gfx1250",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/gemm_a16w16_gfx1250.py"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "flydsl",
+            "splitK": "5"
+          },
+          "performance": {
+            "us": 8.7452,
+            "tflops": 460.43,
+            "bw": 1588.72
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 3072,
+            "N": 512,
+            "K": 5120,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "flydsl_hgemm_abf16_wbf16_bf16_t64x128x128x5_ks1_w2x2x1_bias0_ktail0_gm0_pht_gfx1250",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 3072 --N 512 --K 5120",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 3072 --N 512 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/gemm_a16w16_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_hgemm_abf16_wbf16_bf16_t64x128x128x5_ks1_w2x2x1_bias0_ktail0_gm0_pht_gfx1250",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/gemm_a16w16_gfx1250.py"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "flydsl",
+            "splitK": "1"
+          },
+          "performance": {
+            "us": 18.4788,
+            "tflops": 871.6,
+            "bw": 2156.3
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 5120,
+            "N": 512,
+            "K": 5120,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "opus_gemm_gfx1250_4wave_wl_co_128x96x128x128_4x1_16x16x32_0x0x0_w2x2_c4x4_p3_v1024w1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 5120 --N 512 --K 5120",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 5120 --N 512 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "opus",
+            "splitK": "0"
+          },
+          "performance": {
+            "us": 21.224,
+            "tflops": 1264.77,
+            "bw": 2964.31
+          }
+        },
+        {
+          "op_type": "batched_gemm",
+          "shapes": {
+            "M": 1,
+            "N": 1024,
+            "K": 4096,
+            "B": 8,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_bmm_mxfp8_32_wmma_t16x64x1024_mw1_nw4_nb3_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 1 --N 1024 --K 4096",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 1 --N 1024 --K 4096",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "32x32"
+          },
+          "performance": {
+            "us": 4.971,
+            "tflops": 13.5,
+            "bw": 6.76
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 5,
+            "N": 1792,
+            "K": 5120,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_bmm_mxfp8_32_wmma_t16x64x512_mw1_nw4_nb4_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 5 --N 1792 --K 5120",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 5 --N 1792 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_bmm_mxfp8_32_wmma_t16x64x512_mw1_nw4_nb4_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "32x32"
+          },
+          "performance": {
+            "us": 4.941,
+            "tflops": 18.57,
+            "bw": 1.87
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 15,
+            "N": 1792,
+            "K": 5120,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_bmm_mxfp8_32_wmma_t32x32x1024_mw2_nw2_nb4_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 15 --N 1792 --K 5120",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 15 --N 1792 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_bmm_mxfp8_32_wmma_t32x32x1024_mw2_nw2_nb4_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "32x32"
+          },
+          "performance": {
+            "us": 5.136,
+            "tflops": 53.59,
+            "bw": 1.81
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 20,
+            "N": 4608,
+            "K": 5120,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_bmm_mxfp8_32_wmma_t32x32x1024_mw2_nw2_nb3_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 20 --N 4608 --K 5120",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 20 --N 4608 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_bmm_mxfp8_32_wmma_t32x32x1024_mw2_nw2_nb3_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "32x32"
+          },
+          "performance": {
+            "us": 5.394,
+            "tflops": 174.97,
+            "bw": 4.43
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 64,
+            "N": 1536,
+            "K": 5120,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_bmm_mxfp8_32_wmma_t32x32x512_mw2_nw2_nb2_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 64 --N 1536 --K 5120",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 64 --N 1536 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_bmm_mxfp8_32_wmma_t32x32x512_mw2_nw2_nb2_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "32x32"
+          },
+          "performance": {
+            "us": 14.774,
+            "tflops": 68.14
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 200,
+            "N": 4608,
+            "K": 5120,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_bmm_mxfp8_32_wmma_t64x128x512_mw1_nw4_nb3_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 200 --N 4608 --K 5120",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 200 --N 4608 --K 5120",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_bmm_mxfp8_32_wmma_t64x128x512_mw1_nw4_nb3_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "32x32"
+          },
+          "performance": {
+            "us": 8.876,
+            "tflops": 1063.26,
+            "bw": 2.98
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 320,
+            "N": 5120,
+            "K": 2304,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_bmm_mxfp8_32_wmma_t64x128x256_mw1_nw4_nb4_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 320 --N 5120 --K 2304",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 320 --N 5120 --K 2304",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_bmm_mxfp8_32_wmma_t64x128x256_mw1_nw4_nb4_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "32x32"
+          },
+          "performance": {
+            "us": 5.804,
+            "tflops": 1300.81,
+            "bw": 2.72
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 1024,
+            "N": 8192,
+            "K": 1280,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_bmm_mxfp8_32_wmma_t128x256x256_mw2_nw2_nb3_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 1024 --N 8192 --K 1280",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 1024 --N 8192 --K 1280",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_bmm_mxfp8_32_wmma_t128x256x256_mw2_nw2_nb3_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "32x32"
+          },
+          "performance": {
+            "us": 18.054,
+            "tflops": 1189.5
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 8,
+            "N": 5120,
+            "K": 2304,
+            "dtype": "bfloat16",
+            "expert": 96,
+            "topk": -1,
+            "model_dim": 5120,
+            "inter_dim": 2304,
+            "q_dtype_a": "float4_e2m1fn_x2",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_fp4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_fp4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 23.8599
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 16,
+            "N": 5120,
+            "K": 576,
+            "dtype": "bfloat16",
+            "expert": 384,
+            "topk": 6,
+            "model_dim": 5120,
+            "inter_dim": 576,
+            "q_dtype_a": "float4_e2m1fn_x2",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_fp4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_fp4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 27.7585
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 2048,
+            "N": 5120,
+            "K": 2304,
+            "dtype": "bfloat16",
+            "expert": 96,
+            "topk": -1,
+            "model_dim": 5120,
+            "inter_dim": 2304,
+            "q_dtype_a": "float4_e2m1fn_x2",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_fp4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_fp4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 128.0199
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 4096,
+            "N": 5120,
+            "K": 576,
+            "dtype": "bfloat16",
+            "expert": 384,
+            "topk": 6,
+            "model_dim": 5120,
+            "inter_dim": 576,
+            "q_dtype_a": "float8_e4m3fn",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_fp4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_fp4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 215.4001
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 16384,
+            "N": 5120,
+            "K": 2304,
+            "dtype": "bfloat16",
+            "expert": 96,
+            "topk": -1,
+            "model_dim": 5120,
+            "inter_dim": 2304,
+            "q_dtype_a": "float4_e2m1fn_x2",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_fp4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_fp4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 363.851
+          }
+        }
+      ]
+    },
+    "kimi-k2": {
+      "aiter_config_files": [
+        "kimik2_bf16_tuned_gemm.csv"
+      ],
+      "kernels": [
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 256,
+            "N": 1536,
+            "K": 1536,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "flydsl_hgemm_abf16_wbf16_bf16_t64x64x128x6_ks1_w4x2x1_bias0_ktail0_gm0_pht_gfx1250",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 256 --N 1536 --K 1536",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 256 --N 1536 --K 1536",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/gemm_a16w16_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_hgemm_abf16_wbf16_bf16_t64x64x128x6_ks1_w4x2x1_bias0_ktail0_gm0_pht_gfx1250",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/gemm_a16w16_gfx1250.py"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "flydsl",
+            "splitK": "1"
+          },
+          "performance": {
+            "us": 6.1866,
+            "tflops": 195.25,
+            "bw": 1016.95
+          }
+        }
+      ]
+    },
+    "kimi-k3": {
+      "aiter_config_files": [
+        "kimik3_a8w8_blockscale_mxscale_bpreshuffle_tuned_gemm.csv",
+        "kimik3_bf16_tuned_gemm.csv",
+        "kimik3_gfx1250_tuned_grouped_fmoe.csv"
+      ],
+      "kernels": [
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 1,
+            "N": 12,
+            "K": 7168,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "opus_gemm_gfx1250_splitk_cluster_tdm_ws_128x16x32x512_1x2_16x16x32_0x0x0_p3w1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 1 --N 12 --K 7168",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 1 --N 12 --K 7168",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "opus",
+            "splitK": "6"
+          },
+          "performance": {
+            "us": 3.9181,
+            "tflops": 0.04,
+            "bw": 47.57
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 2,
+            "N": 1536,
+            "K": 128,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "auto",
+          "framework": "auto",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 2 --N 1536 --K 128",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 2 --N 1536 --K 128",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "triton",
+            "splitK": "0"
+          },
+          "performance": {
+            "us": 3.9747,
+            "tflops": 0.2,
+            "bw": 100.6
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 8,
+            "N": 40960,
+            "K": 7168,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "auto",
+          "framework": "auto",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 8 --N 40960 --K 7168",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 8 --N 40960 --K 7168",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "triton",
+            "splitK": "0"
+          },
+          "performance": {
+            "us": 50.5856,
+            "tflops": 92.86,
+            "bw": 11623.32
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 128,
+            "N": 3072,
+            "K": 512,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "auto",
+          "framework": "auto",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 128 --N 3072 --K 512",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 128 --N 3072 --K 512",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "triton",
+            "splitK": "0"
+          },
+          "performance": {
+            "us": 5.8065,
+            "tflops": 69.35,
+            "bw": 699.77
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 16384,
+            "N": 128,
+            "K": 7168,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "auto",
+          "framework": "auto",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 16384 --N 128 --K 7168",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 16384 --N 128 --K 7168",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "triton",
+            "splitK": "0"
+          },
+          "performance": {
+            "us": 54.9906,
+            "tflops": 546.73,
+            "bw": 4380.94
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 2,
+            "N": 7168,
+            "K": 1024,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_mxfp8_128_bpreshuffle_wmma_t32x32x256_mw2_nw2_nb4_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 2 --N 7168 --K 1024",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 2 --N 7168 --K 1024",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_mxfp8_128_bpreshuffle_wmma_t32x32x256_mw2_nw2_nb4_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "128x128"
+          },
+          "performance": {
+            "us": 3.3804,
+            "tflops": 8.69,
+            "bw": 2180.44
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 32,
+            "N": 12288,
+            "K": 1536,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_mxfp8_128_bpreshuffle_wmma_t32x64x256_mw2_nw2_nb4_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 32 --N 12288 --K 1536",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 32 --N 12288 --K 1536",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_mxfp8_128_bpreshuffle_wmma_t32x64x256_mw2_nw2_nb4_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "128x128"
+          },
+          "performance": {
+            "us": 4.4827,
+            "tflops": 269.47,
+            "bw": 4396.89
+          }
+        },
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 128,
+            "N": 1536,
+            "K": 128,
+            "dtype": "mxfp8"
+          },
+          "aiter_kernel_name": "flydsl_mxfp8_128_bpreshuffle_wmma_t16x128x128_mw1_nw4_nb2_sk1_cm1_cn1",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "mxfp_gemm_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 128 --N 1536 --K 128",
+            "compile_call": "triton.compile(fn=mxfp_gemm_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 128 --N 1536 --K 128",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "flydsl": {
+            "source": "aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py",
+            "source_repo": "aiter",
+            "entry_point": "flydsl_mxfp8_128_bpreshuffle_wmma_t16x128x128_mw1_nw4_nb2_sk1_cm1_cn1",
+            "run_command": "python3 /root/KernelExtract/aiter/aiter/ops/flydsl/mxfp8_bpreshuffle_gemm_gfx1250.py"
+          },
+          "extra_params": {
+            "libtype": "flydsl",
+            "splitK": "1",
+            "w_scale_block": "128x128"
+          },
+          "performance": {
+            "us": 2.0239,
+            "tflops": 24.87,
+            "bw": 299.52
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 256,
+            "N": 3584,
+            "K": 3072,
+            "dtype": "bfloat16",
+            "expert": 56,
+            "topk": -1,
+            "model_dim": 3584,
+            "inter_dim": 3072,
+            "q_dtype_a": "float4_e2m1fn_x2",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_fp4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_fp4",
+          "extra_params": {
+            "act_type": "ActivationType.Situv2",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 205.371001357
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 512,
+            "N": 3584,
+            "K": 768,
+            "dtype": "bfloat16",
+            "expert": 896,
+            "topk": 16,
+            "model_dim": 3584,
+            "inter_dim": 768,
+            "q_dtype_a": "float4_e2m1fn_x2",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_fp4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_fp4",
+          "extra_params": {
+            "act_type": "ActivationType.Situv2",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 270.4521
+          }
+        }
+      ]
+    },
+    "kimi-k3-tp8": {
+      "aiter_config_files": [
+        "a8w8_bpreshuffle_tuned_gemm_kimik3tp8.csv",
+        "kimik3tp8_tuned_grouped_fmoe.csv"
+      ],
+      "kernels": [
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 1,
+            "N": 3584,
+            "K": 384,
+            "dtype": "bfloat16",
+            "expert": 896,
+            "topk": 16,
+            "model_dim": 3584,
+            "inter_dim": 384,
+            "q_dtype_a": "float4_e2m1fn_x2",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_fp4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_fp4",
+          "extra_params": {
+            "act_type": "ActivationType.Situv2",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 6.3065
+          }
+        }
+      ]
+    },
+    "minimax-m3": {
+      "aiter_config_files": [
+        "a8w8_bpreshuffle_tuned_gemm_minimax_m3.csv",
+        "minimax_m3_gfx1250_tuned_grouped_fmoe.csv"
+      ],
+      "kernels": [
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 1,
+            "N": 6144,
+            "K": 3072,
+            "dtype": "bfloat16",
+            "expert": 129,
+            "topk": 5,
+            "model_dim": 6144,
+            "inter_dim": 3072,
+            "q_dtype_a": "float4_e2m1fn_x2",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_fp4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_fp4",
+          "extra_params": {
+            "act_type": "ActivationType.Swiglu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 9.3754
+          }
+        }
+      ]
+    },
+    "minimax-m3-eagle": {
+      "aiter_config_files": [
+        "minimax_m3_eagle_bf16_tuned_gemm.csv"
+      ],
+      "kernels": [
+        {
+          "op_type": "gemm",
+          "shapes": {
+            "M": 4,
+            "N": 6144,
+            "K": 4608,
+            "dtype": "bfloat16"
+          },
+          "aiter_kernel_name": "auto",
+          "framework": "auto",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "persistent_gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 4 --N 6144 --K 4608",
+            "compile_call": "triton.compile(fn=persistent_gemm_tdm_pipelined_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul.py",
+            "source_repo": "triton",
+            "entry_point": "matmul",
+            "run_command": "python3 /root/KernelExtract/triton/python/triton_kernels/triton_kernels/matmul.py --M 4 --N 6144 --K 4608",
+            "compile_call": "triton.compile(fn=matmul, target='hip:gfx1250', signature=...)"
+          },
+          "extra_params": {
+            "bias": "False",
+            "scaleAB": "False",
+            "bpreshuffle": "False",
+            "libtype": "triton",
+            "splitK": "0"
+          },
+          "performance": {
+            "us": 6.2501,
+            "tflops": 36.24,
+            "bw": 9073.31
+          }
+        }
+      ]
+    },
+    "qwen3.5-397b": {
+      "aiter_config_files": [
+        "qwen3_5_397b_bf16_tuned_gemm.csv",
+        "qwen3_5_397b_tuned_grouped_fmoe.csv"
+      ],
+      "kernels": [
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 4,
+            "N": 4096,
+            "K": 1024,
+            "dtype": "bfloat16",
+            "expert": 512,
+            "topk": 10,
+            "model_dim": 4096,
+            "inter_dim": 1024,
+            "q_dtype_a": "float8_e4m3fn",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_a8w4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_a8w4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 87.7779
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 32,
+            "N": 4096,
+            "K": 1024,
+            "dtype": "bfloat16",
+            "expert": 512,
+            "topk": 10,
+            "model_dim": 4096,
+            "inter_dim": 1024,
+            "q_dtype_a": "float8_e4m3fn",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_a8w4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_a8w4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 291.2079
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 64,
+            "N": 4096,
+            "K": 512,
+            "dtype": "bfloat16",
+            "expert": 512,
+            "topk": 10,
+            "model_dim": 4096,
+            "inter_dim": 512,
+            "q_dtype_a": "float8_e4m3fn",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_a8w4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_a8w4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 224.3054
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 128,
+            "N": 4096,
+            "K": 256,
+            "dtype": "bfloat16",
+            "expert": 512,
+            "topk": 10,
+            "model_dim": 4096,
+            "inter_dim": 256,
+            "q_dtype_a": "float8_e4m3fn",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_a8w4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_a8w4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 155.9649
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 1024,
+            "N": 4096,
+            "K": 256,
+            "dtype": "bfloat16",
+            "expert": 512,
+            "topk": 10,
+            "model_dim": 4096,
+            "inter_dim": 256,
+            "q_dtype_a": "float8_e4m3fn",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_a8w4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_a8w4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 271.0223
+          }
+        },
+        {
+          "op_type": "moe",
+          "shapes": {
+            "M": 8192,
+            "N": 4096,
+            "K": 1024,
+            "dtype": "bfloat16",
+            "expert": 512,
+            "topk": 10,
+            "model_dim": 4096,
+            "inter_dim": 1024,
+            "q_dtype_a": "float8_e4m3fn",
+            "q_dtype_w": "float4_e2m1fn_x2"
+          },
+          "aiter_kernel_name": "grouped_gemm1_a8w4_gugu",
+          "framework": "flydsl",
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "source_repo": "triton",
+            "entry_point": "moe_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+            "compile_call": "triton.compile(fn=moe_kernel, target=triton.runtime.driver.active.get_current_target(), signature=...)"
+          },
+          "triton": null,
+          "aiter_kernel_name_stage2": "grouped_gemm2_a8w4",
+          "extra_params": {
+            "act_type": "ActivationType.Silu",
+            "q_type": "QuantType.per_1x32",
+            "use_g1u1": "1",
+            "a_preshuffle": "0"
+          },
+          "performance": {
+            "us": 2547.51
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1482 @@
+{
+  "metadata": {
+    "generated_at": "2026-11-05T23:27:33Z",
+    "triton_repo": "https://github.com/triton-lang/triton.git",
+    "triton_branch": "main",
+    "triton_commit": "fd91c147ef635b9e86b87e9cf073448cf87d769d",
+    "target_arch": "gfx1250"
+  },
+  "models": {
+    "tutorials": {
+      "aiter_config_files": [],
+      "kernels": [
+        {
+          "op_type": "elementwise_add",
+          "label": "Vector Add N=1024",
+          "shapes": {
+            "N": 1024,
+            "dtype": "fp32",
+            "BLOCK_SIZE": 1024,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/01-vector-add.py",
+            "entry_point": "add_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/01-vector-add.py",
+            "compile_call": "add_kernel[grid](x_ptr, y_ptr, output_ptr, 1024, BLOCK_SIZE=1024)"
+          }
+        },
+        {
+          "op_type": "elementwise_add",
+          "label": "Vector Add N=4096",
+          "shapes": {
+            "N": 4096,
+            "dtype": "fp32",
+            "BLOCK_SIZE": 1024,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/01-vector-add.py",
+            "entry_point": "add_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/01-vector-add.py",
+            "compile_call": "add_kernel[grid](x_ptr, y_ptr, output_ptr, 4096, BLOCK_SIZE=1024)"
+          }
+        },
+        {
+          "op_type": "elementwise_add",
+          "label": "Vector Add N=8192",
+          "shapes": {
+            "N": 8192,
+            "dtype": "fp32",
+            "BLOCK_SIZE": 1024,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/01-vector-add.py",
+            "entry_point": "add_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/01-vector-add.py",
+            "compile_call": "add_kernel[grid](x_ptr, y_ptr, output_ptr, 8192, BLOCK_SIZE=1024)"
+          }
+        },
+        {
+          "op_type": "elementwise_add",
+          "label": "Vector Add N=32768",
+          "shapes": {
+            "N": 32768,
+            "dtype": "fp32",
+            "BLOCK_SIZE": 1024,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/01-vector-add.py",
+            "entry_point": "add_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/01-vector-add.py",
+            "compile_call": "add_kernel[grid](x_ptr, y_ptr, output_ptr, 32768, BLOCK_SIZE=1024)"
+          }
+        },
+        {
+          "op_type": "softmax",
+          "label": "Fused Softmax M=4096 N=1024",
+          "shapes": {
+            "M": 4096,
+            "N": 1024,
+            "dtype": "fp32",
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/02-fused-softmax.py",
+            "entry_point": "softmax_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/02-fused-softmax.py",
+            "compile_call": "softmax_kernel[grid](output_ptr, input_ptr, input_row_stride, output_row_stride, M, 1024, BLOCK_SIZE=triton.next_power_of_2(1024))"
+          }
+        },
+        {
+          "op_type": "softmax",
+          "label": "Fused Softmax M=4096 N=4096",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "dtype": "fp32",
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/02-fused-softmax.py",
+            "entry_point": "softmax_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/02-fused-softmax.py",
+            "compile_call": "softmax_kernel[grid](output_ptr, input_ptr, input_row_stride, output_row_stride, M, 4096, BLOCK_SIZE=triton.next_power_of_2(4096))"
+          }
+        },
+        {
+          "op_type": "softmax",
+          "label": "Fused Softmax M=4096 N=8192",
+          "shapes": {
+            "M": 4096,
+            "N": 8192,
+            "dtype": "fp32",
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/02-fused-softmax.py",
+            "entry_point": "softmax_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/02-fused-softmax.py",
+            "compile_call": "softmax_kernel[grid](output_ptr, input_ptr, input_row_stride, output_row_stride, M, 8192, BLOCK_SIZE=triton.next_power_of_2(8192))"
+          }
+        },
+        {
+          "op_type": "softmax",
+          "label": "Fused Softmax M=4096 N=32768",
+          "shapes": {
+            "M": 4096,
+            "N": 32768,
+            "dtype": "fp32",
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/02-fused-softmax.py",
+            "entry_point": "softmax_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/02-fused-softmax.py",
+            "compile_call": "softmax_kernel[grid](output_ptr, input_ptr, input_row_stride, output_row_stride, M, 32768, BLOCK_SIZE=triton.next_power_of_2(32768))"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Tutorial GEMM fp16 M=1 N=4096 K=4096",
+          "shapes": {
+            "M": 1,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "fp16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/03-matrix-multiplication.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 1, 4096, 4096, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Tutorial GEMM bf16 M=1 N=4096 K=4096",
+          "shapes": {
+            "M": 1,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "bf16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/03-matrix-multiplication.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 1, 4096, 4096, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Tutorial GEMM fp16 M=4096 N=4096 K=4096",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "fp16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/03-matrix-multiplication.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 4096, 4096, 4096, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Tutorial GEMM bf16 M=4096 N=4096 K=4096",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "bf16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/03-matrix-multiplication.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 4096, 4096, 4096, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Tutorial GEMM fp16 M=8192 N=4096 K=4096",
+          "shapes": {
+            "M": 8192,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "fp16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/03-matrix-multiplication.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 8192, 4096, 4096, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Tutorial GEMM bf16 M=8192 N=4096 K=4096",
+          "shapes": {
+            "M": 8192,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "bf16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/03-matrix-multiplication.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 8192, 4096, 4096, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Tutorial GEMM fp16 M=8192 N=8192 K=8192",
+          "shapes": {
+            "M": 8192,
+            "N": 8192,
+            "K": 8192,
+            "dtype": "fp16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/03-matrix-multiplication.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 8192, 8192, 8192, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Tutorial GEMM bf16 M=8192 N=8192 K=8192",
+          "shapes": {
+            "M": 8192,
+            "N": 8192,
+            "K": 8192,
+            "dtype": "bf16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/03-matrix-multiplication.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 8192, 8192, 8192, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Tutorial GEMM fp16 M=16384 N=4096 K=8192",
+          "shapes": {
+            "M": 16384,
+            "N": 4096,
+            "K": 8192,
+            "dtype": "fp16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/03-matrix-multiplication.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 16384, 4096, 8192, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Tutorial GEMM bf16 M=16384 N=4096 K=8192",
+          "shapes": {
+            "M": 16384,
+            "N": 4096,
+            "K": 8192,
+            "dtype": "bf16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/03-matrix-multiplication.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 16384, 4096, 8192, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "dropout",
+          "label": "Seeded Dropout N=1024",
+          "shapes": {
+            "N": 1024,
+            "p": 0.5,
+            "dtype": "fp32",
+            "BLOCK_SIZE": 1024,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/04-low-memory-dropout.py",
+            "entry_point": "_seeded_dropout",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
+            "compile_call": "_seeded_dropout[grid](x_ptr, output_ptr, 1024, 0.5, seed, BLOCK_SIZE=1024)"
+          }
+        },
+        {
+          "op_type": "dropout",
+          "label": "Seeded Dropout N=4096",
+          "shapes": {
+            "N": 4096,
+            "p": 0.5,
+            "dtype": "fp32",
+            "BLOCK_SIZE": 1024,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/04-low-memory-dropout.py",
+            "entry_point": "_seeded_dropout",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
+            "compile_call": "_seeded_dropout[grid](x_ptr, output_ptr, 4096, 0.5, seed, BLOCK_SIZE=1024)"
+          }
+        },
+        {
+          "op_type": "dropout",
+          "label": "Seeded Dropout N=8192",
+          "shapes": {
+            "N": 8192,
+            "p": 0.5,
+            "dtype": "fp32",
+            "BLOCK_SIZE": 1024,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/04-low-memory-dropout.py",
+            "entry_point": "_seeded_dropout",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
+            "compile_call": "_seeded_dropout[grid](x_ptr, output_ptr, 8192, 0.5, seed, BLOCK_SIZE=1024)"
+          }
+        },
+        {
+          "op_type": "dropout",
+          "label": "Seeded Dropout N=32768",
+          "shapes": {
+            "N": 32768,
+            "p": 0.5,
+            "dtype": "fp32",
+            "BLOCK_SIZE": 1024,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/04-low-memory-dropout.py",
+            "entry_point": "_seeded_dropout",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
+            "compile_call": "_seeded_dropout[grid](x_ptr, output_ptr, 32768, 0.5, seed, BLOCK_SIZE=1024)"
+          }
+        },
+        {
+          "op_type": "layer_norm",
+          "label": "Layer Norm Fwd M=4096 N=1024",
+          "shapes": {
+            "M": 4096,
+            "N": 1024,
+            "dtype": "fp32",
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/05-layer-norm.py",
+            "entry_point": "_layer_norm_fwd_fused",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/05-layer-norm.py",
+            "compile_call": "_layer_norm_fwd_fused[grid](X, Y, W, B, Mean, Rstd, X.stride(0), 1024, eps, BLOCK_SIZE=triton.next_power_of_2(1024))"
+          }
+        },
+        {
+          "op_type": "layer_norm",
+          "label": "Layer Norm Fwd M=4096 N=4096",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "dtype": "fp32",
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/05-layer-norm.py",
+            "entry_point": "_layer_norm_fwd_fused",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/05-layer-norm.py",
+            "compile_call": "_layer_norm_fwd_fused[grid](X, Y, W, B, Mean, Rstd, X.stride(0), 4096, eps, BLOCK_SIZE=triton.next_power_of_2(4096))"
+          }
+        },
+        {
+          "op_type": "layer_norm",
+          "label": "Layer Norm Fwd M=4096 N=8192",
+          "shapes": {
+            "M": 4096,
+            "N": 8192,
+            "dtype": "fp32",
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/05-layer-norm.py",
+            "entry_point": "_layer_norm_fwd_fused",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/05-layer-norm.py",
+            "compile_call": "_layer_norm_fwd_fused[grid](X, Y, W, B, Mean, Rstd, X.stride(0), 8192, eps, BLOCK_SIZE=triton.next_power_of_2(8192))"
+          }
+        },
+        {
+          "op_type": "layer_norm",
+          "label": "Layer Norm Fwd M=4096 N=32768",
+          "shapes": {
+            "M": 4096,
+            "N": 32768,
+            "dtype": "fp32",
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/05-layer-norm.py",
+            "entry_point": "_layer_norm_fwd_fused",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/05-layer-norm.py",
+            "compile_call": "_layer_norm_fwd_fused[grid](X, Y, W, B, Mean, Rstd, X.stride(0), 32768, eps, BLOCK_SIZE=triton.next_power_of_2(32768))"
+          }
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "Tutorial FA causal seqlen=1024 (short)",
+          "shapes": {
+            "batch": 4,
+            "num_heads": 8,
+            "seqlen": 1024,
+            "head_dim": 64,
+            "causal": true,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/06-fused-attention.py",
+            "entry_point": "_attn_fwd",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/06-fused-attention.py",
+            "compile_call": "_attn_fwd[grid](sm_scale, M, Q, K, V, Out, ..., Z=4, H=8, N_CTX=1024, HEAD_DIM=64, STAGE=3, BLOCK_M=128, BLOCK_N=64)"
+          }
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "Tutorial FA non-causal seqlen=1024 (short)",
+          "shapes": {
+            "batch": 4,
+            "num_heads": 8,
+            "seqlen": 1024,
+            "head_dim": 64,
+            "causal": false,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/06-fused-attention.py",
+            "entry_point": "_attn_fwd",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/06-fused-attention.py",
+            "compile_call": "_attn_fwd[grid](sm_scale, M, Q, K, V, Out, ..., Z=4, H=8, N_CTX=1024, HEAD_DIM=64, STAGE=1, BLOCK_M=128, BLOCK_N=64)"
+          }
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "Tutorial FA causal seqlen=4096 (medium)",
+          "shapes": {
+            "batch": 4,
+            "num_heads": 8,
+            "seqlen": 4096,
+            "head_dim": 64,
+            "causal": true,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/06-fused-attention.py",
+            "entry_point": "_attn_fwd",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/06-fused-attention.py",
+            "compile_call": "_attn_fwd[grid](sm_scale, M, Q, K, V, Out, ..., Z=4, H=8, N_CTX=4096, HEAD_DIM=64, STAGE=3, BLOCK_M=128, BLOCK_N=64)"
+          }
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "Tutorial FA non-causal seqlen=4096 (medium)",
+          "shapes": {
+            "batch": 4,
+            "num_heads": 8,
+            "seqlen": 4096,
+            "head_dim": 64,
+            "causal": false,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/06-fused-attention.py",
+            "entry_point": "_attn_fwd",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/06-fused-attention.py",
+            "compile_call": "_attn_fwd[grid](sm_scale, M, Q, K, V, Out, ..., Z=4, H=8, N_CTX=4096, HEAD_DIM=64, STAGE=1, BLOCK_M=128, BLOCK_N=64)"
+          }
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "Tutorial FA causal seqlen=8192 (long)",
+          "shapes": {
+            "batch": 4,
+            "num_heads": 8,
+            "seqlen": 8192,
+            "head_dim": 64,
+            "causal": true,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/06-fused-attention.py",
+            "entry_point": "_attn_fwd",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/06-fused-attention.py",
+            "compile_call": "_attn_fwd[grid](sm_scale, M, Q, K, V, Out, ..., Z=4, H=8, N_CTX=8192, HEAD_DIM=64, STAGE=3, BLOCK_M=128, BLOCK_N=64)"
+          }
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "Tutorial FA non-causal seqlen=8192 (long)",
+          "shapes": {
+            "batch": 4,
+            "num_heads": 8,
+            "seqlen": 8192,
+            "head_dim": 64,
+            "causal": false,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/06-fused-attention.py",
+            "entry_point": "_attn_fwd",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/06-fused-attention.py",
+            "compile_call": "_attn_fwd[grid](sm_scale, M, Q, K, V, Out, ..., Z=4, H=8, N_CTX=8192, HEAD_DIM=64, STAGE=1, BLOCK_M=128, BLOCK_N=64)"
+          }
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "Tutorial FA decode Q=1 K=8192",
+          "shapes": {
+            "batch": 64,
+            "num_heads": 8,
+            "seqlen_q": 1,
+            "seqlen_k": 8192,
+            "head_dim": 64,
+            "causal": false,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/06-fused-attention.py",
+            "entry_point": "_attn_fwd",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/06-fused-attention.py",
+            "compile_call": "_attn_fwd[grid](sm_scale, M, Q, K, V, Out, ..., Z=64, H=8, N_CTX=8192, HEAD_DIM=64, STAGE=1, BLOCK_M=128, BLOCK_N=64)"
+          }
+        },
+        {
+          "op_type": "extern_function",
+          "label": "Extern asin kernel N=8192",
+          "shapes": {
+            "N": 8192,
+            "dtype": "fp32",
+            "BLOCK_SIZE": 1024,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/07-extern-functions.py",
+            "entry_point": "asin_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/07-extern-functions.py",
+            "compile_call": "asin_kernel[grid](x_ptr, y_ptr, n_elements, BLOCK_SIZE=1024)"
+          }
+        },
+        {
+          "op_type": "grouped_gemm",
+          "label": "Grouped GEMM N=128 group_size=4",
+          "shapes": {
+            "M": 128,
+            "N": 128,
+            "K": 128,
+            "group_size": 4,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/08-grouped-gemm.py",
+            "entry_point": "grouped_matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/08-grouped-gemm.py",
+            "compile_call": "grouped_matmul_kernel[grid](group_A_ptrs, group_B_ptrs, group_C_ptrs, group_gemm_sizes, g_lds, NUM_SM, BLOCK_SIZE_M=128, BLOCK_SIZE_N=128, BLOCK_SIZE_K=32)"
+          }
+        },
+        {
+          "op_type": "grouped_gemm",
+          "label": "Grouped GEMM N=512 group_size=4",
+          "shapes": {
+            "M": 512,
+            "N": 512,
+            "K": 512,
+            "group_size": 4,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/08-grouped-gemm.py",
+            "entry_point": "grouped_matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/08-grouped-gemm.py",
+            "compile_call": "grouped_matmul_kernel[grid](group_A_ptrs, group_B_ptrs, group_C_ptrs, group_gemm_sizes, g_lds, NUM_SM, BLOCK_SIZE_M=128, BLOCK_SIZE_N=128, BLOCK_SIZE_K=32)"
+          }
+        },
+        {
+          "op_type": "grouped_gemm",
+          "label": "Grouped GEMM N=1024 group_size=4",
+          "shapes": {
+            "M": 1024,
+            "N": 1024,
+            "K": 1024,
+            "group_size": 4,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/08-grouped-gemm.py",
+            "entry_point": "grouped_matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/08-grouped-gemm.py",
+            "compile_call": "grouped_matmul_kernel[grid](group_A_ptrs, group_B_ptrs, group_C_ptrs, group_gemm_sizes, g_lds, NUM_SM, BLOCK_SIZE_M=128, BLOCK_SIZE_N=128, BLOCK_SIZE_K=32)"
+          }
+        },
+        {
+          "op_type": "persistent_gemm",
+          "label": "Persistent GEMM fp16 M=4096 N=4096 K=512",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "K": 512,
+            "dtype": "fp16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/09-persistent-matmul.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/09-persistent-matmul.py -K 512 --prec fp16",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 4096, 4096, 512, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "persistent_gemm",
+          "label": "Persistent GEMM fp16 M=8192 N=8192 K=4096",
+          "shapes": {
+            "M": 8192,
+            "N": 8192,
+            "K": 4096,
+            "dtype": "fp16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/09-persistent-matmul.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/09-persistent-matmul.py -K 4096 --prec fp16",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 8192, 8192, 4096, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "persistent_gemm",
+          "label": "Persistent GEMM fp16 M=4096 N=4096 K=4096",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "fp16",
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 256,
+            "BLOCK_SIZE_K": 64,
+            "GROUP_SIZE_M": 8,
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/09-persistent-matmul.py",
+            "entry_point": "matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/09-persistent-matmul.py -K 4096 --prec fp16",
+            "compile_call": "matmul_kernel[grid](a_ptr, b_ptr, c_ptr, 4096, 4096, 4096, a.stride(0), a.stride(1), b.stride(0), b.stride(1), c.stride(0), c.stride(1), BLOCK_SIZE_M=128, BLOCK_SIZE_N=256, BLOCK_SIZE_K=64, GROUP_SIZE_M=8)"
+          }
+        },
+        {
+          "op_type": "block_scaled_gemm",
+          "label": "Block-Scaled GEMM mxfp4 M=4096 N=4096 K=512",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "K": 512,
+            "block_scale_type": "mxfp4",
+            "mfma_nonkdim": 16,
+            "dtype": "mxfp4",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/10-block-scaled-matmul.py",
+            "entry_point": "block_scaled_matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/10-block-scaled-matmul.py -K 512 --format mxfp4",
+            "compile_call": "block_scaled_matmul_kernel[grid](a_desc, a_scale_desc, b_desc, b_scale_desc, c_ptr, 4096, 4096, 512, ...)"
+          }
+        },
+        {
+          "op_type": "block_scaled_gemm",
+          "label": "Block-Scaled GEMM mxfp4 M=4096 N=4096 K=4096",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "K": 4096,
+            "block_scale_type": "mxfp4",
+            "mfma_nonkdim": 16,
+            "dtype": "mxfp4",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/10-block-scaled-matmul.py",
+            "entry_point": "block_scaled_matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/10-block-scaled-matmul.py -K 4096 --format mxfp4",
+            "compile_call": "block_scaled_matmul_kernel[grid](a_desc, a_scale_desc, b_desc, b_scale_desc, c_ptr, 4096, 4096, 4096, ...)"
+          }
+        },
+        {
+          "op_type": "block_scaled_gemm",
+          "label": "Block-Scaled GEMM mxfp4 M=4096 N=4096 K=8192",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "K": 8192,
+            "block_scale_type": "mxfp4",
+            "mfma_nonkdim": 16,
+            "dtype": "mxfp4",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/10-block-scaled-matmul.py",
+            "entry_point": "block_scaled_matmul_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/10-block-scaled-matmul.py -K 8192 --format mxfp4",
+            "compile_call": "block_scaled_matmul_kernel[grid](a_desc, a_scale_desc, b_desc, b_scale_desc, c_ptr, 4096, 4096, 8192, ...)"
+          }
+        }
+      ]
+    },
+    "triton_kernels": {
+      "aiter_config_files": [],
+      "kernels": [
+        {
+          "op_type": "gemm",
+          "label": "Production Matmul fp16 M=1 N=4096 K=4096",
+          "shapes": {
+            "M": 1,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "fp16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
+            "entry_point": "_matmul",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(1,4096,dtype=torch.float16,device=cuda); b=torch.randn(4096,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+            "compile_call": "matmul(a, b)  # shapes: (1,4096) x (4096,4096), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Production Matmul bf16 M=1 N=4096 K=4096",
+          "shapes": {
+            "M": 1,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "bf16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
+            "entry_point": "_matmul",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(1,4096,dtype=torch.bfloat16,device=cuda); b=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+            "compile_call": "matmul(a, b)  # shapes: (1,4096) x (4096,4096), dtype=bf16"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Production Matmul fp16 M=4096 N=4096 K=4096",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "fp16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
+            "entry_point": "_matmul",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.float16,device=cuda); b=torch.randn(4096,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+            "compile_call": "matmul(a, b)  # shapes: (4096,4096) x (4096,4096), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Production Matmul bf16 M=4096 N=4096 K=4096",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "bf16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
+            "entry_point": "_matmul",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); b=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+            "compile_call": "matmul(a, b)  # shapes: (4096,4096) x (4096,4096), dtype=bf16"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Production Matmul fp16 M=8192 N=4096 K=4096",
+          "shapes": {
+            "M": 8192,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "fp16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
+            "entry_point": "_matmul",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.float16,device=cuda); b=torch.randn(4096,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+            "compile_call": "matmul(a, b)  # shapes: (8192,4096) x (4096,4096), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Production Matmul bf16 M=8192 N=4096 K=4096",
+          "shapes": {
+            "M": 8192,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "bf16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
+            "entry_point": "_matmul",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.bfloat16,device=cuda); b=torch.randn(4096,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+            "compile_call": "matmul(a, b)  # shapes: (8192,4096) x (4096,4096), dtype=bf16"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Production Matmul fp16 M=8192 N=8192 K=8192",
+          "shapes": {
+            "M": 8192,
+            "N": 8192,
+            "K": 8192,
+            "dtype": "fp16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
+            "entry_point": "_matmul",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.float16,device=cuda); b=torch.randn(8192,8192,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+            "compile_call": "matmul(a, b)  # shapes: (8192,8192) x (8192,8192), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Production Matmul bf16 M=8192 N=8192 K=8192",
+          "shapes": {
+            "M": 8192,
+            "N": 8192,
+            "K": 8192,
+            "dtype": "bf16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
+            "entry_point": "_matmul",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.bfloat16,device=cuda); b=torch.randn(8192,8192,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+            "compile_call": "matmul(a, b)  # shapes: (8192,8192) x (8192,8192), dtype=bf16"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Production Matmul fp16 M=16384 N=4096 K=8192",
+          "shapes": {
+            "M": 16384,
+            "N": 4096,
+            "K": 8192,
+            "dtype": "fp16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
+            "entry_point": "_matmul",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(16384,8192,dtype=torch.float16,device=cuda); b=torch.randn(8192,4096,dtype=torch.float16,device=cuda); matmul(a,b)\"",
+            "compile_call": "matmul(a, b)  # shapes: (16384,8192) x (8192,4096), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "gemm",
+          "label": "Production Matmul bf16 M=16384 N=4096 K=8192",
+          "shapes": {
+            "M": 16384,
+            "N": 4096,
+            "K": 8192,
+            "dtype": "bf16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 256,
+            "BLOCK_K": 64,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/matmul_details/_matmul.py",
+            "entry_point": "_matmul",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(16384,8192,dtype=torch.bfloat16,device=cuda); b=torch.randn(8192,4096,dtype=torch.bfloat16,device=cuda); matmul(a,b)\"",
+            "compile_call": "matmul(a, b)  # shapes: (16384,8192) x (8192,4096), dtype=bf16"
+          }
+        },
+        {
+          "op_type": "reduce",
+          "label": "Production Reduce M=4096 N=1024",
+          "shapes": {
+            "M": 4096,
+            "N": 1024,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/reduce.py",
+            "entry_point": "_reduce_forward",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,1024,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+            "compile_call": "reduce(x, dim=1)  # shape: (4096,1024), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "reduce",
+          "label": "Production Reduce M=4096 N=4096",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/reduce.py",
+            "entry_point": "_reduce_forward",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,4096,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+            "compile_call": "reduce(x, dim=1)  # shape: (4096,4096), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "reduce",
+          "label": "Production Reduce M=4096 N=8192",
+          "shapes": {
+            "M": 4096,
+            "N": 8192,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/reduce.py",
+            "entry_point": "_reduce_forward",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,8192,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+            "compile_call": "reduce(x, dim=1)  # shape: (4096,8192), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "reduce",
+          "label": "Production Reduce M=4096 N=32768",
+          "shapes": {
+            "M": 4096,
+            "N": 32768,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/reduce.py",
+            "entry_point": "_reduce_forward",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,32768,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+            "compile_call": "reduce(x, dim=1)  # shape: (4096,32768), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "swiglu",
+          "label": "Production SwiGLU M=4096 N=1024",
+          "shapes": {
+            "M": 4096,
+            "N": 1024,
+            "dtype": "fp16",
+            "BLOCK_M": 16,
+            "BLOCK_N": 128,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
+            "entry_point": "_swiglu",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,2048,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+            "compile_call": "swiglu(a, alpha=1.0)  # shape: (4096,2048), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "swiglu",
+          "label": "Production SwiGLU M=4096 N=4096",
+          "shapes": {
+            "M": 4096,
+            "N": 4096,
+            "dtype": "fp16",
+            "BLOCK_M": 16,
+            "BLOCK_N": 128,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
+            "entry_point": "_swiglu",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,8192,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+            "compile_call": "swiglu(a, alpha=1.0)  # shape: (4096,8192), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "swiglu",
+          "label": "Production SwiGLU M=4096 N=8192",
+          "shapes": {
+            "M": 4096,
+            "N": 8192,
+            "dtype": "fp16",
+            "BLOCK_M": 16,
+            "BLOCK_N": 128,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
+            "entry_point": "_swiglu",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,16384,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+            "compile_call": "swiglu(a, alpha=1.0)  # shape: (4096,16384), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "topk",
+          "label": "Production TopK n_tokens=4096 n_expts=64 k=8",
+          "shapes": {
+            "n_tokens": 4096,
+            "n_expts": 64,
+            "k": 8,
+            "dtype": "fp16",
+            "BLOCK_M": 32,
+            "BLOCK_N": 32,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/topk_details/_topk_forward.py",
+            "entry_point": "_topk_forward",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.topk import topk; import torch; x=torch.randn(4096,64,dtype=torch.float16,device=cuda); topk(x, k=8)\"",
+            "compile_call": "topk(x, k=8)  # shape: (4096,64), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "topk",
+          "label": "Production TopK n_tokens=4096 n_expts=256 k=16",
+          "shapes": {
+            "n_tokens": 4096,
+            "n_expts": 256,
+            "k": 16,
+            "dtype": "fp16",
+            "BLOCK_M": 32,
+            "BLOCK_N": 32,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/topk_details/_topk_forward.py",
+            "entry_point": "_topk_forward",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.topk import topk; import torch; x=torch.randn(4096,256,dtype=torch.float16,device=cuda); topk(x, k=16)\"",
+            "compile_call": "topk(x, k=16)  # shape: (4096,256), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "topk",
+          "label": "Production TopK n_tokens=4096 n_expts=256 k=32",
+          "shapes": {
+            "n_tokens": 4096,
+            "n_expts": 256,
+            "k": 32,
+            "dtype": "fp16",
+            "BLOCK_M": 32,
+            "BLOCK_N": 32,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/topk_details/_topk_forward.py",
+            "entry_point": "_topk_forward",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.topk import topk; import torch; x=torch.randn(4096,256,dtype=torch.float16,device=cuda); topk(x, k=32)\"",
+            "compile_call": "topk(x, k=32)  # shape: (4096,256), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "compaction",
+          "label": "Production Compaction B=4096 K=64",
+          "shapes": {
+            "B": 4096,
+            "K": 64,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/compaction_details/_masked_compaction.py",
+            "entry_point": "_masked_compaction",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.compaction import compaction; import torch; yv=torch.randn(4096,64,dtype=torch.float16,device=cuda); yi=torch.randint(0,64,(4096,64),device=cuda); bm=torch.ones(4096,64,dtype=torch.bool,device=cuda); compaction(yv, yi, bm)\"",
+            "compile_call": "compaction(yv, yi, bitmask)  # shape: (4096,64), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "compaction",
+          "label": "Production Compaction B=4096 K=256",
+          "shapes": {
+            "B": 4096,
+            "K": 256,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/compaction_details/_masked_compaction.py",
+            "entry_point": "_masked_compaction",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.compaction import compaction; import torch; yv=torch.randn(4096,256,dtype=torch.float16,device=cuda); yi=torch.randint(0,256,(4096,256),device=cuda); bm=torch.ones(4096,256,dtype=torch.bool,device=cuda); compaction(yv, yi, bm)\"",
+            "compile_call": "compaction(yv, yi, bitmask)  # shape: (4096,256), dtype=fp16"
+          }
+        }
+      ]
+    }
+  }
+}

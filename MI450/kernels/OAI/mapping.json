@@ -1,0 +1,173 @@
+{
+  "source_manifest": "OAI_kernel_manifest.json",
+  "target_arch": "gfx1250",
+  "triton_commit": "32f06df4bf1c30885ff61ee3488836ca81ed65f0",
+  "generated_at": "2026-11-05T23:32:36.512265+00:00",
+  "kernels": [
+    {
+      "filename": "oai_7_gqa_prefill_e4m3_e4m3_b1_q8192_k8192.llir",
+      "label": "OAI #7 GQA Prefill e4m3/e4m3 B1 Q8192 K8192",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 8192 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "shapes": {
+        "batch": 1,
+        "seqlen_q": 8192,
+        "seqlen_k": 8192,
+        "num_q_heads": 64,
+        "num_k_heads": 2,
+        "head_sz": 128,
+        "q_type": "e4m3",
+        "kv_type": "e4m3"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "oai_8_mqa_prefill_e4m3_e4m3_b1_q8192_k8192.llir",
+      "label": "OAI #8 MQA Prefill e4m3/e4m3 B1 Q8192 K8192",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 8192 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "shapes": {
+        "batch": 1,
+        "seqlen_q": 8192,
+        "seqlen_k": 8192,
+        "num_q_heads": 64,
+        "num_k_heads": 1,
+        "head_sz": 128,
+        "q_type": "e4m3",
+        "kv_type": "e4m3"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "oai_1_gqa_decode_e4m3_e4m3_b64_q1_k8192.llir",
+      "label": "OAI #1 GQA Decode e4m3/e4m3 B64 Q1 K8192",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "shapes": {
+        "batch": 64,
+        "seqlen_q": 1,
+        "seqlen_k": 8192,
+        "num_q_heads": 64,
+        "num_k_heads": 2,
+        "head_sz": 128,
+        "q_type": "e4m3",
+        "kv_type": "e4m3"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "oai_2_gqa_decode_e4m3_e2m1_b64_q1_k8192.llir",
+      "label": "OAI #2 GQA Decode e4m3/e2m1 B64 Q1 K8192",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "shapes": {
+        "batch": 64,
+        "seqlen_q": 1,
+        "seqlen_k": 8192,
+        "num_q_heads": 64,
+        "num_k_heads": 2,
+        "head_sz": 128,
+        "q_type": "e4m3",
+        "kv_type": "e2m1"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "oai_3_gqa_decode_e4m3_e4m3_b64_q1_k32768.llir",
+      "label": "OAI #3 GQA Decode e4m3/e4m3 B64 Q1 K32768",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 32768 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "shapes": {
+        "batch": 64,
+        "seqlen_q": 1,
+        "seqlen_k": 32768,
+        "num_q_heads": 64,
+        "num_k_heads": 2,
+        "head_sz": 128,
+        "q_type": "e4m3",
+        "kv_type": "e4m3"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "oai_4_mqa_decode_e4m3_e4m3_b64_q1_k8192.llir",
+      "label": "OAI #4 MQA Decode e4m3/e4m3 B64 Q1 K8192",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "shapes": {
+        "batch": 64,
+        "seqlen_q": 1,
+        "seqlen_k": 8192,
+        "num_q_heads": 64,
+        "num_k_heads": 1,
+        "head_sz": 128,
+        "q_type": "e4m3",
+        "kv_type": "e4m3"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "oai_5_mqa_decode_e4m3_e2m1_b64_q1_k8192.llir",
+      "label": "OAI #5 MQA Decode e4m3/e2m1 B64 Q1 K8192",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e2m1 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "shapes": {
+        "batch": 64,
+        "seqlen_q": 1,
+        "seqlen_k": 8192,
+        "num_q_heads": 64,
+        "num_k_heads": 1,
+        "head_sz": 128,
+        "q_type": "e4m3",
+        "kv_type": "e2m1"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "oai_6_mqa_decode_e4m3_e4m3_b64_q1_k65536.llir",
+      "label": "OAI #6 MQA Decode e4m3/e4m3 B64 Q1 K65536",
+      "op_type": "flash_attention",
+      "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 65536 --num_q_heads 64 --num_k_heads 1 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+      "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+      "shapes": {
+        "batch": 64,
+        "seqlen_q": 1,
+        "seqlen_k": 65536,
+        "num_q_heads": 64,
+        "num_k_heads": 1,
+        "head_sz": 128,
+        "q_type": "e4m3",
+        "kv_type": "e4m3"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "success": 8,
+    "failed": 0
+  }
+}

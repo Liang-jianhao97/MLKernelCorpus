@@ -145,6 +145,7 @@ Write `aiter_model_manifest.json` with this schema:
 ```
 
 ### Rules for the manifest:
+- **Limit to 15 invocations per unique kernel script.** Many models share the same kernel (e.g. `f16_gemm_cdna5.py`) at different shapes. Across the entire manifest, include at most 15 entries that invoke the same kernel source file. Select a diverse spread of shapes (small, medium, large M/N/K values, different dtypes) to maximize IR coverage. This limit applies within this manifest only — it is okay if the same kernel also appears in other manifests (gluon, vanilla, best).
 - If a Gluon kernel exists, `"gluon"` is populated and `"triton"` is populated only if a vanilla equivalent also exists. If no vanilla equivalent, set `"triton": null`.
 - If only a vanilla Triton kernel exists, `"gluon": null` and `"triton"` is populated.
 - If neither exists in the Triton repo (kernel is aiter-only), still include the entry but use aiter source paths and note `"source_repo": "aiter"` in both the gluon and triton objects.

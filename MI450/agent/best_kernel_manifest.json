@@ -1,0 +1,362 @@
+{
+  "metadata": {
+    "generated_at": "2026-11-05T23:27:33Z",
+    "triton_repo": "https://github.com/triton-lang/triton.git",
+    "triton_branch": "main",
+    "triton_commit": "fd91c147ef635b9e86b87e9cf073448cf87d769d",
+    "target_arch": "gfx1250"
+  },
+  "models": {
+    "best_configs": {
+      "aiter_config_files": [],
+      "kernels": [
+        {
+          "op_type": "gemm",
+          "label": "Best GEMM fp8 8192x8192x8192 (MXFP GEMM sliceMNK)",
+          "shapes": {
+            "M": 8192,
+            "N": 8192,
+            "K": 8192,
+            "dtype_a": "float8_e4m3",
+            "dtype_b": "float8_e4m3",
+            "BLOCK_M": 256,
+            "BLOCK_N": 256,
+            "BLOCK_K": 128,
+            "schedule": "sliceMNK",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "MXFP GEMM with sliceMNK schedule provides highest throughput for large fp8 GEMMs on gfx1250 via TDM-optimized data movement",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+            "entry_point": "mxgemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 8192 -N 8192 -K 8192 -BM 256 -BN 256 -BK 128 --dtype_a float8_e4m3 --dtype_b float8_e4m3 --schedule sliceMNK --num_warps 4",
+            "compile_call": "mxfp_gemm(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, dtype_a=float8_e4m3, dtype_b=float8_e4m3, schedule=sliceMNK, num_warps=4)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "gemm",
+          "label": "Best GEMM fp16 decode M=1 N=4096 K=4096 (F16 GEMM default)",
+          "shapes": {
+            "M": 1,
+            "N": 4096,
+            "K": 4096,
+            "dtype": "fp16",
+            "BLOCK_M": 256,
+            "BLOCK_N": 256,
+            "BLOCK_K": 128,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "F16 GEMM default variant is best for small batch/decode GEMMs; TDM pipelining keeps EU utilization high even at M=1",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+            "entry_point": "gemm_tdm_pipelined_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_cdna5.py -M 1 -N 4096 -K 4096 --block_m 256 --block_n 256 --block_k 128 --num-warps 4 --num-buffers 2",
+            "compile_call": "_run_runtime_gemm_tdm_pipelined(BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_BUFFERS=2, M=1, N=4096, K=4096)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "gemm",
+          "label": "Best GEMM mxfp4 8192x8192x8192 (Warp Pipeline)",
+          "shapes": {
+            "M": 8192,
+            "N": 8192,
+            "K": 8192,
+            "dtype": "mxfp4",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "Warp pipeline GEMM is the most optimized path for mxfp4 quantized GEMMs on gfx1250 with dedicated warp-level pipelining",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/gemm_warp_pipeline_cdna5.py",
+            "entry_point": "mxfp4_gemm_warp_pipeline",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/gemm_warp_pipeline_cdna5.py --dtype mxfp4 -M 8192 -N 8192 -K 8192 --check",
+            "compile_call": "main(dtype=mxfp4, M=8192, N=8192, K=8192)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "gemm",
+          "label": "Best StreamK GEMM fp16 8192x8192x8192 (F16 StreamK prefetch)",
+          "shapes": {
+            "M": 8192,
+            "N": 8192,
+            "K": 8192,
+            "dtype": "fp16",
+            "BLOCK_M": 256,
+            "BLOCK_N": 256,
+            "BLOCK_K": 128,
+            "num_warps": 4,
+            "num_sms": 8,
+            "prefetch": true,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "StreamK with prefetch provides best load balancing for irregular tile shapes and maximizes SM occupancy via work stealing",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_gemm_streamk_cdna5.py",
+            "entry_point": "streamk_gemm_tdm_prefetch_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_gemm_streamk_cdna5.py -M 8192 -N 8192 -K 8192 --block-m 256 --block-n 256 --block-k 128 --num-warps 4 --num-buffers 2 --num-sms 8 --prefetch",
+            "compile_call": "run_streamk_gemm_tdm_pipelined(M=8192, N=8192, K=8192, BLOCK_M=256, BLOCK_N=256, BLOCK_K=128, NUM_WARPS=4, NUM_BUFFERS=2, NUM_SMS=8, PREFETCH=True)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "Best FA Prefill MXFP e4m3/e4m3 GQA B1 Q8192 K8192",
+          "shapes": {
+            "batch": 1,
+            "seqlen_q": 8192,
+            "seqlen_k": 8192,
+            "num_q_heads": 64,
+            "num_k_heads": 2,
+            "head_sz": 128,
+            "q_type": "e4m3",
+            "kv_type": "e4m3",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "MXFP pipelined FA with e4m3 provides highest throughput for long-context prefill with GQA heads and block scaling",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 8192 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "compile_call": "run_attention(q_type=e4m3, kv_type=e4m3, batch=1, seqlen_q=8192, seqlen_k=8192, num_q_heads=64, num_k_heads=2, head_sz=128, pipelined=True, pingpong=False, scale_type=block, disable_p_scaling=True, profile=True)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "Best FA Decode MXFP e4m3/e4m3 GQA B64 Q1 K8192",
+          "shapes": {
+            "batch": 64,
+            "seqlen_q": 1,
+            "seqlen_k": 8192,
+            "num_q_heads": 64,
+            "num_k_heads": 2,
+            "head_sz": 128,
+            "q_type": "e4m3",
+            "kv_type": "e4m3",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "MXFP FA with e4m3 quantization provides best decode throughput by reducing memory bandwidth via FP8 KV cache with block scaling",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
+            "compile_call": "run_attention(q_type=e4m3, kv_type=e4m3, batch=64, seqlen_q=1, seqlen_k=8192, num_q_heads=64, num_k_heads=2, head_sz=128, pipelined=True, pingpong=False, scale_type=block, disable_p_scaling=True, profile=True)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "flash_attention",
+          "label": "Best FA Prefill FP16 pipeline GQA seqlen=8192",
+          "shapes": {
+            "batch": 1,
+            "seqlen_q": 8192,
+            "seqlen_k": 8192,
+            "num_q_heads": 8,
+            "num_k_heads": 2,
+            "head_size": 128,
+            "attention_type": "pipeline",
+            "dtype": "fp16",
+            "BLOCK_M": 128,
+            "BLOCK_N": 128,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "F16 pipelined attention provides best fp16 prefill throughput for long sequences with software-pipelined global loads",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/f16_fa_cdna5.py",
+            "entry_point": "run_attention",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/f16_fa_cdna5.py -b 1 --seqlen-q 8192 --seqlen-k 8192 --num-heads-q 8 --num-heads-k 2 --head-size 128 --block-m 128 --block-n 128 --attention-type pipeline",
+            "compile_call": "run_attention(config={BATCH:1,SEQLEN_Q:8192,SEQLEN_K:8192,NUM_Q_HEADS:8,NUM_K_HEADS:2,HEAD_SZ:128,BLOCK_M:128,BLOCK_N:128,attention_type:pipeline})"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "moe",
+          "label": "Best MoE fp8/mx4 large batch=8192 expts=256",
+          "shapes": {
+            "batch_per_expt": 8192,
+            "dim1": 5760,
+            "dim2": 5760,
+            "n_expts_tot": 256,
+            "n_expts_act": 8,
+            "x_dtype": "fp8",
+            "w_dtype": "mx4",
+            "schedule": "sliceNK",
+            "BLOCK_M": 256,
+            "BLOCK_N": 256,
+            "BLOCK_K": 256,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "MoE with fp8 activations and mx4 weights with sliceNK schedule provides best expert throughput for large-scale mixture of experts on gfx1250",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": {
+            "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+            "entry_point": "main",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 third_party/amd/python/examples/gluon/moe_cdna5.py --batch_per_expt 8192 --dim1 5760 --dim2 5760 --n_expts_tot 256 --n_expts_act 8 --x_dtype fp8 --w_dtype mx4 --schedule sliceNK --num_warps 4 --block_m 256 --block_n 256 --block_k 256 --action e2e",
+            "compile_call": "main(batch_per_expt=8192, dim1=5760, dim2=5760, n_expts_tot=256, n_expts_act=8, x_dtype=fp8, w_dtype=mx4, schedule=sliceNK, num_warps=4, block_m=256, block_n=256, block_k=256, action=e2e)"
+          },
+          "triton": null
+        },
+        {
+          "op_type": "softmax",
+          "label": "Best Softmax M=4096 N=8192 (Tutorial)",
+          "shapes": {
+            "M": 4096,
+            "N": 8192,
+            "dtype": "fp32",
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "Tutorial fused softmax is the only Triton softmax kernel; fused row-wise implementation avoids intermediate materialization",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/02-fused-softmax.py",
+            "entry_point": "softmax_kernel",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/02-fused-softmax.py",
+            "compile_call": "softmax_kernel[grid](output_ptr, input_ptr, input_row_stride, output_row_stride, M, 8192, BLOCK_SIZE=8192)"
+          }
+        },
+        {
+          "op_type": "layer_norm",
+          "label": "Best Layer Norm M=4096 N=8192 (Tutorial)",
+          "shapes": {
+            "M": 4096,
+            "N": 8192,
+            "dtype": "fp32",
+            "num_warps": 8,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "Tutorial fused layer norm is the only Triton layer norm; fused kernel avoids multiple passes over data for mean/variance/normalize",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/tutorials/05-layer-norm.py",
+            "entry_point": "_layer_norm_fwd_fused",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 python/tutorials/05-layer-norm.py",
+            "compile_call": "_layer_norm_fwd_fused[grid](X, Y, W, B, Mean, Rstd, X.stride(0), 8192, eps, BLOCK_SIZE=8192)"
+          }
+        },
+        {
+          "op_type": "swiglu",
+          "label": "Best SwiGLU M=4096 N=8192 (Production)",
+          "shapes": {
+            "M": 4096,
+            "N": 8192,
+            "dtype": "fp16",
+            "BLOCK_M": 16,
+            "BLOCK_N": 128,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "Production SwiGLU from triton_kernels is the most optimized swiglu implementation with fused sigmoid-multiply in a single kernel",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/swiglu_details/_swiglu.py",
+            "entry_point": "_swiglu",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu; import torch; a=torch.randn(4096,16384,dtype=torch.float16,device=cuda); swiglu(a, alpha=1.0)\"",
+            "compile_call": "swiglu(a, alpha=1.0)  # shape: (4096,16384), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "reduce",
+          "label": "Best Reduce M=4096 N=8192 (Production)",
+          "shapes": {
+            "M": 4096,
+            "N": 8192,
+            "dtype": "fp16",
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "Production reduce from triton_kernels provides optimized parallel reduction with flexpoint numerics support",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/reduce.py",
+            "entry_point": "_reduce_forward",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(4096,8192,dtype=torch.float16,device=cuda); reduce(x, dim=1)\"",
+            "compile_call": "reduce(x, dim=1)  # shape: (4096,8192), dtype=fp16"
+          }
+        },
+        {
+          "op_type": "topk",
+          "label": "Best TopK n_tokens=4096 n_expts=256 k=32 (Production)",
+          "shapes": {
+            "n_tokens": 4096,
+            "n_expts": 256,
+            "k": 32,
+            "dtype": "fp16",
+            "BLOCK_M": 32,
+            "BLOCK_N": 32,
+            "num_warps": 4,
+            "waves_per_eu": 1
+          },
+          "selection_reason": "Production topk from triton_kernels is the only optimized top-k selection kernel; supports softmax fusion and differentiable backward",
+          "uses_inline_asm": false,
+          "uses_sched_barrier": false,
+          "aiter_kernel_name": null,
+          "gluon": null,
+          "triton": {
+            "source": "python/triton_kernels/triton_kernels/topk_details/_topk_forward.py",
+            "entry_point": "_topk_forward",
+            "target": "hip:gfx1250:64",
+            "run_command": "python3 -c \"from triton_kernels.topk import topk; import torch; x=torch.randn(4096,256,dtype=torch.float16,device=cuda); topk(x, k=32)\"",
+            "compile_call": "topk(x, k=32)  # shape: (4096,256), dtype=fp16"
+          }
+        }
+      ]
+    }
+  }
+}

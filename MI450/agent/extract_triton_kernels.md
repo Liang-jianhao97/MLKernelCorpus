@@ -236,6 +236,7 @@ Each manifest follows the same JSON schema. Use the structure from `OAI_kernel_m
 
 ### General rules for all manifests
 
+- **Limit to 15 invocations per unique kernel script per manifest.** Each manifest should include at most 15 entries that invoke the same kernel source file. Select a diverse spread of shapes and configurations (small/medium/large sizes, different dtypes, different algorithmic variants) to maximize IR coverage. It is okay if the same kernel appears in multiple manifests (e.g. a Gluon kernel in `gluon_kernel_manifest.json` and also in `best_kernel_manifest.json`).
 - Every `run_command` must be a complete command that can be copy-pasted and run from the Triton repo root directory. No placeholders. Use `python3` not `python`.
 - The `compile_call` field contains the Python function call (with all arguments) to invoke the kernel programmatically.
 - Source paths are relative to the Triton repo root.

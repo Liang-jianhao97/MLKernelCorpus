@@ -1,0 +1,855 @@
+{
+  "source_manifest": "aiter_model_manifest.json",
+  "target_arch": "gfx1250",
+  "triton_commit": "fd91c147ef635b9e86b87e9cf073448cf87d769d",
+  "generated_at": "2026-11-06T00:14:50.437064+00:00",
+  "kernels": [
+    {
+      "filename": "deepseek-r1_gemm_0.llir",
+      "label": "deepseek-r1_gemm_0",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 1536 --N 7168 --K 18432",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 1536,
+        "N": 7168,
+        "K": 18432,
+        "dtype": "fp4"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": null,
+      "label": "deepseek-r1_gemm_1",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 4096 --N 36864 --K 7168",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 4096,
+        "N": 36864,
+        "K": 7168,
+        "dtype": "mxfp4"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": "deepseek-v3_gemm_0.llir",
+      "label": "deepseek-v3_gemm_0",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 64 --N 7168 --K 4096",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 64,
+        "N": 7168,
+        "K": 4096,
+        "dtype": "fp8"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4_gemm_0",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 512 --N 32768 --K 1024",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 512,
+        "N": 32768,
+        "K": 1024,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4_gemm_1",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 2048 --N 16384 --K 1536",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 2048,
+        "N": 16384,
+        "K": 1536,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4_gemm_2",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 16384 --N 2048 --K 7168",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 16384,
+        "N": 2048,
+        "K": 7168,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": "deepseek-v4.1_gemm_0.llir",
+      "label": "deepseek-v4.1_gemm_0",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 18 --N 384 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 18,
+        "N": 384,
+        "K": 5120,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "deepseek-v4.1_gemm_1.llir",
+      "label": "deepseek-v4.1_gemm_1",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 36 --N 384 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 36,
+        "N": 384,
+        "K": 5120,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "deepseek-v4.1_gemm_2.llir",
+      "label": "deepseek-v4.1_gemm_2",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 512 --N 32 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 512,
+        "N": 32,
+        "K": 5120,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "deepseek-v4.1_gemm_3.llir",
+      "label": "deepseek-v4.1_gemm_3",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 768 --N 512 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 768,
+        "N": 512,
+        "K": 5120,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "deepseek-v4.1_gemm_4.llir",
+      "label": "deepseek-v4.1_gemm_4",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 3072 --N 512 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 3072,
+        "N": 512,
+        "K": 5120,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "deepseek-v4.1_gemm_5.llir",
+      "label": "deepseek-v4.1_gemm_5",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 5120 --N 512 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 5120,
+        "N": 512,
+        "K": 5120,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_batched_gemm_6",
+      "op_type": "batched_gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 1 --N 1024 --K 4096",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 1,
+        "N": 1024,
+        "K": 4096,
+        "B": 8,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_gemm_7",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 5 --N 1792 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 5,
+        "N": 1792,
+        "K": 5120,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_gemm_8",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 15 --N 1792 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 15,
+        "N": 1792,
+        "K": 5120,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_gemm_9",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 20 --N 4608 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 20,
+        "N": 4608,
+        "K": 5120,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_gemm_10",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 64 --N 1536 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 64,
+        "N": 1536,
+        "K": 5120,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_gemm_11",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 200 --N 4608 --K 5120",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 200,
+        "N": 4608,
+        "K": 5120,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_gemm_12",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 320 --N 5120 --K 2304",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 320,
+        "N": 5120,
+        "K": 2304,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_gemm_13",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 1024 --N 8192 --K 1280",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 1024,
+        "N": 8192,
+        "K": 1280,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_moe_14",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 8,
+        "N": 5120,
+        "K": 2304,
+        "dtype": "bfloat16",
+        "expert": 96,
+        "topk": -1,
+        "model_dim": 5120,
+        "inter_dim": 2304,
+        "q_dtype_a": "float4_e2m1fn_x2",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_moe_15",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 16,
+        "N": 5120,
+        "K": 576,
+        "dtype": "bfloat16",
+        "expert": 384,
+        "topk": 6,
+        "model_dim": 5120,
+        "inter_dim": 576,
+        "q_dtype_a": "float4_e2m1fn_x2",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_moe_16",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 2048,
+        "N": 5120,
+        "K": 2304,
+        "dtype": "bfloat16",
+        "expert": 96,
+        "topk": -1,
+        "model_dim": 5120,
+        "inter_dim": 2304,
+        "q_dtype_a": "float4_e2m1fn_x2",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_moe_17",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 4096,
+        "N": 5120,
+        "K": 576,
+        "dtype": "bfloat16",
+        "expert": 384,
+        "topk": 6,
+        "model_dim": 5120,
+        "inter_dim": 576,
+        "q_dtype_a": "float8_e4m3fn",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.77 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "deepseek-v4.1_moe_18",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 16384,
+        "N": 5120,
+        "K": 2304,
+        "dtype": "bfloat16",
+        "expert": 96,
+        "topk": -1,
+        "model_dim": 5120,
+        "inter_dim": 2304,
+        "q_dtype_a": "float4_e2m1fn_x2",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": "kimi-k2_gemm_0.llir",
+      "label": "kimi-k2_gemm_0",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 256 --N 1536 --K 1536",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 256,
+        "N": 1536,
+        "K": 1536,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "kimi-k3_gemm_0.llir",
+      "label": "kimi-k3_gemm_0",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 1 --N 12 --K 7168",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 1,
+        "N": 12,
+        "K": 7168,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": null,
+      "label": "kimi-k3_gemm_1",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 2 --N 1536 --K 128",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 2,
+        "N": 1536,
+        "K": 128,
+        "dtype": "bfloat16"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Skip tests where K/BLOCK_K < NUM_BUFFERS"
+    },
+    {
+      "filename": "kimi-k3_gemm_2.llir",
+      "label": "kimi-k3_gemm_2",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 8 --N 40960 --K 7168",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 8,
+        "N": 40960,
+        "K": 7168,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "kimi-k3_gemm_3.llir",
+      "label": "kimi-k3_gemm_3",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 128 --N 3072 --K 512",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 128,
+        "N": 3072,
+        "K": 512,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": "kimi-k3_gemm_4.llir",
+      "label": "kimi-k3_gemm_4",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 16384 --N 128 --K 7168",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 16384,
+        "N": 128,
+        "K": 7168,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": null,
+      "label": "kimi-k3_gemm_5",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 2 --N 7168 --K 1024",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 2,
+        "N": 7168,
+        "K": 1024,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "kimi-k3_gemm_6",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 32 --N 12288 --K 1536",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 32,
+        "N": 12288,
+        "K": 1536,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "kimi-k3_gemm_7",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py --target hip:gfx1250:64 --M 128 --N 1536 --K 128",
+      "source": "third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py",
+      "shapes": {
+        "M": 128,
+        "N": 1536,
+        "K": 128,
+        "dtype": "mxfp8"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "Skipped: Only test with SCALE_PRESHUFFLE and TRANSPOSE_B in sliceK and sliceNK schedules"
+    },
+    {
+      "filename": null,
+      "label": "kimi-k3_moe_8",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 256,
+        "N": 3584,
+        "K": 3072,
+        "dtype": "bfloat16",
+        "expert": 56,
+        "topk": -1,
+        "model_dim": 3584,
+        "inter_dim": 3072,
+        "q_dtype_a": "float4_e2m1fn_x2",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "kimi-k3_moe_9",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 512,
+        "N": 3584,
+        "K": 768,
+        "dtype": "bfloat16",
+        "expert": 896,
+        "topk": 16,
+        "model_dim": 3584,
+        "inter_dim": 768,
+        "q_dtype_a": "float4_e2m1fn_x2",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "kimi-k3-tp8_moe_0",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 1,
+        "N": 3584,
+        "K": 384,
+        "dtype": "bfloat16",
+        "expert": 896,
+        "topk": 16,
+        "model_dim": 3584,
+        "inter_dim": 384,
+        "q_dtype_a": "float4_e2m1fn_x2",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.77 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "minimax-m3_moe_0",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 1,
+        "N": 6144,
+        "K": 3072,
+        "dtype": "bfloat16",
+        "expert": 129,
+        "topk": 5,
+        "model_dim": 6144,
+        "inter_dim": 3072,
+        "q_dtype_a": "float4_e2m1fn_x2",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": "minimax-m3-eagle_gemm_0.llir",
+      "label": "minimax-m3-eagle_gemm_0",
+      "op_type": "gemm",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 4 --N 6144 --K 4608",
+      "source": "third_party/amd/python/examples/gluon/f16_gemm_cdna5.py",
+      "shapes": {
+        "M": 4,
+        "N": 6144,
+        "K": 4608,
+        "dtype": "bfloat16"
+      },
+      "status": "launch_failed_ir_captured",
+      "has_amdgcn": true,
+      "additional_files": []
+    },
+    {
+      "filename": null,
+      "label": "qwen3.5-397b_moe_0",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 4,
+        "N": 4096,
+        "K": 1024,
+        "dtype": "bfloat16",
+        "expert": 512,
+        "topk": 10,
+        "model_dim": 4096,
+        "inter_dim": 1024,
+        "q_dtype_a": "float8_e4m3fn",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.77 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "qwen3.5-397b_moe_1",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 32,
+        "N": 4096,
+        "K": 1024,
+        "dtype": "bfloat16",
+        "expert": 512,
+        "topk": 10,
+        "model_dim": 4096,
+        "inter_dim": 1024,
+        "q_dtype_a": "float8_e4m3fn",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.77 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "qwen3.5-397b_moe_2",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 64,
+        "N": 4096,
+        "K": 512,
+        "dtype": "bfloat16",
+        "expert": 512,
+        "topk": 10,
+        "model_dim": 4096,
+        "inter_dim": 512,
+        "q_dtype_a": "float8_e4m3fn",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.77 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "qwen3.5-397b_moe_3",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 128,
+        "N": 4096,
+        "K": 256,
+        "dtype": "bfloat16",
+        "expert": 512,
+        "topk": 10,
+        "model_dim": 4096,
+        "inter_dim": 256,
+        "q_dtype_a": "float8_e4m3fn",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "qwen3.5-397b_moe_4",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 1024,
+        "N": 4096,
+        "K": 256,
+        "dtype": "bfloat16",
+        "expert": 512,
+        "topk": 10,
+        "model_dim": 4096,
+        "inter_dim": 256,
+        "q_dtype_a": "float8_e4m3fn",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    },
+    {
+      "filename": null,
+      "label": "qwen3.5-397b_moe_5",
+      "op_type": "moe",
+      "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/moe_cdna5.py --target hip:gfx1250:64",
+      "source": "third_party/amd/python/examples/gluon/moe_cdna5.py",
+      "shapes": {
+        "M": 8192,
+        "N": 4096,
+        "K": 1024,
+        "dtype": "bfloat16",
+        "expert": 512,
+        "topk": 10,
+        "model_dim": 4096,
+        "inter_dim": 1024,
+        "q_dtype_a": "float8_e4m3fn",
+        "q_dtype_w": "float4_e2m1fn_x2"
+      },
+      "status": "compilation_failed",
+      "has_amdgcn": false,
+      "additional_files": [],
+      "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
+    }
+  ],
+  "summary": {
+    "total": 45,
+    "success": 14,
+    "failed": 31
+  }
+}
