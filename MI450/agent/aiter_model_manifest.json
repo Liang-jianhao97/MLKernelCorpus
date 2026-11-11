@@ -1390,6 +1390,109 @@
           }
         }
       ]
+    },
+    "deepseek-v4-pro": {
+      "model_attribution": "DeepSeek V4-Pro grouped output LoRA (wo_a), TP=1, prefill token budget=16384",
+      "model_source": {
+        "repo": "https://github.com/ROCm/ATOM.git",
+        "commit": "f19778df4054e94d64d6f6bf6dd68f5681bd5945",
+        "file": "atom/models/deepseek_v4.py",
+        "entry_point": "DeepseekV4Attention._wo_a_grouped_lora",
+        "derivation": "B=o_groups/TP=16; N=o_lora_rank=1024; K=(n_heads/TP)*head_dim/(o_groups/TP)=128*512/16=4096; M=16384 from prefill ubench."
+      },
+      "aiter_config_files": [
+        "aiter/ops/triton/configs/gfx1250/gluon/gemm/batched_gemm_a16w16/BATCHED_GEMM-A16W16-B=16-N=1024-K=4096.json"
+      ],
+      "kernels": [
+        {
+          "op_type": "batched_gemm",
+          "label": "DSV4-Pro wo_a BF16 BMM B16 M16384 N1024 K4096 token-major input/output",
+          "shapes": {
+            "B": 16,
+            "M": 16384,
+            "N": 1024,
+            "K": 4096,
+            "dtype": "bf16",
+            "output_dtype": "bf16",
+            "layout": "TN",
+            "bias": false
+          },
+          "operation": "Y[b] = X[b] @ W[b].T; X and Y are transposed views of contiguous [M,B,K] and [M,B,N] storage; W[B,N,K] contiguous",
+          "aiter_kernel_name": "_batched_gemm_bf16_bandwidth_bound_kernel",
+          "framework": "gluon",
+          "tuning_config": {
+            "BLOCK_SIZE_M": 128,
+            "BLOCK_SIZE_N": 128,
+            "BLOCK_SIZE_K": 128,
+            "num_warps": 4,
+            "NUM_BUFFERS": 3,
+            "waves_per_eu": 1,
+            "NUM_KSPLIT": 1,
+            "cache_modifier": null,
+            "kernel_type": "bandwidth_bound"
+          },
+          "environment": {
+            "AITER_TRITON_ONLY": "1",
+            "AITER_BATCHED_BF16_TDM_STORE": "1"
+          },
+          "gluon": {
+            "source": "aiter/ops/triton/_gluon_kernels/gfx1250/gemm/batched/batched_gemm_bf16.py",
+            "source_repo": "aiter",
+            "source_commit": "6a4fa17deb060989f12ec10c366775034defe5f2",
+            "entry_point": "_batched_gemm_bf16_bandwidth_bound_kernel",
+            "target": "hip:gfx1250:32",
+            "run_command": "AITER_TRITON_ONLY=1 AITER_BATCHED_BF16_TDM_STORE=1 python3 -c \"import torch; from aiter.ops.triton.gemm.batched.batched_gemm_bf16 import batched_gemm_bf16; torch.manual_seed(0); x=torch.randint(-3,4,(16384,16,4096),device='cuda',dtype=torch.bfloat16).transpose(0,1); w=torch.randint(-3,4,(16,1024,4096),device='cuda',dtype=torch.bfloat16); y=torch.empty((16384,16,1024),device='cuda',dtype=torch.bfloat16).transpose(0,1); batched_gemm_bf16(x,w,bias=None,dtype=torch.bfloat16,YQ=y,backend='gluon',config={'BLOCK_SIZE_M': 128, 'BLOCK_SIZE_N': 128, 'BLOCK_SIZE_K': 128, 'num_warps': 4, 'NUM_BUFFERS': 3, 'waves_per_eu': 1, 'NUM_KSPLIT': 1, 'cache_modifier': None, 'kernel_type': 'bandwidth_bound'}); torch.cuda.synchronize()\"",
+            "compile_call": "batched_gemm_bf16(x, w, bias=None, dtype=torch.bfloat16, YQ=y, backend='gluon', config=config)",
+            "benchmark_command": "env -u TRITON_ALWAYS_COMPILE AITER_TRITON_ONLY=1 AITER_BATCHED_BF16_TDM_STORE=1 python3 -c \"import torch; from aiter.ops.triton.gemm.batched.batched_gemm_bf16 import batched_gemm_bf16; torch.manual_seed(0); x=torch.randint(-3,4,(16384,16,4096),device='cuda',dtype=torch.bfloat16).transpose(0,1); w=torch.randint(-3,4,(16,1024,4096),device='cuda',dtype=torch.bfloat16); y=torch.empty((16384,16,1024),device='cuda',dtype=torch.bfloat16).transpose(0,1); batched_gemm_bf16(x,w,bias=None,dtype=torch.bfloat16,YQ=y,backend='gluon',config={'BLOCK_SIZE_M': 128, 'BLOCK_SIZE_N': 128, 'BLOCK_SIZE_K': 128, 'num_warps': 4, 'NUM_BUFFERS': 3, 'waves_per_eu': 1, 'NUM_KSPLIT': 1, 'cache_modifier': None, 'kernel_type': 'bandwidth_bound'}); torch.cuda.synchronize(); import triton; fn=lambda: batched_gemm_bf16(x, w, bias=None, dtype=torch.bfloat16, YQ=y, backend='gluon', config={'BLOCK_SIZE_M': 128, 'BLOCK_SIZE_N': 128, 'BLOCK_SIZE_K': 128, 'num_warps': 4, 'NUM_BUFFERS': 3, 'waves_per_eu': 1, 'NUM_KSPLIT': 1, 'cache_modifier': None, 'kernel_type': 'bandwidth_bound'}); ms=triton.testing.do_bench_cudagraph(fn,rep=20,return_mode='mean'); print({'us':ms*1000,'tflops':2199023255552/ms/1e9})\""
+          },
+          "triton": null,
+          "notes": [
+            "Run with the referenced AITER revision importable in the selected Triton environment; no corpus-specific runner is required.",
+            "The command invokes AITER directly, preserving the model's token-major input/output strides and no-bias path.",
+            "The explicit config preserves the selected kernel when comparing compiler revisions; bandwidth_bound is the implementation name.",
+            "wave32 and num_warps=4 give four waves per workgroup; waves_per_eu=1 is a compiler hint, not measured occupancy."
+          ],
+          "tensor_strides": {
+            "x": [
+              4096,
+              65536,
+              1
+            ],
+            "w": [
+              4194304,
+              4096,
+              1
+            ],
+            "y": [
+              1024,
+              16384,
+              1
+            ]
+          },
+          "workload_characterization": {
+            "classification": "compute_bound_candidate",
+            "arithmetic_intensity_flop_per_byte": 780.1904761904761,
+            "basis": "2*B*M*N*K FLOPs divided by one BF16 read of X/W and one BF16 write of Y; ideal traffic estimate, not a measured bottleneck classification."
+          },
+          "performance": {
+            "us": 1491.2738545735679,
+            "tflops": 1474.593850624984,
+            "measured_on": "2026-11-11",
+            "hardware": "MI450 gfx1250, d01-3 GPU 0, shared GPU lock",
+            "aiter_commit": "6a4fa17deb060989f12ec10c366775034defe5f2",
+            "triton_commit": "b760c68dfda067938d72c387d4c44cd9f557a763",
+            "triton_version": "3.9.0",
+            "llvm_commit": "18f9e623e4c891ba31ff817c07197707ac9bc593",
+            "llvm_build_number": 2,
+            "amd_codegen_revision": "08b05a3352eeadd10eba4a25ffc19c2abb226448-2",
+            "method": "triton.testing.do_bench_cudagraph(fn, rep=20, return_mode='mean')",
+            "timing_scope": "Mean of 10 graph replays using preallocated buffers; no cache flush; compilation, initialization and reference checks excluded.",
+            "measurement_runs": 1,
+            "correctness": "Passed full-output exact comparison against FP32 matmul rounded to BF16 for integer inputs in [-3,3], including a post-timing check; not a general random-input accuracy claim.",
+            "comparison": "Use gluon.benchmark_command with the same hardware/settings and timing method. Clock/power state and run-to-run variance were not recorded; this is a reference measurement, not an automatic regression threshold."
+          }
+        }
+      ]
     }
   }
 }
