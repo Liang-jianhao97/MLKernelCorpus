@@ -1392,7 +1392,7 @@
       ]
     },
     "deepseek-v4-pro": {
-      "model_attribution": "DSV4-Pro model-oriented prefill MoE ubench; not a claim of an observed end-to-end model trace.",
+      "model_attribution": "DSV4-Pro prefill MoE microbenchmark from AITER PR 6311.",
       "model_source": {
         "repo": "https://github.com/ROCm/aiter.git",
         "commit": "2adbd66b4c7d55332aad64e01c2d697ed9aed89b",
@@ -1405,259 +1405,45 @@
       "kernels": [
         {
           "op_type": "moe",
-          "label": "DSV4-Pro prefill A4W4 MoE M16384 E96 top6 H3072 I3072, selected Gluon GEMM1 BN256",
+          "label": "DSV4-Pro native Gluon A4W4 prefill MoE M16384 E96 top6 H3072 I3072",
           "shapes": {
             "M": 16384,
             "experts": 96,
             "topk": 6,
             "hidden": 3072,
             "intermediate": 3072,
-            "routed_rows": 98304,
-            "rows_per_expert": 1024,
             "dtype": "mxfp4",
-            "output_dtype": "bf16",
-            "bias": false
+            "output_dtype": "bf16"
           },
-          "operation": "GEMM1 (N=6144,K=3072) + SwiGLU(alpha=1.702,limit=7,residual=true) + fused MXFP4 requantization; GEMM2 (N=3072,K=3072). Balanced routing, single GPU, all experts local.",
           "aiter_kernel_name": "_moe_gemm_a4w4_prefill",
           "framework": "gluon",
-          "tuning_config": {
-            "gemm1": {
-              "BLOCK_M": 128,
-              "BLOCK_N": 256,
-              "BLOCK_K": 256,
-              "NUM_BUFFERS": 1,
-              "num_warps": 4,
-              "num_ctas": 1,
-              "waves_per_eu": 0
-            },
-            "gemm2": {
-              "BLOCK_M": 128,
-              "BLOCK_N": 512,
-              "BLOCK_K": 256,
-              "NUM_BUFFERS": 2,
-              "num_warps": 4,
-              "num_ctas": 1,
-              "waves_per_eu": 0
-            },
-            "selection": "Validated improvement over the pinned dispatch default (GEMM1 BLOCK_N=512); not an exhaustive tuning result or an upstream AITER default."
-          },
           "gluon": {
             "source": "aiter/ops/triton/_gluon_kernels/gfx1250/moe/moe_op_gemm_a4w4.py",
             "source_repo": "aiter",
             "source_commit": "2adbd66b4c7d55332aad64e01c2d697ed9aed89b",
             "entry_point": "_moe_gemm_a4w4_prefill",
             "target": "hip:gfx1250:32",
-            "run_command": "env -u TRITON_ALWAYS_COMPILE -u TRITON_OVERRIDE_ARCH -u AITER_TRITON_USE_HERD -u AITER_MOE_NUM_EXPERT_ACTIVATED ENABLE_CK=0 AITER_USE_SYSTEM_TRITON=1 GPU_ARCHS=gfx1250 AITER_ROCM_ARCH=gfx1250 AITER_MOE_EXPERT_BALANCE=true python3 -c 'import functools, importlib, json, runpy, statistics, sys, types\nfrom pathlib import Path\nimport torch, triton, aiter\ngm = importlib.import_module(\"aiter.ops.triton.moe.moe_op_gemm_a4w4\")\nrouting = importlib.import_module(\"aiter.ops.triton.moe.moe_routing.routing\")\nroot = Path(aiter.__file__).resolve().parents[1]\nsys.path.insert(0, str(root))\nfly = types.SimpleNamespace(**runpy.run_path(str(root / \"op_tests/flydsl_tests/test_flydsl_grouped_gemm.py\")))\ngb = types.SimpleNamespace(**runpy.run_path(str(root / \"op_tests/op_benchmarks/triton/bench_moe_gemm_a4w4_cudagraph.py\")))\nfly.set_data_format(\"a4w4\")\ntorch.manual_seed(0)\ngen = fly.bench_init.make_generator(0)\nw1 = fly._pattern_packed(96, 6144, 1536, data_init=\"uniform\", generator=gen)\nw2 = fly._pattern_packed(96, 3072, 1536, data_init=\"uniform\", generator=gen)\ns1 = fly.init_weight_scales(96, 6144, 96, scale_init=\"auto\", generator=gen)\ns2 = fly.init_weight_scales(96, 3072, 96, scale_init=\"auto\", generator=gen)\nhidden = fly._init_hidden((16384, 3072), \"a4w4\", \"uniform\", gen)\nids, weights = fly._make_topk(hidden, 96, 6)\nw1g = gb.preshuffle_moe_weight(fly._gguu_to_gugu_rows(w1).transpose(-1, -2))\nw2g = gb.preshuffle_moe_weight(w2.transpose(-1, -2))\ns1g, sw1 = gb.check_and_shuffle_scales(fly._gguu_to_gugu_rows(s1).transpose(-1, -2), 6144, 3072)\ns2g, sw2 = gb.check_and_shuffle_scales(s2.transpose(-1, -2), 3072, 3072)\nexpert_map = torch.arange(97, dtype=torch.int32, device=\"cuda\")\nexpert_map[-1] = -1\nbufs = routing._compute_expt_data_internal(96, 98304, 128, hidden.device)\nhist, gather, scatter, gate_scale, valid, _ = routing.ep_sort_routing(weights.float(), ids, expert_map, 96, torch.tensor([16384], dtype=torch.int32, device=\"cuda\"), 16384, 6, 98304, bufs)\nhist = hist[:96]\nassert bool((hist == 1024).all())\nrdata = routing.RoutingData(128, gate_scale, hist, 96, 6, routing.ExptData(hist, *bufs[:3]))\nx1, x1s = gm.mxfp4_quant(hidden)\n# The pinned AITER API has no config argument. Select explicit launch values\n# in this process only; neither the source nor its cached dispatch table changes.\ndef selected_config(m, n, k, r):\n    assert (m, k, r.block_m) == (98304, 3072, 128) and n in (6144, 3072)\n    return dict(block_m=128, block_n=256 if n == 6144 else 512, block_k=256, num_warps=4, xcd_swizzle=1, num_buffers=1 if n == 6144 else 2, waves_per_eu=0, num_ctas=1)\ngm.get_kernel_config_gluon = selected_config\ndef gemm1():\n    return gm.moe_gemm_a4w4(x1, w1g, x1s, s1g, None, rdata, gather_indx=gather, swizzle_mx_scale=sw1, preshuffle_weights=True, apply_swiglu=True, alpha=1.702, limit=7.0, swiglu_add_residual=True, out_mx_quant=True, backend=\"gluon\")\nx2, x2s = gemm1()\ndef gemm2(weighted=False):\n    return gm.moe_gemm_a4w4(x2, w2g, x2s, s2g, None, rdata, scatter_indx=scatter, gate_valid=valid, gammas=gate_scale if weighted else None, swizzle_mx_scale=sw2, preshuffle_weights=True, backend=\"gluon\")\ngemm2()\ntorch.cuda.synchronize()\n'",
-            "benchmark_command": "env -u TRITON_ALWAYS_COMPILE -u TRITON_OVERRIDE_ARCH -u AITER_TRITON_USE_HERD -u AITER_MOE_NUM_EXPERT_ACTIVATED ENABLE_CK=0 AITER_USE_SYSTEM_TRITON=1 GPU_ARCHS=gfx1250 AITER_ROCM_ARCH=gfx1250 AITER_MOE_EXPERT_BALANCE=true python3 -c 'import functools, importlib, json, runpy, statistics, sys, types\nfrom pathlib import Path\nimport torch, triton, aiter\ngm = importlib.import_module(\"aiter.ops.triton.moe.moe_op_gemm_a4w4\")\nrouting = importlib.import_module(\"aiter.ops.triton.moe.moe_routing.routing\")\nroot = Path(aiter.__file__).resolve().parents[1]\nsys.path.insert(0, str(root))\nfly = types.SimpleNamespace(**runpy.run_path(str(root / \"op_tests/flydsl_tests/test_flydsl_grouped_gemm.py\")))\ngb = types.SimpleNamespace(**runpy.run_path(str(root / \"op_tests/op_benchmarks/triton/bench_moe_gemm_a4w4_cudagraph.py\")))\nfly.set_data_format(\"a4w4\")\ntorch.manual_seed(0)\ngen = fly.bench_init.make_generator(0)\nw1 = fly._pattern_packed(96, 6144, 1536, data_init=\"uniform\", generator=gen)\nw2 = fly._pattern_packed(96, 3072, 1536, data_init=\"uniform\", generator=gen)\ns1 = fly.init_weight_scales(96, 6144, 96, scale_init=\"auto\", generator=gen)\ns2 = fly.init_weight_scales(96, 3072, 96, scale_init=\"auto\", generator=gen)\nhidden = fly._init_hidden((16384, 3072), \"a4w4\", \"uniform\", gen)\nids, weights = fly._make_topk(hidden, 96, 6)\nw1g = gb.preshuffle_moe_weight(fly._gguu_to_gugu_rows(w1).transpose(-1, -2))\nw2g = gb.preshuffle_moe_weight(w2.transpose(-1, -2))\ns1g, sw1 = gb.check_and_shuffle_scales(fly._gguu_to_gugu_rows(s1).transpose(-1, -2), 6144, 3072)\ns2g, sw2 = gb.check_and_shuffle_scales(s2.transpose(-1, -2), 3072, 3072)\nexpert_map = torch.arange(97, dtype=torch.int32, device=\"cuda\")\nexpert_map[-1] = -1\nbufs = routing._compute_expt_data_internal(96, 98304, 128, hidden.device)\nhist, gather, scatter, gate_scale, valid, _ = routing.ep_sort_routing(weights.float(), ids, expert_map, 96, torch.tensor([16384], dtype=torch.int32, device=\"cuda\"), 16384, 6, 98304, bufs)\nhist = hist[:96]\nassert bool((hist == 1024).all())\nrdata = routing.RoutingData(128, gate_scale, hist, 96, 6, routing.ExptData(hist, *bufs[:3]))\nx1, x1s = gm.mxfp4_quant(hidden)\n# The pinned AITER API has no config argument. Select explicit launch values\n# in this process only; neither the source nor its cached dispatch table changes.\ndef selected_config(m, n, k, r):\n    assert (m, k, r.block_m) == (98304, 3072, 128) and n in (6144, 3072)\n    return dict(block_m=128, block_n=256 if n == 6144 else 512, block_k=256, num_warps=4, xcd_swizzle=1, num_buffers=1 if n == 6144 else 2, waves_per_eu=0, num_ctas=1)\ngm.get_kernel_config_gluon = selected_config\ndef gemm1():\n    return gm.moe_gemm_a4w4(x1, w1g, x1s, s1g, None, rdata, gather_indx=gather, swizzle_mx_scale=sw1, preshuffle_weights=True, apply_swiglu=True, alpha=1.702, limit=7.0, swiglu_add_residual=True, out_mx_quant=True, backend=\"gluon\")\nlaunches = []\nclass Capture:\n    def __init__(self, kernel): self.kernel = kernel\n    def __getitem__(self, grid):\n        launch = self.kernel[grid]\n        def call(*args, **kwargs):\n            compiled = launch(*args, **kwargs)\n            launches.append((functools.partial(launch, *args, **kwargs), compiled))\n            return compiled\n        return call\noriginal = gm._moe_gemm_a4w4_prefill\ngm._moe_gemm_a4w4_prefill = Capture(original)\nx2, x2s = gemm1()\ndef gemm2(weighted=False):\n    return gm.moe_gemm_a4w4(x2, w2g, x2s, s2g, None, rdata, scatter_indx=scatter, gate_valid=valid, gammas=gate_scale if weighted else None, swizzle_mx_scale=sw2, preshuffle_weights=True, backend=\"gluon\")\ngemm2()\ntorch.cuda.synchronize()\ngm._moe_gemm_a4w4_prefill = original\nassert len(launches) == 2\nreference = fly._torch_moe_ref(hidden, w1, s1, torch.zeros((96, 6144)), w2, s2, torch.zeros((96, 3072)), weights, ids, data_format=\"a4w4\", activation=fly.ActivationType.Swiglu, swiglu_limit=7.0, situ_beta=4.0, situ_linear_beta=25.0)\nactual = gemm2(weighted=True).float()\nreference = reference.float()\ndiff = float((actual-reference).square().sum() / (actual.square().sum()+reference.square().sum()).clamp_min(1e-20))\nassert bool(torch.isfinite(actual).all()) and diff < 0.01\nprint(json.dumps(dict(correctness_logits_diff=diff, kernels=[dict(name=k.metadata.name, hash=k.hash, n_spills=k.n_spills) for _, k in launches])))\ndef pair():\n    launches[0][0]()\n    launches[1][0]()\nfunctions = dict(gemm1=launches[0][0], gemm2=launches[1][0], pair=pair)\nsamples = {name: [] for name in functions}\nfor repetition in range(5):\n    for name in (list(functions) if repetition % 2 == 0 else list(reversed(functions))):\n        samples[name].append(triton.testing.do_bench_cudagraph(functions[name], rep=20, return_mode=\"mean\") * 1000)\nflops = dict(gemm1=3710851743744, gemm2=1855425871872, pair=5566277615616)\nprint(json.dumps({name: dict(median_us=statistics.median(v), tflops=flops[name]/statistics.median(v)/1e6, samples_us=v) for name, v in samples.items()}))\n'",
-            "compile_call": "aiter.ops.triton.moe.moe_op_gemm_a4w4.moe_gemm_a4w4(..., backend='gluon') for both stages, with process-local selected_config",
-            "validation": {
-              "literal_run_command": "passed",
-              "literal_benchmark_command": "passed",
-              "generated_ir": "Both selected native GEMM specializations emitted LLIR on gfx1250.",
-              "command_sha256": {
-                "run_command": "785e7a47dd5dea3518fc7f845c07bba672233e802a3711f798ed09b9f4cbb0c4",
-                "benchmark_command": "9f39a44c70b9d50ac7eec532fc97b04efca4e6f72be779878b6513f16ed51793"
-              },
-              "kernels": [
-                {
-                  "name": "_moe_gemm_a4w4_prefill_BLOCK_M_128_BLOCK_N_256_BLOCK_K_256_SWIZZLE_MX_SCALE_GFX1250_SCALE_APPLY_SWIGLU_1_num_warps_4_NUM_BUFFERS_1_HAS_MX_OUT_1_EP_SCATTER_0_PRELOAD_X_SCALES_0_XS_SLAB_COLS_0_L2_PREFETCH_DISTANCE_0",
-                  "hash": "0bc686855126940f03d5828083bba2f24abbb6ff4ffdebc3e5fca8483eb3e62e",
-                  "n_spills": 129
-                },
-                {
-                  "name": "_moe_gemm_a4w4_prefill_BLOCK_M_128_BLOCK_N_512_BLOCK_K_256_SWIZZLE_MX_SCALE_GFX1250_SCALE_APPLY_SWIGLU_0_num_warps_4_NUM_BUFFERS_2_HAS_MX_OUT_0_EP_SCATTER_0_PRELOAD_X_SCALES_0_XS_SLAB_COLS_0_L2_PREFETCH_DISTANCE_0",
-                  "hash": "2b3c0317009c5a337d9dd83a3b692e9dfed9023dbece7a21d9a946fa40aa198e",
-                  "n_spills": 16
-                }
-              ],
-              "correctness_logits_diff": 3.558497155609075e-06,
-              "gluon_only_replay": {
-                "gemm1": {
-                  "median_us": 4129.597043991089,
-                  "tflops": 898.5989926410862,
-                  "samples_us": [
-                    4084.519481658935,
-                    4153.152179718018,
-                    4127.949142456055,
-                    4167.402219772339,
-                    4129.597043991089
-                  ]
-                },
-                "gemm2": {
-                  "median_us": 346.5902856680063,
-                  "tflops": 5353.369521871958,
-                  "samples_us": [
-                    328.1919681664669,
-                    344.3279468651974,
-                    346.650557084517,
-                    346.5902856680063,
-                    347.5724769361091
-                  ]
-                },
-                "pair": {
-                  "median_us": 4451.512145996094,
-                  "tflops": 1250.423998196339,
-                  "samples_us": [
-                    4421.244239807129,
-                    4454.623746871948,
-                    4439.551544189453,
-                    4451.512145996094,
-                    4462.957334518433
-                  ]
-                }
-              },
-              "note": "Separate locked command validation on the same node/image. This replay times Gluon alone and does not replace the stored alternating-backend comparison."
-            }
+            "run_command": "python3 op_tests/op_benchmarks/triton/bench_moe_gemm_a4w4_cudagraph.py --backend gluon --M 16384 --shape 3072 6144 --experts 96 6 --preshuffle --fused-quant --routed-experts 96 --balance"
           },
           "triton": null,
-          "workload_characterization": {
-            "classification": "compute_bound_candidate",
-            "gemm1_logical_flop_per_byte": 2891.294117647059,
-            "gemm2_logical_flop_per_byte": 1489.4545454545455,
-            "basis": "Analytical logical traffic including block scales; not measured HBM traffic. WMMA counters were inconclusive. The selected GEMM1 still spills; strict compute-bound status is not established."
-          },
           "performance": {
-            "us": 4418.9587116241455,
-            "tflops": 1259.635579072919,
-            "measured_on": "2026-11-12",
-            "timestamp_utc": "2026-11-12T14:23:10Z",
-            "hardware": "MI450 B0 gfx1250, d07-2 GPU 0; exclusive existing locks and idle-device audit",
-            "aiter_commit": "2adbd66b4c7d55332aad64e01c2d697ed9aed89b",
-            "triton_version": "3.9.0+git0a6e13e6.rocm10.3.0a20261106",
-            "torch_version": "2.13.0+rocm10.3.0a20261106",
-            "flydsl_version": "0.4.2",
-            "method": "Median of five independent triton.testing.do_bench_cudagraph(rep=20, return_mode='mean') measurements; backend order alternated.",
-            "timing_scope": "Captured native GEMM launches only. GEMM1 includes SwiGLU and requantization. GEMM2 excludes routing-weight multiply and final reduction. Pair runs both launches with the linked intermediate. Excludes initial input quantization/routing, reference checks, and final weighted reduction; not end-to-end MoE.",
-            "comparison_to_flydsl": {
-              "gemm1": {
-                "gluon_us": 4108.469867706299,
-                "gluon_tflops": 903.219900165829,
-                "flydsl_us": 861.6019425568758,
-                "flydsl_tflops": 4306.921282851032,
-                "gluon_over_flydsl_latency_ratio": 4.7684083156939865,
-                "gluon_latency_delta_percent": 376.84083156939863,
-                "gluon_samples_us": [
-                  4058.4638118743896,
-                  4103.711462020874,
-                  4108.469867706299,
-                  4113.098859786987,
-                  4112.437391281128
-                ],
-                "flydsl_samples_us": [
-                  784.4228973388672,
-                  861.6019425568758,
-                  861.3461841236461,
-                  863.6127613208913,
-                  863.6404731056907
-                ]
-              },
-              "gemm2": {
-                "gluon_us": 348.42614774350767,
-                "gluon_tflops": 5325.162545601667,
-                "flydsl_us": 430.92978518942124,
-                "flydsl_tflops": 4305.63385414731,
-                "gluon_over_flydsl_latency_ratio": 0.8085450570337163,
-                "gluon_latency_delta_percent": -19.145494296628375,
-                "gluon_samples_us": [
-                  343.78013610839844,
-                  347.4949819391424,
-                  349.28870807994497,
-                  348.6268164894797,
-                  348.42614774350767
-                ],
-                "flydsl_samples_us": [
-                  428.1164204632795,
-                  430.63554128011066,
-                  433.19825772885923,
-                  430.92978518942124,
-                  433.4246882685909
-                ]
-              },
-              "pair": {
-                "gluon_us": 4418.9587116241455,
-                "gluon_tflops": 1259.635579072919,
-                "flydsl_us": 1292.355219523112,
-                "flydsl_tflops": 4307.080229590433,
-                "gluon_over_flydsl_latency_ratio": 3.41930658449677,
-                "gluon_latency_delta_percent": 241.93065844967697,
-                "gluon_samples_us": [
-                  4415.934419631958,
-                  4412.688732147217,
-                  4419.734621047974,
-                  4418.9587116241455,
-                  4426.8571853637695
-                ],
-                "flydsl_samples_us": [
-                  1282.7990849812825,
-                  1291.9025739034016,
-                  1292.355219523112,
-                  1297.0298237270779,
-                  1299.3620936075847
-                ]
-              }
-            },
-            "flydsl_reference": {
-              "source": "aiter/ops/flydsl/kernels/mxfp4_preshuffle_gfx1250_tdm.py",
-              "entry_point": "launch_gemm_a8w4_tdm",
-              "gemm1_and_gemm2_tile": [
-                64,
-                256,
-                256
-              ],
-              "num_buffers": 3,
-              "m_warp": 1,
-              "n_warp": 4,
-              "selection": "AITER fallback for this shape/activation; not an exhaustively tuned FlyDSL result."
-            },
-            "correctness": {
-              "flydsl_vs_reference": {
-                "logits_diff": 3.532511072990019e-06,
-                "relative_l2": 0.002658003708347678,
-                "finite": true
-              },
-              "gluon_vs_reference": {
-                "logits_diff": 3.554715476639103e-06,
-                "relative_l2": 0.002666350919753313,
-                "finite": true
-              },
-              "gluon_vs_flydsl": {
-                "logits_diff": 5.28838972968515e-06,
-                "relative_l2": 0.0032522038090974092,
-                "finite": true
-              },
-              "gluon_unweighted_vs_reference": {
-                "logits_diff": 3.5558966828830307e-06,
-                "relative_l2": 0.0026667951606214046,
-                "finite": true
-              },
-              "flydsl_capture_replay_exact": {
-                "gemm1": true,
-                "gemm1_scale": true,
-                "gemm2": true
-              }
-            },
-            "gluon_resources": [
-              {
-                "n_regs": 460,
-                "n_spills": 129,
-                "private_segment_bytes_per_thread": 516
-              },
-              {
-                "n_regs": 1024,
-                "n_spills": 16,
-                "private_segment_bytes_per_thread": 64
-              }
-            ],
-            "interpretation": "Selected Gluon pair takes 3.4193x the FlyDSL latency. GEMM1 takes 4.7684x; GEMM2 is about 19.1% lower latency than FlyDSL. This is a configuration/compiler comparison, not a general DSL ranking.",
-            "limitations": "Installed compiler reference, not a fresh ToT build. Dynamic clocks; first FlyDSL GEMM1 sample is faster. Reuse resident buffers without cache flushing. These measurements are references, not regression thresholds. benchmark_command retimes Gluon alone; the stored cross-backend reference used alternating backends on identical logical data."
+            "us": 6122.37,
+            "tflops": 909.2,
+            "gemm1_us": 5730.95,
+            "gemm2_us": 328.19,
+            "scope": "Native ubench total: back-to-back GEMM1 and GEMM2 API calls, excluding initial routing and quantization; not full weighted MoE end-to-end latency.",
+            "measurement": "Single CLI invocation with default rep=20 and one weight initialization; reference measurement, not a regression threshold.",
+            "date": "2026-11-13",
+            "gpu": "MI450 B0, gfx1250, 256 CUs",
+            "torch": "2.13.0+rocm10.3.0a20261106",
+            "triton": "3.9.0+git0a6e13e6.rocm10.3.0a20261106"
           },
           "notes": [
-            "Run from an environment with the pinned AITER source checkout and its benchmark dependencies importable. Commands use AITER's existing data/routing helpers and unmodified native Gluon kernels; no corpus-specific .py or .sh file is required.",
-            "The FlyDSL test module is reused only for logical input initialization and the PyTorch reference; these commands do not launch a FlyDSL GEMM.",
-            "Explicit process-local configuration selection is necessary because this AITER API exposes no config parameter. It does not edit source files or mutate the shared cached dispatch table.",
-            "run_command launches the two-stage AITER path, including its auxiliary kernels, for IR regeneration. benchmark_command captures the two native GEMM launches and excludes auxiliary work from timing.",
-            "wave32 and num_warps=4 specify four waves per workgroup; waves_per_eu=0 does not establish single-wave occupancy."
+            "Run from the pinned AITER checkout in a compatible gfx1250 environment. Select an idle GPU under the shared node lock before execution.",
+            "Uses the native ubench data initialization, bias, activation, routing, quantization and timing. AITER selects launch parameters from its JSON dispatch table.",
+            "The pinned revision selects GEMM1 BLOCK_N=512. BLOCK_N=256 tuning is a separate AITER change, not a corpus-side override.",
+            "Earlier normalized FlyDSL comparisons use different activation, bias and timing scopes; their 3.42x gap is not a baseline for this command.",
+            "This is a model-oriented ubench, not an end-to-end model trace. Compute-bound and single-wave status are not established."
           ]
         }
       ]
