@@ -22,7 +22,7 @@
       "additional_files": []
     },
     {
-      "filename": "vector_add_n_4096.llir",
+      "filename": null,
       "label": "Vector Add N=4096",
       "op_type": "elementwise_add",
       "run_command": "python3 python/tutorials/01-vector-add.py",
@@ -34,12 +34,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/vector_add_n_1024.llir"
     },
     {
-      "filename": "vector_add_n_8192.llir",
+      "filename": null,
       "label": "Vector Add N=8192",
       "op_type": "elementwise_add",
       "run_command": "python3 python/tutorials/01-vector-add.py",
@@ -51,12 +52,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/vector_add_n_1024.llir"
     },
     {
-      "filename": "vector_add_n_32768.llir",
+      "filename": null,
       "label": "Vector Add N=32768",
       "op_type": "elementwise_add",
       "run_command": "python3 python/tutorials/01-vector-add.py",
@@ -68,12 +70,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/vector_add_n_1024.llir"
     },
     {
-      "filename": "fused_softmax_m_4096_n_1024.llir",
+      "filename": null,
       "label": "Fused Softmax M=4096 N=1024",
       "op_type": "softmax",
       "run_command": "python3 python/tutorials/02-fused-softmax.py",
@@ -85,12 +88,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_softmax_m_4096_n_8192_tutorial.llir"
     },
     {
-      "filename": "fused_softmax_m_4096_n_4096.llir",
+      "filename": null,
       "label": "Fused Softmax M=4096 N=4096",
       "op_type": "softmax",
       "run_command": "python3 python/tutorials/02-fused-softmax.py",
@@ -102,12 +106,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_softmax_m_4096_n_8192_tutorial.llir"
     },
     {
-      "filename": "fused_softmax_m_4096_n_8192.llir",
+      "filename": null,
       "label": "Fused Softmax M=4096 N=8192",
       "op_type": "softmax",
       "run_command": "python3 python/tutorials/02-fused-softmax.py",
@@ -119,12 +124,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_softmax_m_4096_n_8192_tutorial.llir"
     },
     {
-      "filename": "fused_softmax_m_4096_n_32768.llir",
+      "filename": null,
       "label": "Fused Softmax M=4096 N=32768",
       "op_type": "softmax",
       "run_command": "python3 python/tutorials/02-fused-softmax.py",
@@ -136,12 +142,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_softmax_m_4096_n_8192_tutorial.llir"
     },
     {
-      "filename": "tutorial_gemm_fp16_m_1_n_4096_k_4096.llir",
+      "filename": null,
       "label": "Tutorial GEMM fp16 M=1 N=4096 K=4096",
       "op_type": "gemm",
       "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
@@ -158,12 +165,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_gemm_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "tutorial_gemm_bf16_m_1_n_4096_k_4096.llir",
+      "filename": null,
       "label": "Tutorial GEMM bf16 M=1 N=4096 K=4096",
       "op_type": "gemm",
       "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
@@ -180,12 +188,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_gemm_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "tutorial_gemm_fp16_m_4096_n_4096_k_4096.llir",
+      "filename": null,
       "label": "Tutorial GEMM fp16 M=4096 N=4096 K=4096",
       "op_type": "gemm",
       "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
@@ -202,12 +211,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_gemm_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "tutorial_gemm_bf16_m_4096_n_4096_k_4096.llir",
+      "filename": null,
       "label": "Tutorial GEMM bf16 M=4096 N=4096 K=4096",
       "op_type": "gemm",
       "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
@@ -224,12 +234,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_gemm_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "tutorial_gemm_fp16_m_8192_n_4096_k_4096.llir",
+      "filename": null,
       "label": "Tutorial GEMM fp16 M=8192 N=4096 K=4096",
       "op_type": "gemm",
       "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
@@ -246,12 +257,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_gemm_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "tutorial_gemm_bf16_m_8192_n_4096_k_4096.llir",
+      "filename": null,
       "label": "Tutorial GEMM bf16 M=8192 N=4096 K=4096",
       "op_type": "gemm",
       "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
@@ -268,12 +280,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_gemm_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "tutorial_gemm_fp16_m_8192_n_8192_k_8192.llir",
+      "filename": null,
       "label": "Tutorial GEMM fp16 M=8192 N=8192 K=8192",
       "op_type": "gemm",
       "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
@@ -290,12 +303,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_gemm_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "tutorial_gemm_bf16_m_8192_n_8192_k_8192.llir",
+      "filename": null,
       "label": "Tutorial GEMM bf16 M=8192 N=8192 K=8192",
       "op_type": "gemm",
       "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
@@ -312,12 +326,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_gemm_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "tutorial_gemm_fp16_m_16384_n_4096_k_8192.llir",
+      "filename": null,
       "label": "Tutorial GEMM fp16 M=16384 N=4096 K=8192",
       "op_type": "gemm",
       "run_command": "python3 python/tutorials/03-matrix-multiplication.py",
@@ -334,9 +349,10 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_gemm_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
       "filename": "tutorial_gemm_bf16_m_16384_n_4096_k_8192.llir",
@@ -379,7 +395,7 @@
       "additional_files": []
     },
     {
-      "filename": "seeded_dropout_n_4096.llir",
+      "filename": null,
       "label": "Seeded Dropout N=4096",
       "op_type": "dropout",
       "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
@@ -392,12 +408,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/seeded_dropout_n_1024.llir"
     },
     {
-      "filename": "seeded_dropout_n_8192.llir",
+      "filename": null,
       "label": "Seeded Dropout N=8192",
       "op_type": "dropout",
       "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
@@ -410,12 +427,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/seeded_dropout_n_1024.llir"
     },
     {
-      "filename": "seeded_dropout_n_32768.llir",
+      "filename": null,
       "label": "Seeded Dropout N=32768",
       "op_type": "dropout",
       "run_command": "python3 python/tutorials/04-low-memory-dropout.py",
@@ -428,12 +446,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/seeded_dropout_n_1024.llir"
     },
     {
-      "filename": "layer_norm_fwd_m_4096_n_1024.llir",
+      "filename": null,
       "label": "Layer Norm Fwd M=4096 N=1024",
       "op_type": "layer_norm",
       "run_command": "python3 python/tutorials/05-layer-norm.py",
@@ -445,12 +464,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_layer_norm_m_4096_n_8192_tutorial.llir"
     },
     {
-      "filename": "layer_norm_fwd_m_4096_n_4096.llir",
+      "filename": null,
       "label": "Layer Norm Fwd M=4096 N=4096",
       "op_type": "layer_norm",
       "run_command": "python3 python/tutorials/05-layer-norm.py",
@@ -462,12 +482,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_layer_norm_m_4096_n_8192_tutorial.llir"
     },
     {
-      "filename": "layer_norm_fwd_m_4096_n_8192.llir",
+      "filename": null,
       "label": "Layer Norm Fwd M=4096 N=8192",
       "op_type": "layer_norm",
       "run_command": "python3 python/tutorials/05-layer-norm.py",
@@ -479,12 +500,13 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_layer_norm_m_4096_n_8192_tutorial.llir"
     },
     {
-      "filename": "layer_norm_fwd_m_4096_n_32768.llir",
+      "filename": null,
       "label": "Layer Norm Fwd M=4096 N=32768",
       "op_type": "layer_norm",
       "run_command": "python3 python/tutorials/05-layer-norm.py",
@@ -496,9 +518,10 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_layer_norm_m_4096_n_8192_tutorial.llir"
     },
     {
       "filename": "tutorial_fa_causal_seqlen_1024_short.llir",
@@ -521,7 +544,7 @@
       "additional_files": []
     },
     {
-      "filename": "tutorial_fa_non-causal_seqlen_1024_short.llir",
+      "filename": null,
       "label": "Tutorial FA non-causal seqlen=1024 (short)",
       "op_type": "flash_attention",
       "run_command": "python3 python/tutorials/06-fused-attention.py",
@@ -536,12 +559,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_fa_causal_seqlen_1024_short.llir"
     },
     {
-      "filename": "tutorial_fa_causal_seqlen_4096_medium.llir",
+      "filename": null,
       "label": "Tutorial FA causal seqlen=4096 (medium)",
       "op_type": "flash_attention",
       "run_command": "python3 python/tutorials/06-fused-attention.py",
@@ -556,12 +580,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_fa_causal_seqlen_1024_short.llir"
     },
     {
-      "filename": "tutorial_fa_non-causal_seqlen_4096_medium.llir",
+      "filename": null,
       "label": "Tutorial FA non-causal seqlen=4096 (medium)",
       "op_type": "flash_attention",
       "run_command": "python3 python/tutorials/06-fused-attention.py",
@@ -576,12 +601,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_fa_causal_seqlen_1024_short.llir"
     },
     {
-      "filename": "tutorial_fa_causal_seqlen_8192_long.llir",
+      "filename": null,
       "label": "Tutorial FA causal seqlen=8192 (long)",
       "op_type": "flash_attention",
       "run_command": "python3 python/tutorials/06-fused-attention.py",
@@ -596,12 +622,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_fa_causal_seqlen_1024_short.llir"
     },
     {
-      "filename": "tutorial_fa_non-causal_seqlen_8192_long.llir",
+      "filename": null,
       "label": "Tutorial FA non-causal seqlen=8192 (long)",
       "op_type": "flash_attention",
       "run_command": "python3 python/tutorials/06-fused-attention.py",
@@ -616,12 +643,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_fa_causal_seqlen_1024_short.llir"
     },
     {
-      "filename": "tutorial_fa_decode_q_1_k_8192.llir",
+      "filename": null,
       "label": "Tutorial FA decode Q=1 K=8192",
       "op_type": "flash_attention",
       "run_command": "python3 python/tutorials/06-fused-attention.py",
@@ -637,9 +665,10 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/tutorial_fa_causal_seqlen_1024_short.llir"
     },
     {
       "filename": "extern_asin_kernel_n_8192.llir",
@@ -659,7 +688,7 @@
       "additional_files": []
     },
     {
-      "filename": "grouped_gemm_n_128_group_size_4.llir",
+      "filename": null,
       "label": "Grouped GEMM N=128 group_size=4",
       "op_type": "grouped_gemm",
       "run_command": "python3 python/tutorials/08-grouped-gemm.py",
@@ -673,12 +702,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/grouped_gemm_n_1024_group_size_4.llir"
     },
     {
-      "filename": "grouped_gemm_n_512_group_size_4.llir",
+      "filename": null,
       "label": "Grouped GEMM N=512 group_size=4",
       "op_type": "grouped_gemm",
       "run_command": "python3 python/tutorials/08-grouped-gemm.py",
@@ -692,9 +722,10 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/grouped_gemm_n_1024_group_size_4.llir"
     },
     {
       "filename": "grouped_gemm_n_1024_group_size_4.llir",
@@ -716,7 +747,7 @@
       "additional_files": []
     },
     {
-      "filename": "persistent_gemm_fp16_m_4096_n_4096_k_512.llir",
+      "filename": null,
       "label": "Persistent GEMM fp16 M=4096 N=4096 K=512",
       "op_type": "persistent_gemm",
       "run_command": "python3 python/tutorials/09-persistent-matmul.py -K 512 --prec fp16",
@@ -733,36 +764,107 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": [
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper1.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper2.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper3.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper4.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper5.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper6.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper7.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper8.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper9.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper10.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper11.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper12.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper13.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper14.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper15.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper16.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper17.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper18.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper19.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper20.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper21.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper22.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_512_helper23.llir"
-      ]
+      "additional_files": [],
+      "deduplicated_helpers": [
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper1.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper3.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper1.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper20.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper10.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper23.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper12.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper5.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper2.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper9.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper3.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper11.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper4.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper12.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper5.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper13.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper6.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper15.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper7.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper18.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper8.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper22.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper11.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper6.llir",
+          "deduplicated_to": "gluon/mxfp_fa_mha_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk64_helper3.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper8.llir",
+          "deduplicated_to": "gluon/mxfp_fa_mha_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk64_helper4.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper10.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper10.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper14.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper14.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper16.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper16.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper17.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper17.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper19.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper19.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper2.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper2.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper21.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper21.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper4.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper4.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_512_helper7.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper7.llir"
+        }
+      ],
+      "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096.llir"
     },
     {
-      "filename": "persistent_gemm_fp16_m_8192_n_8192_k_4096.llir",
+      "filename": null,
       "label": "Persistent GEMM fp16 M=8192 N=8192 K=4096",
       "op_type": "persistent_gemm",
       "run_command": "python3 python/tutorials/09-persistent-matmul.py -K 4096 --prec fp16",
@@ -779,33 +881,104 @@
         "num_warps": 8,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": [
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper1.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper2.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper3.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper4.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper5.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper6.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper7.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper8.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper9.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper10.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper11.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper12.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper13.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper14.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper15.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper16.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper17.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper18.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper19.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper20.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper21.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper22.llir",
-        "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper23.llir"
-      ]
+      "additional_files": [],
+      "deduplicated_helpers": [
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper1.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper3.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper1.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper20.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper10.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper23.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper12.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper5.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper2.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper9.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper3.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper11.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper4.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper12.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper5.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper13.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper6.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper15.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper7.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper18.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper8.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper22.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper11.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper6.llir",
+          "deduplicated_to": "gluon/mxfp_fa_mha_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk64_helper3.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper8.llir",
+          "deduplicated_to": "gluon/mxfp_fa_mha_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk64_helper4.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper10.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper10.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper14.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper14.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper16.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper16.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper17.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper17.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper19.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper19.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper2.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper2.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper21.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper21.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper4.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper4.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_8192_n_8192_k_4096_helper7.llir",
+          "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096_helper7.llir"
+        }
+      ],
+      "deduplicated_to": "triton/persistent_gemm_fp16_m_4096_n_4096_k_4096.llir"
     },
     {
       "filename": "persistent_gemm_fp16_m_4096_n_4096_k_4096.llir",
@@ -828,29 +1001,73 @@
       "status": "launch_failed_ir_captured",
       "has_amdgcn": true,
       "additional_files": [
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper1.llir",
         "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper2.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper3.llir",
         "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper4.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper5.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper6.llir",
         "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper7.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper8.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper9.llir",
         "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper10.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper11.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper12.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper13.llir",
         "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper14.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper15.llir",
         "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper16.llir",
         "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper17.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper18.llir",
         "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper19.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper20.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper21.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper22.llir",
-        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper23.llir"
+        "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper21.llir"
+      ],
+      "deduplicated_helpers": [
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper1.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper3.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper1.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper20.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper10.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper23.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper12.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper5.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper2.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper9.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper3.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper11.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper4.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper12.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper5.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper13.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper6.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper15.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper7.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper18.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper8.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper22.llir",
+          "deduplicated_to": "gluon/mxfp_fa_gqa_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk2_helper11.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper6.llir",
+          "deduplicated_to": "gluon/mxfp_fa_mha_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk64_helper3.llir"
+        },
+        {
+          "original": "persistent_gemm_fp16_m_4096_n_4096_k_4096_helper8.llir",
+          "deduplicated_to": "gluon/mxfp_fa_mha_prefill_e4m3_e5m2_b1_q1024_k1024_hq64_hk64_helper4.llir"
+        }
       ]
     },
     {
@@ -959,7 +1176,7 @@
       "additional_files": []
     },
     {
-      "filename": "production_matmul_fp16_m_4096_n_4096_k_4096.llir",
+      "filename": null,
       "label": "Production Matmul fp16 M=4096 N=4096 K=4096",
       "op_type": "gemm",
       "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
@@ -975,12 +1192,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/production_matmul_fp16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "production_matmul_bf16_m_4096_n_4096_k_4096.llir",
+      "filename": null,
       "label": "Production Matmul bf16 M=4096 N=4096 K=4096",
       "op_type": "gemm",
       "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
@@ -996,12 +1214,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/production_matmul_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "production_matmul_fp16_m_8192_n_4096_k_4096.llir",
+      "filename": null,
       "label": "Production Matmul fp16 M=8192 N=4096 K=4096",
       "op_type": "gemm",
       "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.float16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
@@ -1017,12 +1236,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/production_matmul_fp16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "production_matmul_bf16_m_8192_n_4096_k_4096.llir",
+      "filename": null,
       "label": "Production Matmul bf16 M=8192 N=4096 K=4096",
       "op_type": "gemm",
       "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,4096,dtype=torch.bfloat16,device='cuda'); b=torch.randn(4096,4096,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
@@ -1038,12 +1258,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/production_matmul_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "production_matmul_fp16_m_8192_n_8192_k_8192.llir",
+      "filename": null,
       "label": "Production Matmul fp16 M=8192 N=8192 K=8192",
       "op_type": "gemm",
       "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.float16,device='cuda'); b=torch.randn(8192,8192,dtype=torch.float16,device='cuda'); matmul(a, b, bias=None)\"",
@@ -1059,12 +1280,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/production_matmul_fp16_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "production_matmul_bf16_m_8192_n_8192_k_8192.llir",
+      "filename": null,
       "label": "Production Matmul bf16 M=8192 N=8192 K=8192",
       "op_type": "gemm",
       "run_command": "python3 -c \"from triton_kernels.matmul import matmul; import torch; a=torch.randn(8192,8192,dtype=torch.bfloat16,device='cuda'); b=torch.randn(8192,8192,dtype=torch.bfloat16,device='cuda'); matmul(a, b, bias=None)\"",
@@ -1080,9 +1302,10 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "triton/production_matmul_bf16_m_16384_n_4096_k_8192.llir"
     },
     {
       "filename": "production_matmul_fp16_m_16384_n_4096_k_8192.llir",
@@ -1161,7 +1384,7 @@
       "additional_files": []
     },
     {
-      "filename": "production_reduce_m_4096_n_8192.llir",
+      "filename": null,
       "label": "Production Reduce M=4096 N=8192",
       "op_type": "reduce",
       "run_command": "python3 -c \"from triton_kernels.reduce import reduce; import torch; x=torch.randn(1, 4096,8192,dtype=torch.float16,device='cuda'); reduce(x, dim=2)\"",
@@ -1173,9 +1396,10 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_reduce_m_4096_n_8192_production.llir"
     },
     {
       "filename": "production_reduce_m_4096_n_32768.llir",
@@ -1195,7 +1419,7 @@
       "additional_files": []
     },
     {
-      "filename": "production_swiglu_m_4096_n_1024.llir",
+      "filename": null,
       "label": "Production SwiGLU M=4096 N=1024",
       "op_type": "swiglu",
       "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu, PrecisionConfig; import torch; a=torch.randn(4096,2048,dtype=torch.float16,device='cuda'); swiglu(a, alpha=1.0, precision_config=PrecisionConfig(limit=float('inf')))\"",
@@ -1209,12 +1433,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_swiglu_m_4096_n_8192_production.llir"
     },
     {
-      "filename": "production_swiglu_m_4096_n_4096.llir",
+      "filename": null,
       "label": "Production SwiGLU M=4096 N=4096",
       "op_type": "swiglu",
       "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu, PrecisionConfig; import torch; a=torch.randn(4096,8192,dtype=torch.float16,device='cuda'); swiglu(a, alpha=1.0, precision_config=PrecisionConfig(limit=float('inf')))\"",
@@ -1228,12 +1453,13 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_swiglu_m_4096_n_8192_production.llir"
     },
     {
-      "filename": "production_swiglu_m_4096_n_8192.llir",
+      "filename": null,
       "label": "Production SwiGLU M=4096 N=8192",
       "op_type": "swiglu",
       "run_command": "python3 -c \"from triton_kernels.swiglu import swiglu, PrecisionConfig; import torch; a=torch.randn(4096,16384,dtype=torch.float16,device='cuda'); swiglu(a, alpha=1.0, precision_config=PrecisionConfig(limit=float('inf')))\"",
@@ -1247,9 +1473,10 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_swiglu_m_4096_n_8192_production.llir"
     },
     {
       "filename": "production_topk_n_tokens_4096_n_expts_64_k_8.llir",
@@ -1292,7 +1519,7 @@
       "additional_files": []
     },
     {
-      "filename": "production_topk_n_tokens_4096_n_expts_256_k_32.llir",
+      "filename": null,
       "label": "Production TopK n_tokens=4096 n_expts=256 k=32",
       "op_type": "topk",
       "run_command": "python3 -c \"from triton_kernels.topk import topk; import torch; x=torch.randn(4096,256,dtype=torch.float16,device=cuda); topk(x, k=32)\"",
@@ -1307,9 +1534,10 @@
         "num_warps": 4,
         "waves_per_eu": 1
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_topk_n_tokens_4096_n_expts_256_k_32_production.llir"
     },
     {
       "filename": "production_compaction_b_4096_k_64.llir",
@@ -1348,7 +1576,8 @@
   ],
   "summary": {
     "total": 65,
-    "success": 62,
+    "unique_ir": 18,
+    "deduplicated": 44,
     "failed": 3
   }
 }

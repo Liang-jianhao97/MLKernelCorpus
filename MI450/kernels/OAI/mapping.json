@@ -5,7 +5,7 @@
   "generated_at": "2026-11-05T23:32:36.512265+00:00",
   "kernels": [
     {
-      "filename": "oai_7_gqa_prefill_e4m3_e4m3_b1_q8192_k8192.llir",
+      "filename": null,
       "label": "OAI #7 GQA Prefill e4m3/e4m3 B1 Q8192 K8192",
       "op_type": "flash_attention",
       "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 1 --seqlen_q 8192 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
@@ -20,9 +20,10 @@
         "q_type": "e4m3",
         "kv_type": "e4m3"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_fa_prefill_mxfp_e4m3_e4m3_gqa_b1_q8192_k8192.llir"
     },
     {
       "filename": "oai_8_mqa_prefill_e4m3_e4m3_b1_q8192_k8192.llir",
@@ -45,7 +46,7 @@
       "additional_files": []
     },
     {
-      "filename": "oai_1_gqa_decode_e4m3_e4m3_b64_q1_k8192.llir",
+      "filename": null,
       "label": "OAI #1 GQA Decode e4m3/e4m3 B64 Q1 K8192",
       "op_type": "flash_attention",
       "run_command": "python3 third_party/amd/python/examples/gluon/mxfp_fa_cdna5.py --q_type e4m3 --kv_type e4m3 --batch 64 --seqlen_q 1 --seqlen_k 8192 --num_q_heads 64 --num_k_heads 2 --head_sz 128 --pipelined --scale_type block --disable_p_scaling --profile",
@@ -60,9 +61,10 @@
         "q_type": "e4m3",
         "kv_type": "e4m3"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "best/best_fa_decode_mxfp_e4m3_e4m3_gqa_b64_q1_k8192.llir"
     },
     {
       "filename": "oai_2_gqa_decode_e4m3_e2m1_b64_q1_k8192.llir",
@@ -167,7 +169,8 @@
   ],
   "summary": {
     "total": 8,
-    "success": 8,
+    "unique_ir": 6,
+    "deduplicated": 2,
     "failed": 0
   }
 }

@@ -297,23 +297,51 @@ In each output subdirectory under `MI450/kernels/`, create a `mapping.json` file
 ### Rules for mapping.json
 
 - **Every kernel entry** from the manifest must appear in the mapping, even if it failed.
-- `"status"` is one of: `"success"`, `"compilation_failed"`, `"launch_failed_ir_captured"`, `"import_error"`, `"skipped"`.
+- `"status"` is one of: `"success"`, `"compilation_failed"`, `"launch_failed_ir_captured"`, `"import_error"`, `"skipped"`, `"deduplicated"`.
 - `"launch_failed_ir_captured"` means the kernel launch failed (no GPU) but the `.llir` was captured from the cache — this is the expected outcome for most kernels during cross-compilation.
-- `"filename"` is `null` when no `.llir` was produced.
+- `"deduplicated"` means this kernel produced a `.llir` file identical to another kernel's IR. The original file was removed and `"deduplicated_to"` points to the canonical copy that was kept. This status is set by Phase 5.5.
+- `"filename"` is `null` when no `.llir` was produced (or when deduplicated).
 - `"additional_files"` lists any extra `.llir` files from helper kernels.
 - `"error"` is included only on failure, with a brief (one-line) description.
+
+## Phase 5.5: Deduplicate Kernels
+
+Many kernels compiled with different runtime shape parameters (M, N, K, batch size, dtype) produce identical LLVM IR because those parameters are runtime arguments, not compile-time constants. The same Triton kernel function compiled across different manifests (e.g. aiter model configs mapping to the same gluon kernel) also produces identical IR. This phase removes those redundant copies.
+
+**After Phase 5 (mapping files are written) and before the Final Report**, run the deduplication script:
+
+```bash
+cd /root/MI450KernelCorpus
+python3 MI450/agent/resources/dedup_kernels.py MI450/kernels
+```
+
+The script:
+1. Hashes every `.llir` file across all subdirectories
+2. Groups files with identical content
+3. For each duplicate group, keeps one **canonical** copy based on directory priority: `best` > `OAI` > `gluon` > `aiter` > `triton` (within the same directory, alphabetically first wins)
+4. Deletes all non-canonical copies
+5. Updates each `mapping.json`:
+   - Removed primary kernels: sets `"filename": null`, `"status": "deduplicated"`, adds `"deduplicated_to": "<subdir>/<canonical_file>"`
+   - Removed helper kernels: removes them from `"additional_files"` and adds them to `"deduplicated_helpers"` with the canonical pointer
+   - Updates `"summary"` to include `"unique_ir"` and `"deduplicated"` counts
+6. Writes `MI450/kernels/dedup_report.json` with full removal details
+
+The script supports `--dry-run` to preview what would be removed without changing anything. Always run a dry run first if you want to inspect the results.
+
+**Do not skip this phase.** The deduplication is essential — without it, the corpus contains 60%+ redundant files that add no unique IR content.
 
 ## Phase 6: Final Report
 
 After processing all manifests, write a Markdown report to `MI450/Report.md` (relative to the MI450KernelCorpus repo root). The report must include:
 
 1. **Header** with generation date, target architecture, Triton commit, and compilation method.
-2. **Summary table** with columns: Manifest, Compiled, Failed, Total, .llir files — one row per manifest plus a total row.
+2. **Summary table** with columns: Manifest, Compiled, Deduplicated, Unique IR, Failed, Total — one row per manifest plus a total row. The "Deduplicated" column shows how many kernels had identical IR to another kernel and were removed. "Unique IR" is the number of distinct `.llir` files remaining after deduplication.
 3. **Manifests section** listing each manifest file, its kernel count, and a one-line description.
 4. **Kernel directories section** showing the output directory tree with .llir counts.
 5. **Failure analysis** — for each manifest, a table of failure categories with counts and root causes. Read each `mapping.json` to extract failure counts grouped by error message. If more than 50% of kernels in any manifest failed, note whether this indicates an environment problem or expected skips (config limitations, OOM, intentional test reductions).
 6. **Environment section** documenting Docker image, Python/CMake/compiler versions, Triton version, AMD codegen revision, and the cross-compilation method used.
-7. **Known limitations** — any systemic issues discovered during generation (API drift, memory limits, identical IR from runtime-only shape args, etc.).
+7. **Deduplication summary** — total files before/after dedup, number removed, and a brief explanation of why duplicates arise (runtime-only shape args, same kernel across model configs, etc.).
+8. **Known limitations** — any systemic issues discovered during generation (API drift, memory limits, etc.).
 
 Overwrite `MI450/Report.md` if it already exists. The report is the definitive record of this generation run.
 

@@ -5,7 +5,7 @@
   "generated_at": "2026-11-06T00:14:50.437064+00:00",
   "kernels": [
     {
-      "filename": "deepseek-r1_gemm_0.llir",
+      "filename": null,
       "label": "deepseek-r1_gemm_0",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 1536 --N 7168 --K 18432",
@@ -16,12 +16,13 @@
         "K": 18432,
         "dtype": "fp4"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek_r1_gemm_1.llir",
+      "filename": null,
       "label": "deepseek-r1_gemm_1",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 4096 -N 36864 -K 7168 --scale_preshuffled -BK 256",
@@ -32,12 +33,13 @@
         "K": 7168,
         "dtype": "mxfp4"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/mxfp_gemm_fp8_fp8_slicenk_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek-v3_gemm_0.llir",
+      "filename": null,
       "label": "deepseek-v3_gemm_0",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 64 --N 7168 --K 4096",
@@ -48,12 +50,13 @@
         "K": 4096,
         "dtype": "fp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek_v4_gemm_0.llir",
+      "filename": null,
       "label": "deepseek-v4_gemm_0",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 512 -N 32768 -K 1024 --scale_preshuffled -BK 256",
@@ -64,12 +67,13 @@
         "K": 1024,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/mxfp_gemm_fp8_fp8_slicenk_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek_v4_gemm_1.llir",
+      "filename": null,
       "label": "deepseek-v4_gemm_1",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 2048 -N 16384 -K 1536 --scale_preshuffled -BK 256",
@@ -80,12 +84,13 @@
         "K": 1536,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/mxfp_gemm_fp8_fp8_slicenk_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek_v4_gemm_2.llir",
+      "filename": null,
       "label": "deepseek-v4_gemm_2",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 16384 -N 2048 -K 7168 --scale_preshuffled -BK 256",
@@ -96,12 +101,13 @@
         "K": 7168,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/mxfp_gemm_fp8_fp8_slicenk_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek-v4.1_gemm_0.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_0",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 18 --N 384 --K 5120",
@@ -112,12 +118,13 @@
         "K": 5120,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek-v4.1_gemm_1.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_1",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 36 --N 384 --K 5120",
@@ -128,12 +135,13 @@
         "K": 5120,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek-v4.1_gemm_2.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_2",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 512 --N 32 --K 5120",
@@ -144,12 +152,13 @@
         "K": 5120,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek-v4.1_gemm_3.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_3",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 768 --N 512 --K 5120",
@@ -160,12 +169,13 @@
         "K": 5120,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek-v4.1_gemm_4.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_4",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 3072 --N 512 --K 5120",
@@ -176,12 +186,13 @@
         "K": 5120,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek-v4.1_gemm_5.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_5",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 5120 --N 512 --K 5120",
@@ -192,9 +203,10 @@
         "K": 5120,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
       "filename": "deepseek_v4_1_batched_gemm_6.llir",
@@ -214,7 +226,7 @@
       "additional_files": []
     },
     {
-      "filename": "deepseek_v4_1_gemm_7.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_7",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 5 -N 1792 -K 5120 --scale_preshuffled -BK 128 --schedule baseline",
@@ -225,12 +237,13 @@
         "K": 5120,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "aiter/deepseek_v4_1_gemm_10.llir"
     },
     {
-      "filename": "deepseek_v4_1_gemm_8.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_8",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 15 -N 1792 -K 5120 --scale_preshuffled -BK 128 --schedule baseline",
@@ -241,12 +254,13 @@
         "K": 5120,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "aiter/deepseek_v4_1_gemm_10.llir"
     },
     {
-      "filename": "deepseek_v4_1_gemm_9.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_9",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 20 -N 4608 -K 5120 --scale_preshuffled -BK 128 --schedule baseline",
@@ -257,9 +271,10 @@
         "K": 5120,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "aiter/deepseek_v4_1_gemm_10.llir"
     },
     {
       "filename": "deepseek_v4_1_gemm_10.llir",
@@ -278,7 +293,7 @@
       "additional_files": []
     },
     {
-      "filename": "deepseek_v4_1_gemm_11.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_11",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 200 -N 4608 -K 5120 --scale_preshuffled -BK 128 --schedule baseline",
@@ -289,12 +304,13 @@
         "K": 5120,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "aiter/deepseek_v4_1_gemm_10.llir"
     },
     {
-      "filename": "deepseek_v4_1_gemm_12.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_12",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 320 -N 5120 -K 2304 --scale_preshuffled -BK 256",
@@ -305,12 +321,13 @@
         "K": 2304,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/mxfp_gemm_fp8_fp8_slicenk_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "deepseek_v4_1_gemm_13.llir",
+      "filename": null,
       "label": "deepseek-v4.1_gemm_13",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 1024 -N 8192 -K 1280 --scale_preshuffled -BK 256",
@@ -321,9 +338,10 @@
         "K": 1280,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/mxfp_gemm_fp8_fp8_slicenk_m_16384_n_4096_k_8192.llir"
     },
     {
       "filename": null,
@@ -441,7 +459,7 @@
       "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
     },
     {
-      "filename": "kimi-k2_gemm_0.llir",
+      "filename": null,
       "label": "kimi-k2_gemm_0",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 256 --N 1536 --K 1536",
@@ -452,9 +470,10 @@
         "K": 1536,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
       "filename": "kimi-k3_gemm_0.llir",
@@ -489,7 +508,7 @@
       "additional_files": []
     },
     {
-      "filename": "kimi-k3_gemm_2.llir",
+      "filename": null,
       "label": "kimi-k3_gemm_2",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 8 --N 40960 --K 7168",
@@ -500,12 +519,13 @@
         "K": 7168,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "kimi-k3_gemm_3.llir",
+      "filename": null,
       "label": "kimi-k3_gemm_3",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 128 --N 3072 --K 512",
@@ -516,12 +536,13 @@
         "K": 512,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "kimi-k3_gemm_4.llir",
+      "filename": null,
       "label": "kimi-k3_gemm_4",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 16384 --N 128 --K 7168",
@@ -532,12 +553,13 @@
         "K": 7168,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
-      "filename": "kimi_k3_gemm_5.llir",
+      "filename": null,
       "label": "kimi-k3_gemm_5",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 2 -N 7168 -K 1024 --scale_preshuffled -BK 128 --schedule baseline",
@@ -548,12 +570,13 @@
         "K": 1024,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "aiter/deepseek_v4_1_gemm_10.llir"
     },
     {
-      "filename": "kimi_k3_gemm_6.llir",
+      "filename": null,
       "label": "kimi-k3_gemm_6",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/mxfp_gemm_cdna5.py -M 32 -N 12288 -K 1536 --scale_preshuffled -BK 128 --schedule baseline",
@@ -564,9 +587,10 @@
         "K": 1536,
         "dtype": "mxfp8"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": false,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "aiter/deepseek_v4_1_gemm_10.llir"
     },
     {
       "filename": "kimi_k3_gemm_7.llir",
@@ -677,7 +701,7 @@
       "error": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.82 GiB. GPU 0 has a total capacity of 15.98 GiB of which 15.78 GiB is free. Of the allocated memory 2.81 MiB is allocated by PyTorch, a"
     },
     {
-      "filename": "minimax-m3-eagle_gemm_0.llir",
+      "filename": null,
       "label": "minimax-m3-eagle_gemm_0",
       "op_type": "gemm",
       "run_command": "python3 /root/KernelExtract/triton/third_party/amd/python/examples/gluon/f16_gemm_cdna5.py --target hip:gfx1250:64 --M 4 --N 6144 --K 4608",
@@ -688,9 +712,10 @@
         "K": 4608,
         "dtype": "bfloat16"
       },
-      "status": "launch_failed_ir_captured",
+      "status": "deduplicated",
       "has_amdgcn": true,
-      "additional_files": []
+      "additional_files": [],
+      "deduplicated_to": "gluon/f16_gemm_default_m_16384_n_4096_k_8192.llir"
     },
     {
       "filename": null,
@@ -833,7 +858,8 @@
   ],
   "summary": {
     "total": 45,
-    "success": 30,
+    "unique_ir": 5,
+    "deduplicated": 25,
     "failed": 15
   }
 }

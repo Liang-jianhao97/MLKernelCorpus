@@ -7,16 +7,18 @@
 
 ## Summary
 
-| Manifest | Compiled | Failed | Total | .llir files |
-|----------|----------|--------|-------|-------------|
-| OAI | 8 | 0 | 8 | 8 |
-| Gluon | 167 | 21 | 188 | 216 |
-| Best | 12 | 1 | 13 | 12 |
-| Triton (vanilla) | 62 | 3 | 65 | 131 |
-| Aiter | 30 | 15 | 45 | 30 |
-| **Total** | **279** | **40** | **319** | **397** |
+| Manifest | Compiled | Deduplicated | Unique IR | Failed | Total |
+|----------|----------|-------------|-----------|--------|-------|
+| OAI | 8 | 2 | 6 | 0 | 8 |
+| Gluon | 167 | 92 | 75 | 21 | 188 |
+| Best | 12 | 0 | 12 | 1 | 13 |
+| Triton (vanilla) | 62 | 44 | 18 | 3 | 65 |
+| Aiter | 30 | 25 | 5 | 15 | 45 |
+| **Total** | **279** | **163** | **116** | **40** | **319** |
 
-Some kernels (notably persistent GEMM) produce multiple `.llir` files per invocation, which is why the .llir file count exceeds the compiled kernel count.
+After deduplication, **153 unique `.llir` files** remain (116 unique primary kernels plus 37 unique helpers). The original 397 files included 244 redundant copies that were removed.
+
+Some kernels (notably persistent GEMM and pipelined FA) produce multiple `.llir` files per invocation (helper kernels), which is why the unique IR file count exceeds the unique primary kernel count.
 
 ## Manifests
 
@@ -32,11 +34,11 @@ Some kernels (notably persistent GEMM) produce multiple `.llir` files per invoca
 
 ```
 MI450/kernels/
-├── OAI/          8 .llir — MXFP flash attention (prefill + decode)
-├── gluon/      216 .llir — Gluon CDNA5 kernels (FA, GEMM, MoE)
+├── OAI/          6 .llir — MXFP flash attention (prefill + decode)
+├── gluon/      103 .llir — Gluon CDNA5 kernels (FA, GEMM, MoE)
 ├── best/        12 .llir — Best config per op (GEMM, FA, softmax, layernorm, topk, swiglu, reduce)
-├── triton/     131 .llir — Vanilla Triton tutorials + production kernels
-└── aiter/       30 .llir — Model-specific GEMM kernels from aiter configs
+├── triton/      27 .llir — Vanilla Triton tutorials + production kernels
+└── aiter/        5 .llir — Model-specific GEMM kernels from aiter configs
 ```
 
 Each directory contains a `mapping.json` documenting which manifest entry produced which `.llir` file, along with the run command, shapes, and status.
@@ -101,9 +103,18 @@ See `MI450/agent/knowledge/` for detailed configuration references per kernel fa
 - **Cross-compilation:** `TRITON_OVERRIDE_ARCH=gfx1250` + `TRITON_ALWAYS_COMPILE=1` — no gfx1250 GPU required
 - **IR capture method:** per-kernel Triton cache isolation (`TRITON_CACHE_DIR`) with `TRITON_KERNEL_DUMP` fallback
 
+## Deduplication
+
+After IR collection, `MI450/agent/resources/dedup_kernels.py` identified and removed **244 redundant `.llir` files** (397 → 153), leaving only unique IR content. Duplicates arose from two sources:
+
+1. **Runtime-only shape parameters.** Triton's JIT compiles once per unique set of meta-parameters (block sizes, num_warps, pipeline config). Shape parameters like M, N, K are runtime arguments — kernels that differ only in these values produce identical IR. Example: all 10 tutorial GEMM variants (fp16/bf16 × 5 shapes) compiled to the same IR.
+
+2. **Same kernel across manifests.** Different manifests reference the same underlying Triton kernel function. Example: 13 aiter model GEMM configs (DeepSeek R1/V3/V4, Kimi K2/K3, MiniMax) all mapped to `f16_gemm_cdna5.py` with the same compile-time constants, producing identical IR to the gluon `f16_gemm_default` entries.
+
+Canonical copy priority: `best` > `OAI` > `gluon` > `aiter` > `triton`. Deduplicated entries remain in each `mapping.json` with `"status": "deduplicated"` and a `"deduplicated_to"` pointer to the canonical file, preserving full provenance.
+
 ## Known limitations
 
 - **MoE kernels require large GPU memory.** All MoE kernels at medium/large configurations (batch≥2048, ≥128 experts) fail with OOM on a 16 GB GPU. Tensor allocation happens before the Triton JIT sees the kernel launch. Requires ≥32 GB VRAM.
 - **MoE fp8/fp8 dtype combination is broken.** `moe_cdna5.py` calls `make_opt_flags()` without the required `intermediate_out_dtype` argument. This is an upstream bug in Triton's MoE example code. bf16/mx4 and fp8/mx4 work fine.
 - **Block-scaled matmul tutorial is CDNA4-only.** The `10-block-scaled-matmul.py` tutorial only supports `gfx950` (MI300) on the AMD path. The equivalent gfx1250 functionality is covered by `mxfp_gemm_cdna5.py` in the Gluon manifest.
-- **Some .llir files may be identical** when the kernel's shape parameters (M, N, K) are runtime arguments rather than compile-time specialization constants. The Triton JIT compiles once per unique set of meta-parameters (block sizes, num_warps, pipeline config), not per runtime shape.
