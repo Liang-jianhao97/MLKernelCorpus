@@ -74,8 +74,9 @@ def run(args, result):
         raise RuntimeError(f"Correctness failed: {correctness}")
     compiled = captured[0]
     llir = compiled.asm["llir"]
-    if "gfx1250" not in llir:
-        raise RuntimeError("Exported LLVM IR does not target gfx1250")
+    target = compiled.metadata.target
+    if target.backend != "hip" or target.arch != "gfx1250":
+        raise RuntimeError(f"Unexpected compiled target: {target}")
     destination = args.output_dir / (args.case.replace(".", "_") + ".llir")
     destination.write_text(llir)
     result.update(
@@ -83,6 +84,12 @@ def run(args, result):
         filename=destination.name,
         llir_sha256=sha256(destination),
         target_kernel_launches=len(captured),
+        compiled_target={
+            "backend": target.backend,
+            "architecture": target.arch,
+            "warp_size": target.warp_size,
+            "num_warps": compiled.metadata.num_warps,
+        },
         correctness=correctness,
         input_layouts=layouts,
         native_interface=interface,

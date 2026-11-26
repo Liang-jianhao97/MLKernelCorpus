@@ -111,7 +111,26 @@
             "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
             "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus full Q31/Q257 boundary checks.",
             "FP8 QK dot with BF16 input query cast to FP8 in the native kernel."
-          ]
+          ],
+          "extraction_validation": {
+            "date": "2026-11-26",
+            "status": "success",
+            "target_kernel_launches": 1,
+            "compiled_target": {
+              "backend": "hip",
+              "architecture": "gfx1250",
+              "warp_size": 32,
+              "num_warps": 4
+            },
+            "correctness": {
+              "status": "pass",
+              "method": "16 query rows against FP32 scoring; full Q31/Q257 boundary checks.",
+              "full_output_checked": false
+            },
+            "llir_sha256": "82273faee405c2282946b74ba04d534d31952d9a54694550b6e2463e4be13342",
+            "gpu_completion_confirmed": true,
+            "note": "IR fingerprint is evidence for this compiler revision, not a required hash for future codegen."
+          }
         },
         {
           "case_id": "minimax_m3.local_topk",
@@ -190,7 +209,26 @@
             "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
             "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus full Q31/Q257 boundary checks.",
             "Top-k uses integer comparisons rather than matrix FLOPs; reference efficiency must not be presented as FP MFU."
-          ]
+          ],
+          "extraction_validation": {
+            "date": "2026-11-26",
+            "status": "success",
+            "target_kernel_launches": 1,
+            "compiled_target": {
+              "backend": "hip",
+              "architecture": "gfx1250",
+              "warp_size": 32,
+              "num_warps": 8
+            },
+            "correctness": {
+              "status": "pass",
+              "method": "Full packed-key oracle for ascending rank-local shard scores.",
+              "full_output_checked": true
+            },
+            "llir_sha256": "0b4ce503f23b414e6632027e5343225fad71ed7c44a9fa3c156d3d4bf0b73064",
+            "gpu_completion_confirmed": true,
+            "note": "IR fingerprint is evidence for this compiler revision, not a required hash for future codegen."
+          }
         },
         {
           "case_id": "minimax_m3.packed_topk",
@@ -266,7 +304,26 @@
             "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
             "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus full Q31/Q257 boundary checks.",
             "Top-k uses integer comparisons rather than matrix FLOPs; reference efficiency must not be presented as FP MFU."
-          ]
+          ],
+          "extraction_validation": {
+            "date": "2026-11-26",
+            "status": "success",
+            "target_kernel_launches": 1,
+            "compiled_target": {
+              "backend": "hip",
+              "architecture": "gfx1250",
+              "warp_size": 32,
+              "num_warps": 1
+            },
+            "correctness": {
+              "status": "pass",
+              "method": "Full stable sort, causal page emission and sparse length oracle.",
+              "full_output_checked": true
+            },
+            "llir_sha256": "a73132f0aa0a1acd0751bf410ab3b4fe3d3348e49138eac492aec276b9c99cf6",
+            "gpu_completion_confirmed": true,
+            "note": "IR fingerprint is evidence for this compiler revision, not a required hash for future codegen."
+          }
         }
       ]
     }

@@ -83,3 +83,16 @@ buffers. They exclude setup, input scoring for packed top-k, correctness and
 warmup. The pool sizes, all process means, source hashes and rotating utility
 revision are recorded in the manifest. These values are references, not regression
 thresholds. The extraction command deliberately reports no replacement timing.
+
+## Extraction validation (2026-11-26)
+
+All three literal manifest commands passed on gfx1250. Each captured one native
+kernel launch and produced one target LLVM IR. The compiler metadata confirms
+HIP/gfx1250 with wave32: prefill score uses 4 warps, local top-k 8, and packed
+top-k 1. These native policies are preserved, not forced to one wave.
+
+Top-k outputs are checked in full. Prefill scoring checks 16 query rows of the
+large shape against FP32, plus full Q=31/Q=257 boundary cases. Each entry records
+its correctness scope, compiled target and IR SHA256 under `extraction_validation`.
+The fingerprint documents this validation compiler; future compiler revisions
+are expected to change the IR. All three processes synchronized GPU completion.
