@@ -2,6 +2,12 @@
 
 This repo is an agentically built kernel corpus. 
 
+Additional pinned MiniMax-M3 ATOM cases are described in
+[`MI450/agent/atom_model_manifest.json`](MI450/agent/atom_model_manifest.json).
+See [the ATOM extraction guide](MI450/agent/knowledge/atom_configs.md) for the
+three compute-side roofline selections, source revisions, correctness checks and
+target-only LLVM IR extraction commands.
+
 ## How to use
 
 An end user can refresh the corpus using english. 

@@ -1,0 +1,272 @@
+{
+  "metadata": {
+    "generated_at": "2026-11-26",
+    "target_arch": "gfx1250",
+    "description": "MiniMax-M3 compute-side roofline selections from the 18-case native ATOM/AITER study; ATOM ownership is separate from AITER.",
+    "atom_repo": "https://github.com/ROCm/ATOM.git",
+    "atom_commit": "f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706",
+    "aiter_repo": "https://github.com/ROCm/aiter.git",
+    "aiter_commit": "f4bc2aa3f7f13c9ac983dc2b9f41fd0fcaa71cb1",
+    "harness_repo": "https://github.com/yanxuer-999/rocAutomation.git",
+    "harness_commit": "ec513263003378b2d6bced564c1fdd8729dc84ee",
+    "harness_path": "external-ci-server/triton/perf_daily_mi450",
+    "harness_files_sha256": {
+      "aiter_bench.py": "166cdcfac38132446957c77e9104d25792c1faf364a57ca6ea01a8e66590e1d0",
+      "minimax_m3_case.py": "43eac641427d98c4c52706977f10c38d09b8b1ab188758dcea621eee1e0793f0",
+      "manifest.json": "6caf6a1ef304cdff2e7f78d17ae07bf0aaa4fd2cf5a125bd7e38e628ba0c84c2",
+      "minimax_m3_reference/inputs.py": "14deca1cd959370e9bc91b3e5d09759eb7bebfab24e41600cbf604f45b774a67",
+      "minimax_m3_reference/test_attention.py": "5e417ac9c8032b112c4ab5487dcb27ffa160e560e489d3b91297c38391213d05",
+      "minimax_m3_reference/test_fusions.py": "2cab853318fdd78b1bb5d1160a67826276990efdaf1b4c9c8735422bff6e3ffe",
+      "minimax_m3_reference/test_rope.py": "cfe30b7eff9ec0ed6c86065096ca4f05935d8af205720e1d6bba7f758dba2d6e",
+      "minimax_m3_reference/test_router.py": "62db818c4fa91ba2e25f6ca189b333ae0572eaa3c1d4545f462c58087125b87d"
+    },
+    "instructions": "MI450/agent/knowledge/atom_configs.md",
+    "selection_rule": "Useful work / estimated logical bytes > compute reference / HBM reference. Compute-side roofline classification is not proof of an observed compute bottleneck. Integer compare counts are separate from FLOPs."
+  },
+  "models": {
+    "minimax-m3": {
+      "model_attribution": "MiniMax-M3 indexer cases selected from the 18-case native kernel study; not an end-to-end model benchmark.",
+      "model_source": {
+        "repo": "https://github.com/ROCm/ATOM.git",
+        "commit": "f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706",
+        "files": [
+          "atom/model_ops/minimax_m3/index_topk.py",
+          "atom/model_ops/minimax_m3/indexer_candidate_exchange.py"
+        ]
+      },
+      "kernels": [
+        {
+          "case_id": "minimax_m3.prefill_score",
+          "op_type": "index_score",
+          "label": "MiniMax-M3 Prefill index score",
+          "shapes": {
+            "batch": 1,
+            "query": 2763,
+            "context": 160075,
+            "prefix": 157312,
+            "heads": 1,
+            "head_dim": 128,
+            "kv_blocks": 1251,
+            "kv_block_size": 128,
+            "query_dtype": "bf16",
+            "cache_dtype": "fp8_e4m3fn",
+            "output_dtype": "fp32"
+          },
+          "atom_kernel_name": "_index_block_score_kernel",
+          "framework": "triton",
+          "gluon": null,
+          "triton": {
+            "source": "atom/model_ops/minimax_m3/index_topk.py",
+            "source_repo": "atom",
+            "source_commit": "f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706",
+            "source_sha256": "1bba262aa6b800aba9b366745866bec5d26a075aad64be6e45668c58b9165965",
+            "entry_point": "_index_block_score_kernel",
+            "target": "hip:gfx1250:32",
+            "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.prefill_score --harness-root /root/KernelExtract/rocAutomation/external-ci-server/triton/perf_daily_mi450 --output-dir /tmp/minimax-m3-corpus"
+          },
+          "environment": {
+            "MINIMAX_M3_NATIVE_TESTS": "1"
+          },
+          "roofline": {
+            "bound": "Compute",
+            "criterion": "arithmetic_intensity > ridge_point",
+            "work_unit": "FLOP",
+            "useful_work": 112248709632,
+            "estimated_read_bytes": 21208732,
+            "estimated_write_bytes": 13826052,
+            "arithmetic_intensity": 3203.9218404200806,
+            "compute_reference_Twork_per_s": 10710,
+            "compute_reference_kind": "FP8 dense theoretical peak",
+            "hbm_reference_TB_per_s": 23.0,
+            "ridge_work_per_byte": 465.6521739130435,
+            "achieved_Twork_per_s": 1091.7637210415123,
+            "reference_efficiency": 0.10193872278632235,
+            "work_definition": "2 * head_dim * sum(prefix + row + 1 for each query row); excludes masked dot positions and non-dot work",
+            "byte_definition": "Logical tensor read/write proxy, not measured HBM traffic; cache reuse and repeated physical reads are not inferred."
+          },
+          "performance": {
+            "us": 102.8141048,
+            "process_means_us": [
+              102.9555092,
+              102.7928228,
+              102.8141048
+            ],
+            "measurement": "Median of three process means; 10,000 target dispatches/process. rocprofv3 --kernel-trace device timestamps, with unmodified AITER rotating buffers and CUDA graph replay. Setup, independent oracles and warmup excluded.",
+            "scope": "One native target kernel per invocation; packed_topk includes sparse page emission but excludes score generation.",
+            "rotating_pool_len": 10,
+            "rotating_pool_bytes": 350347840,
+            "date": "2026-11-26",
+            "gpu": "MI450 gfx1250, 256 CUs",
+            "torch": "2.11.0+rocm10.1.0a20260811-bkc.20260820",
+            "triton": "3.9.0+amd.rocm7.2.0.gitf1bf9132",
+            "hip": "7.16.26315",
+            "rotating_buffer_aiter_commit": "a4f7afd69fdc1b05bee8c89b499b3a922966c1d1",
+            "rotating_buffer_sha256": "db6026bccf925b4427ef618c454b55033097c2160d554ee4bc440c845b5456f9",
+            "correctness": "16 query rows, all valid context blocks against FP32 FP8-query scoring; reduced full UT and composed-wrapper parity also passed."
+          },
+          "notes": [
+            "Run from the corpus root in a compatible pinned ATOM/AITER environment under the shared GPU lock.",
+            "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
+            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus reduced full UTs.",
+            "FP8 QK dot with BF16 input query cast to FP8 in the native kernel."
+          ]
+        },
+        {
+          "case_id": "minimax_m3.local_topk",
+          "op_type": "topk",
+          "label": "MiniMax-M3 Local candidate top-k",
+          "shapes": {
+            "batch": 32,
+            "query_per_request": 4,
+            "token_rows": 128,
+            "heads": 4,
+            "context": 194048,
+            "cp_world": 4,
+            "cp_rank": 0,
+            "global_blocks": 1516,
+            "local_blocks": 379,
+            "topk": 16,
+            "init_blocks": 0,
+            "local_keep_blocks": 4,
+            "input_dtype": "fp32",
+            "output_dtype": "int64"
+          },
+          "atom_kernel_name": "_local_topk",
+          "framework": "triton",
+          "gluon": null,
+          "triton": {
+            "source": "atom/model_ops/minimax_m3/indexer_candidate_exchange.py",
+            "source_repo": "atom",
+            "source_commit": "f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706",
+            "source_sha256": "2f64b675470114cefd550878eec1673a49362c891e413dd29e66c259e7fc5968",
+            "entry_point": "_local_topk",
+            "target": "hip:gfx1250:32",
+            "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.local_topk --harness-root /root/KernelExtract/rocAutomation/external-ci-server/triton/perf_daily_mi450 --output-dir /tmp/minimax-m3-corpus"
+          },
+          "environment": {
+            "MINIMAX_M3_NATIVE_TESTS": "1"
+          },
+          "roofline": {
+            "bound": "Compute",
+            "criterion": "arithmetic_intensity > ridge_point",
+            "work_unit": "signed_INT64_network_comparison",
+            "useful_work": 2072576,
+            "estimated_read_bytes": 776320,
+            "estimated_write_bytes": 65536,
+            "arithmetic_intensity": 2.4619127261669456,
+            "compute_reference_Twork_per_s": 15.882120409528216,
+            "compute_reference_kind": "Measured sustained INT64 compare/select primitive; not vendor theoretical peak",
+            "hbm_reference_TB_per_s": 23.0,
+            "ridge_work_per_byte": 0.6905269743273138,
+            "achieved_Twork_per_s": 0.4360751110730423,
+            "reference_efficiency": 0.02745698306199884,
+            "work_definition": "512 * C(512,16); C(n,16)=8*n-48 comparisons per tl.topk network",
+            "byte_definition": "Logical tensor read/write proxy, not measured HBM traffic; cache reuse and repeated physical reads are not inferred."
+          },
+          "performance": {
+            "us": 4.7527959,
+            "process_means_us": [
+              4.9477559,
+              4.7312406000000005,
+              4.7527959
+            ],
+            "measurement": "Median of three process means; 10,000 target dispatches/process. rocprofv3 --kernel-trace device timestamps, with unmodified AITER rotating buffers and CUDA graph replay. Setup, independent oracles and warmup excluded.",
+            "scope": "One native target kernel per invocation; packed_topk includes sparse page emission but excludes score generation.",
+            "rotating_pool_len": 265,
+            "rotating_pool_bytes": 205724800,
+            "date": "2026-11-26",
+            "gpu": "MI450 gfx1250, 256 CUs",
+            "torch": "2.11.0+rocm10.1.0a20260811-bkc.20260820",
+            "triton": "3.9.0+amd.rocm7.2.0.gitf1bf9132",
+            "hip": "7.16.26315",
+            "rotating_buffer_aiter_commit": "a4f7afd69fdc1b05bee8c89b499b3a922966c1d1",
+            "rotating_buffer_sha256": "db6026bccf925b4427ef618c454b55033097c2160d554ee4bc440c845b5456f9",
+            "correctness": "Full packed-key reference for ascending shard scores, pinned image's 16-bit block-id encoding."
+          },
+          "notes": [
+            "Run from the corpus root in a compatible pinned ATOM/AITER environment under the shared GPU lock.",
+            "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
+            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus reduced full UTs.",
+            "Top-k uses integer comparisons rather than matrix FLOPs; reference efficiency must not be presented as FP MFU."
+          ]
+        },
+        {
+          "case_id": "minimax_m3.packed_topk",
+          "op_type": "topk",
+          "label": "MiniMax-M3 Packed top-k + emit",
+          "shapes": {
+            "batch": 1,
+            "query": 2763,
+            "context": 160075,
+            "prefix": 157312,
+            "heads": 1,
+            "kv_blocks": 1251,
+            "topk": 16,
+            "pages_per_block": 8,
+            "page_size": 16,
+            "input_dtype": "fp32",
+            "output_dtype": "int32"
+          },
+          "atom_kernel_name": "_topk_index_packed_kernel",
+          "framework": "triton",
+          "gluon": null,
+          "triton": {
+            "source": "atom/model_ops/minimax_m3/index_topk.py",
+            "source_repo": "atom",
+            "source_commit": "f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706",
+            "source_sha256": "1bba262aa6b800aba9b366745866bec5d26a075aad64be6e45668c58b9165965",
+            "entry_point": "_topk_index_packed_kernel",
+            "target": "hip:gfx1250:32",
+            "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.packed_topk --harness-root /root/KernelExtract/rocAutomation/external-ci-server/triton/perf_daily_mi450 --output-dir /tmp/minimax-m3-corpus"
+          },
+          "environment": {
+            "MINIMAX_M3_NATIVE_TESTS": "1"
+          },
+          "roofline": {
+            "bound": "Compute",
+            "criterion": "arithmetic_intensity > ridge_point",
+            "work_unit": "signed_INT64_network_comparison",
+            "useful_work": 45578448,
+            "estimated_read_bytes": 13831072,
+            "estimated_write_bytes": 1602540,
+            "arithmetic_intensity": 2.953193847298999,
+            "compute_reference_Twork_per_s": 15.882120409528216,
+            "compute_reference_kind": "Measured sustained INT64 compare/select primitive; not vendor theoretical peak",
+            "hbm_reference_TB_per_s": 23.0,
+            "ridge_work_per_byte": 0.6905269743273138,
+            "achieved_Twork_per_s": 1.6553151628185918,
+            "reference_efficiency": 0.10422507323553049,
+            "work_definition": "2763 * (2*C(1024,16) + C(32,16)); C(n,16)=8*n-48 comparisons per tl.topk network",
+            "byte_definition": "Logical tensor read/write proxy, not measured HBM traffic; cache reuse and repeated physical reads are not inferred."
+          },
+          "performance": {
+            "us": 27.5346043,
+            "process_means_us": [
+              27.5274071,
+              27.5491174,
+              27.5346043
+            ],
+            "measurement": "Median of three process means; 10,000 target dispatches/process. rocprofv3 --kernel-trace device timestamps, with unmodified AITER rotating buffers and CUDA graph replay. Setup, independent oracles and warmup excluded.",
+            "scope": "One native target kernel per invocation; packed_topk includes sparse page emission but excludes score generation.",
+            "rotating_pool_len": 15,
+            "rotating_pool_bytes": 231504120,
+            "date": "2026-11-26",
+            "gpu": "MI450 gfx1250, 256 CUs",
+            "torch": "2.11.0+rocm10.1.0a20260811-bkc.20260820",
+            "triton": "3.9.0+amd.rocm7.2.0.gitf1bf9132",
+            "hip": "7.16.26315",
+            "rotating_buffer_aiter_commit": "a4f7afd69fdc1b05bee8c89b499b3a922966c1d1",
+            "rotating_buffer_sha256": "db6026bccf925b4427ef618c454b55033097c2160d554ee4bc440c845b5456f9",
+            "correctness": "Full stable score/id sort and causal sparse-table emission reference using precomputed scores."
+          },
+          "notes": [
+            "Run from the corpus root in a compatible pinned ATOM/AITER environment under the shared GPU lock.",
+            "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
+            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus reduced full UTs.",
+            "Top-k uses integer comparisons rather than matrix FLOPs; reference efficiency must not be presented as FP MFU."
+          ]
+        }
+      ]
+    }
+  }
+}
