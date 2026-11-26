@@ -2,12 +2,13 @@
 """Validate one pinned ATOM workload and export only its target kernel's LLVM IR.
 
 Run from the corpus root, inside the shared GPU lock. See ../knowledge/atom_configs.md.
-The native kernel bodies, input builders and correctness oracles are not copied.
+The native kernel bodies remain upstream; local fixtures supply inputs and oracles.
 """
 
 import argparse
 import hashlib
 import importlib
+import inspect
 import json
 import os
 import sys
@@ -24,12 +25,6 @@ def run(args, result):
     manifest = json.loads(MANIFEST.read_text())
     entries = manifest["models"]["minimax-m3"]["kernels"]
     entry = next(k for k in entries if k["case_id"] == args.case)
-    harness = args.harness_root.resolve()
-    for relative, expected in manifest["metadata"]["harness_files_sha256"].items():
-        path = harness / relative
-        if sha256(path) != expected:
-            raise RuntimeError(f"Pinned harness source mismatch: {path}")
-    sys.path.insert(0, str(harness))
     # Do not silently change a caller's GPU selection.
     for key, value in entry["environment"].items():
         if key in os.environ and os.environ[key] != value:
@@ -38,27 +33,25 @@ def run(args, result):
 
     import torch
     import triton
-    from aiter_bench import interface_check, native_api
-    from minimax_m3_case import build_case
+    from minimax_m3_inputs import build_case
 
-    case = next(
-        c
-        for c in json.loads((harness / "manifest.json").read_text())["cases"]
-        if c["id"] == args.case
-    )
-    interface = interface_check(case)
-    if (
-        interface["kernel_definition"]["source_sha256"]
-        != entry["triton"]["source_sha256"]
-    ):
-        raise RuntimeError("Pinned ATOM target source mismatch")
+    interface = []
+    for source in manifest["metadata"]["native_sources"]:
+        module = importlib.import_module(source["module"])
+        path = Path(inspect.getfile(module))
+        digest = sha256(path)
+        if digest != source["sha256"]:
+            raise RuntimeError(f"Pinned ATOM source mismatch: {path}")
+        interface.append({"module_file": str(path), "source_sha256": digest})
     properties = torch.cuda.get_device_properties(torch.cuda.current_device())
     if not torch.version.hip or not properties.gcnArchName.startswith("gfx1250"):
         raise RuntimeError("This manifest requires a visible gfx1250 HIP GPU")
     torch.manual_seed(0)
-    invoke, validate, layouts = build_case(case, torch, native_api(case))
-    spec = case["kernel_definition"]
-    kernel = getattr(importlib.import_module(spec["module"]), spec["function"])
+    invoke, validate, layouts = build_case(entry)
+    module_name = entry["triton"]["source"].removesuffix(".py").replace("/", ".")
+    kernel = getattr(
+        importlib.import_module(module_name), entry["triton"]["entry_point"]
+    )
     native_run = kernel.run
     captured = []
 
@@ -114,7 +107,6 @@ def main():
             "minimax_m3.packed_topk",
         ],
     )
-    parser.add_argument("--harness-root", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)

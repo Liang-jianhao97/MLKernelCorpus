@@ -23,9 +23,6 @@ git clone https://github.com/ROCm/ATOM.git /root/KernelExtract/ATOM
 git -C /root/KernelExtract/ATOM checkout f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706
 git clone https://github.com/ROCm/aiter.git /root/KernelExtract/aiter
 git -C /root/KernelExtract/aiter checkout f4bc2aa3f7f13c9ac983dc2b9f41fd0fcaa71cb1
-git clone https://github.com/yanxuer-999/rocAutomation.git /root/KernelExtract/rocAutomation
-git -C /root/KernelExtract/rocAutomation fetch origin ec513263003378b2d6bced564c1fdd8729dc84ee
-git -C /root/KernelExtract/rocAutomation checkout ec513263003378b2d6bced564c1fdd8729dc84ee
 export PYTHONPATH=/root/KernelExtract/ATOM:/root/KernelExtract/aiter
 ```
 
@@ -42,15 +39,16 @@ node's shared GPU lock, for example:
 ```bash
 /var/lib/gpu-lock/gpu-lock python3 MI450/agent/resources/run_minimax_m3_compute.py \
   --case minimax_m3.prefill_score \
-  --harness-root /root/KernelExtract/rocAutomation/external-ci-server/triton/perf_daily_mi450 \
   --output-dir /tmp/minimax-m3-corpus
 ```
 
 Repeat for `minimax_m3.local_topk` and `minimax_m3.packed_topk`. A supported GPU
 is required: this is correctness-checked extraction, not compile-only emulation.
-The pinned harness supplies the native launch adapters, original input shapes,
-and independent correctness oracles. The runner checks harness and native source
-hashes, builds inputs, captures exactly one target launch, validates its output,
+The local `resources/minimax_m3_inputs.py` supplies host launch adapters, original
+input shapes, and independent correctness oracles, derived from the public AITER
+MiniMax-M3 tests with adapters for the pinned ATOM revision. No private benchmark
+repository is required. The runner checks imported native source hashes, builds
+inputs, captures exactly one target launch, validates its output,
 then exports that compiled kernel's `asm['llir']` and a JSON evidence record.
 Preparation kernels and reference kernels are excluded from the exported IR.
 For packed top-k, the score tensor is computed before target capture.

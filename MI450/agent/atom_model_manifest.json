@@ -7,21 +7,23 @@
     "atom_commit": "f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706",
     "aiter_repo": "https://github.com/ROCm/aiter.git",
     "aiter_commit": "f4bc2aa3f7f13c9ac983dc2b9f41fd0fcaa71cb1",
-    "harness_repo": "https://github.com/yanxuer-999/rocAutomation.git",
-    "harness_commit": "ec513263003378b2d6bced564c1fdd8729dc84ee",
-    "harness_path": "external-ci-server/triton/perf_daily_mi450",
-    "harness_files_sha256": {
-      "aiter_bench.py": "166cdcfac38132446957c77e9104d25792c1faf364a57ca6ea01a8e66590e1d0",
-      "minimax_m3_case.py": "43eac641427d98c4c52706977f10c38d09b8b1ab188758dcea621eee1e0793f0",
-      "manifest.json": "6caf6a1ef304cdff2e7f78d17ae07bf0aaa4fd2cf5a125bd7e38e628ba0c84c2",
-      "minimax_m3_reference/inputs.py": "14deca1cd959370e9bc91b3e5d09759eb7bebfab24e41600cbf604f45b774a67",
-      "minimax_m3_reference/test_attention.py": "5e417ac9c8032b112c4ab5487dcb27ffa160e560e489d3b91297c38391213d05",
-      "minimax_m3_reference/test_fusions.py": "2cab853318fdd78b1bb5d1160a67826276990efdaf1b4c9c8735422bff6e3ffe",
-      "minimax_m3_reference/test_rope.py": "cfe30b7eff9ec0ed6c86065096ca4f05935d8af205720e1d6bba7f758dba2d6e",
-      "minimax_m3_reference/test_router.py": "62db818c4fa91ba2e25f6ca189b333ae0572eaa3c1d4545f462c58087125b87d"
-    },
     "instructions": "MI450/agent/knowledge/atom_configs.md",
-    "selection_rule": "Useful work / estimated logical bytes > compute reference / HBM reference. Compute-side roofline classification is not proof of an observed compute bottleneck. Integer compare counts are separate from FLOPs."
+    "selection_rule": "Useful work / estimated logical bytes > compute reference / HBM reference. Compute-side roofline classification is not proof of an observed compute bottleneck. Integer compare counts are separate from FLOPs.",
+    "native_sources": [
+      {
+        "module": "atom.model_ops.minimax_m3.index_topk",
+        "sha256": "1bba262aa6b800aba9b366745866bec5d26a075aad64be6e45668c58b9165965"
+      },
+      {
+        "module": "atom.model_ops.minimax_m3.indexer_candidate_exchange",
+        "sha256": "2f64b675470114cefd550878eec1673a49362c891e413dd29e66c259e7fc5968"
+      }
+    ],
+    "input_reference_source": {
+      "repo": "https://github.com/ROCm/aiter.git",
+      "commit": "a4f7afd69fdc1b05bee8c89b499b3a922966c1d1",
+      "file": "op_tests/triton_tests/utils/minimax_m3.py"
+    }
   },
   "models": {
     "minimax-m3": {
@@ -62,7 +64,7 @@
             "source_sha256": "1bba262aa6b800aba9b366745866bec5d26a075aad64be6e45668c58b9165965",
             "entry_point": "_index_block_score_kernel",
             "target": "hip:gfx1250:32",
-            "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.prefill_score --harness-root /root/KernelExtract/rocAutomation/external-ci-server/triton/perf_daily_mi450 --output-dir /tmp/minimax-m3-corpus"
+            "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.prefill_score --output-dir /tmp/minimax-m3-corpus"
           },
           "environment": {
             "MINIMAX_M3_NATIVE_TESTS": "1"
@@ -107,7 +109,7 @@
           "notes": [
             "Run from the corpus root in a compatible pinned ATOM/AITER environment under the shared GPU lock.",
             "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
-            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus reduced full UTs.",
+            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus full Q31/Q257 boundary checks.",
             "FP8 QK dot with BF16 input query cast to FP8 in the native kernel."
           ]
         },
@@ -127,7 +129,7 @@
             "local_blocks": 379,
             "topk": 16,
             "init_blocks": 0,
-            "local_keep_blocks": 4,
+            "local_keep_blocks": 0,
             "input_dtype": "fp32",
             "output_dtype": "int64"
           },
@@ -141,7 +143,7 @@
             "source_sha256": "2f64b675470114cefd550878eec1673a49362c891e413dd29e66c259e7fc5968",
             "entry_point": "_local_topk",
             "target": "hip:gfx1250:32",
-            "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.local_topk --harness-root /root/KernelExtract/rocAutomation/external-ci-server/triton/perf_daily_mi450 --output-dir /tmp/minimax-m3-corpus"
+            "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.local_topk --output-dir /tmp/minimax-m3-corpus"
           },
           "environment": {
             "MINIMAX_M3_NATIVE_TESTS": "1"
@@ -186,7 +188,7 @@
           "notes": [
             "Run from the corpus root in a compatible pinned ATOM/AITER environment under the shared GPU lock.",
             "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
-            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus reduced full UTs.",
+            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus full Q31/Q257 boundary checks.",
             "Top-k uses integer comparisons rather than matrix FLOPs; reference efficiency must not be presented as FP MFU."
           ]
         },
@@ -217,7 +219,7 @@
             "source_sha256": "1bba262aa6b800aba9b366745866bec5d26a075aad64be6e45668c58b9165965",
             "entry_point": "_topk_index_packed_kernel",
             "target": "hip:gfx1250:32",
-            "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.packed_topk --harness-root /root/KernelExtract/rocAutomation/external-ci-server/triton/perf_daily_mi450 --output-dir /tmp/minimax-m3-corpus"
+            "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.packed_topk --output-dir /tmp/minimax-m3-corpus"
           },
           "environment": {
             "MINIMAX_M3_NATIVE_TESTS": "1"
@@ -262,7 +264,7 @@
           "notes": [
             "Run from the corpus root in a compatible pinned ATOM/AITER environment under the shared GPU lock.",
             "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
-            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus reduced full UTs.",
+            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus full Q31/Q257 boundary checks.",
             "Top-k uses integer comparisons rather than matrix FLOPs; reference efficiency must not be presented as FP MFU."
           ]
         }
