@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Validate one pinned ATOM workload and export only its target kernel's LLVM IR.
+"""Launch one trace-derived ATOM workload and export only its target kernel's LLVM IR.
 
 Run from the corpus root, inside the shared GPU lock.
-The native kernel bodies remain upstream; local fixtures supply inputs and oracles.
+Shapes come from the MiniMax-M3 trace/breakdown identified in the manifest.
+Kernel bodies and accuracy tests remain upstream in the pinned ATOM checkout.
 """
 
 import argparse
@@ -10,7 +11,6 @@ import hashlib
 import importlib
 import inspect
 import json
-import os
 import sys
 from pathlib import Path
 
@@ -21,19 +21,155 @@ def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def prefill_score(
+    idx_q,
+    index_cache,
+    block_table,
+    seq_lens,
+    context,
+    query,
+    cu_seqlens_q,
+    prefix_lens,
+    score,
+):
+    import triton
+
+    op = importlib.import_module("atom.model_ops.minimax_m3.index_topk")
+    heads, _, blocks = score.shape
+    batch = cu_seqlens_q.numel() - 1
+    tiles = triton.cdiv(query, op.SCORE_BLOCK_SIZE_Q)
+    chunk = op._score_chunk_blocks(blocks, tiles, batch, heads, idx_q.device)
+    warps, stages = op._prefill_score_launch_config(index_cache.dtype)
+    op._index_block_score_kernel[(tiles, batch * heads, triton.cdiv(blocks, chunk))](
+        idx_q,
+        index_cache,
+        score,
+        block_table,
+        cu_seqlens_q,
+        seq_lens,
+        prefix_lens,
+        heads,
+        idx_q.shape[-1],
+        128**-0.5,
+        chunk,
+        *idx_q.stride(),
+        *index_cache.stride(),
+        *score.stride(),
+        block_table.stride(0),
+        BLOCK_SIZE_Q=op.SCORE_BLOCK_SIZE_Q,
+        BLOCK_SIZE_K=op.SPARSE_BLOCK_SIZE,
+        num_warps=warps,
+        num_stages=stages,
+    )
+    return score
+
+
+def packed_topk(
+    score, topk_idx, cu_seqlens_q, prefix_lens, block_table, emit_args, query
+):
+    op = importlib.import_module("atom.model_ops.minimax_m3.index_topk")
+    op._launch_select(
+        score,
+        topk_idx,
+        cu_seqlens_q,
+        prefix_lens,
+        cu_seqlens_q.numel() - 1,
+        16,
+        0,
+        0,
+        block_table,
+        emit_args,
+        score.shape[0],
+        rows_per_req=query,
+        decode_max_q=0,
+        block_size_k=op._prefill_topk_block_size_k(score.shape[-1]),
+        num_warps=op.PREFILL_TOPK_NUM_WARPS,
+        emit=True,
+        block_page_stride=op.PAGES_PER_SPARSE_BLOCK,
+        n_valid_column_per_row=None,
+    )
+    return topk_idx, emit_args[0], emit_args[1]
+
+
+def build_case(entry):
+    import torch
+
+    shape = entry["shapes"]
+    torch.manual_seed(0)
+    if entry["case_id"].endswith("local_topk"):
+        scores = (
+            (
+                torch.arange(shape["local_blocks"], device="cuda", dtype=torch.float32)
+                * shape["cp_world"]
+            )[None, None]
+            .expand(shape["heads"], shape["token_rows"], shape["local_blocks"])
+            .contiguous()
+        )
+        lengths = torch.full(
+            (shape["batch"],), shape["context"], dtype=torch.int32, device="cuda"
+        )
+        op = importlib.import_module(
+            "atom.model_ops.minimax_m3.indexer_candidate_exchange"
+        )
+        return lambda: op.local_candidate_keys(
+            scores,
+            lengths,
+            shape["topk"],
+            shape["cp_rank"],
+            shape["cp_world"],
+            shape["query_per_request"],
+            shape["global_blocks"],
+            init_blocks=shape["init_blocks"],
+            local_blocks=shape["local_keep_blocks"],
+        )
+
+    query, context, heads = shape["query"], shape["context"], shape["heads"]
+    blocks, dim = shape["kv_blocks"], shape.get("head_dim", 128)
+    data = {
+        "idx_q": torch.randn(query, heads, dim, dtype=torch.bfloat16, device="cuda")
+        * 0.1,
+        "index_cache": torch.randn(
+            blocks, 128, dim, dtype=torch.bfloat16, device="cuda"
+        ).to(torch.float8_e4m3fn),
+        "block_table": torch.randperm(blocks, device="cuda").to(torch.int32)[None],
+        "seq_lens": torch.full((1,), context, dtype=torch.int32, device="cuda"),
+        "context": context,
+        "query": query,
+        "cu_seqlens_q": torch.tensor([0, query], dtype=torch.int32, device="cuda"),
+        "prefix_lens": torch.tensor(
+            [shape["prefix"]], dtype=torch.int32, device="cuda"
+        ),
+        "score": torch.empty(
+            (heads, query, blocks), dtype=torch.float32, device="cuda"
+        ),
+    }
+    if entry["case_id"].endswith("prefill_score"):
+        return lambda: prefill_score(**data)
+    score = prefill_score(**data)  # Setup only; excluded from target capture.
+    op = importlib.import_module("atom.model_ops.minimax_m3.index_topk")
+    _, emit = op._alloc_emit(
+        query, heads, shape["topk"], data["block_table"], True, score.device
+    )
+    indices = torch.empty(
+        (heads, query, shape["topk"]), dtype=torch.int32, device="cuda"
+    )
+    return lambda: packed_topk(
+        score,
+        indices,
+        data["cu_seqlens_q"],
+        data["prefix_lens"],
+        data["block_table"],
+        emit,
+        query,
+    )
+
+
 def run(args, result):
     manifest = json.loads(MANIFEST.read_text())
     entries = manifest["models"]["minimax-m3"]["kernels"]
     entry = next(k for k in entries if k["case_id"] == args.case)
-    # Do not silently change a caller's GPU selection.
-    for key, value in entry["environment"].items():
-        if key in os.environ and os.environ[key] != value:
-            raise RuntimeError(f"Set {key}={value} before running this command")
-        os.environ[key] = value
-
     import torch
     import triton
-    from minimax_m3_inputs import build_case
 
     interface = []
     for source in manifest["metadata"]["native_sources"]:
@@ -47,7 +183,7 @@ def run(args, result):
     if not torch.version.hip or not properties.gcnArchName.startswith("gfx1250"):
         raise RuntimeError("This manifest requires a visible gfx1250 HIP GPU")
     torch.manual_seed(0)
-    invoke, validate, layouts = build_case(entry)
+    invoke = build_case(entry)
     module_name = entry["triton"]["source"].removesuffix(".py").replace("/", ".")
     kernel = getattr(
         importlib.import_module(module_name), entry["triton"]["entry_point"]
@@ -63,15 +199,12 @@ def run(args, result):
     # Scope capture to the target invocation, after all setup/reference kernels.
     kernel.run = capture
     try:
-        output = invoke()
+        _output = invoke()
     finally:
         kernel.run = native_run
     torch.cuda.synchronize()
     if len(captured) != 1:
         raise RuntimeError(f"Expected one target launch, captured {len(captured)}")
-    correctness = validate(output)
-    if correctness["status"] != "pass":
-        raise RuntimeError(f"Correctness failed: {correctness}")
     compiled = captured[0]
     llir = compiled.asm["llir"]
     target = compiled.metadata.target
@@ -90,8 +223,6 @@ def run(args, result):
             "warp_size": target.warp_size,
             "num_warps": compiled.metadata.num_warps,
         },
-        correctness=correctness,
-        input_layouts=layouts,
         native_interface=interface,
         versions={
             "torch": torch.__version__,
@@ -99,7 +230,7 @@ def run(args, result):
             "hip": torch.version.hip,
             "architecture": properties.gcnArchName,
         },
-        scope="Correctness and target-only IR extraction; no performance measurement",
+        scope="Target-only IR extraction; accuracy is covered by the native ATOM UT command in the manifest",
     )
 
 

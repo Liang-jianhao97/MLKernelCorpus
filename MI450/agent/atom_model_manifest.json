@@ -2,12 +2,24 @@
   "metadata": {
     "generated_at": "2026-11-26",
     "target_arch": "gfx1250",
-    "description": "MiniMax-M3 compute-side roofline selections from the 18-case native ATOM/AITER study; ATOM ownership is separate from AITER.",
+    "description": "Compute-side MiniMax-M3 cases selected from the supplied trace and breakdown; ATOM provides kernel implementations and native accuracy tests.",
+    "workload_source": {
+      "trace": "c32_agentx_rank0.pt.trace.json.gz",
+      "breakdown": "M3_TP4_layer_breakdown_1106.xlsx",
+      "sheet": "MI455-M3-TP4-1106-bs32",
+      "shared_by": "Li, Rui",
+      "shared_on": "2026-11-16",
+      "trace_stack": {
+        "ATOM": "17a48053c",
+        "AITER": "ea8be1a18"
+      },
+      "configuration": "TP4, FP8 KV, MXFP4 MoE, EAGLE3 K3; decode B32 x Q4 with indexer CP4; prefill Q2763, prefix157312, KV160075.",
+      "attribution": "Kernel selection and workload shapes are derived from the trace and breakdown. The ATOM commit above identifies the later implementation used for standalone reproduction, not the original trace software. Input values are synthetic; this is not an end-to-end trace replay."
+    },
     "atom_repo": "https://github.com/ROCm/ATOM.git",
     "atom_commit": "f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706",
     "aiter_repo": "https://github.com/ROCm/aiter.git",
     "aiter_commit": "f4bc2aa3f7f13c9ac983dc2b9f41fd0fcaa71cb1",
-    "selection_rule": "Useful work / estimated logical bytes > compute reference / HBM reference. Compute-side roofline classification is not proof of an observed compute bottleneck. Integer compare counts are separate from FLOPs.",
     "native_sources": [
       {
         "module": "atom.model_ops.minimax_m3.index_topk",
@@ -18,18 +30,44 @@
         "sha256": "2f64b675470114cefd550878eec1673a49362c891e413dd29e66c259e7fc5968"
       }
     ],
-    "input_reference_source": {
-      "repo": "https://github.com/ROCm/aiter.git",
-      "commit": "a4f7afd69fdc1b05bee8c89b499b3a922966c1d1",
-      "file": "op_tests/triton_tests/utils/minimax_m3.py"
+    "correctness_tests": {
+      "source_repo": "https://github.com/ROCm/ATOM.git",
+      "source_commit": "f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706",
+      "working_directory": "Pinned ATOM repository root",
+      "run_command": "python3 -m pytest -q tests/test_minimax_m3_index_topk.py tests/model_ops/test_indexer_cp_parity.py",
+      "scope": "Reuse upstream accuracy/parity tests; their parameter sets differ from these three extracted trace-shape cases. CP exchange is simulated on one GPU, not a four-GPU transport test.",
+      "source_files_sha256": {
+        "tests/test_minimax_m3_index_topk.py": "224a00e700ac4db2d3711bd6cb7c0ade133eba397c38e77c828ae895da3a91ce",
+        "tests/model_ops/test_indexer_cp_parity.py": "8256765be7e28b2a59619eb2021c27c7228bd19b2c45bb47e4537c082a7b60ec"
+      },
+      "validation": {
+        "date": "2026-11-26",
+        "passed": 196,
+        "skipped": 1,
+        "exit_code": 0,
+        "gpu_completion_confirmed": true,
+        "scope": "The two unmodified upstream UT files; parameter sets differ from the three extracted workload shapes."
+      }
     },
+    "selection_rule": "Useful work / estimated logical bytes > compute reference / HBM reference. Compute-side roofline classification is not proof of an observed compute bottleneck. Integer compare counts are separate from FLOPs.",
     "working_directory": "MLKernelCorpus repository root",
     "runtime_setup": "Use the pinned ATOM/AITER checkouts on PYTHONPATH in a compatible ROCm PyTorch environment, select one gfx1250 GPU, and run commands under the shared GPU lock."
   },
   "models": {
     "minimax-m3": {
-      "model_attribution": "MiniMax-M3 indexer cases selected from the 18-case native kernel study; not an end-to-end model benchmark.",
+      "model_attribution": "Kernel selection and shapes originate from the Li, Rui MiniMax-M3 trace and breakdown listed in metadata.workload_source; ATOM is the implementation source.",
       "model_source": {
+        "trace": "c32_agentx_rank0.pt.trace.json.gz",
+        "breakdown": "M3_TP4_layer_breakdown_1106.xlsx",
+        "sheet": "MI455-M3-TP4-1106-bs32",
+        "shared_by": "Li, Rui",
+        "shared_on": "2026-11-16",
+        "trace_stack": {
+          "ATOM": "17a48053c",
+          "AITER": "ea8be1a18"
+        }
+      },
+      "implementation_source": {
         "repo": "https://github.com/ROCm/ATOM.git",
         "commit": "f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706",
         "files": [
@@ -67,9 +105,6 @@
             "target": "hip:gfx1250:32",
             "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.prefill_score --output-dir /tmp/minimax-m3-corpus"
           },
-          "environment": {
-            "MINIMAX_M3_NATIVE_TESTS": "1"
-          },
           "roofline": {
             "bound": "Compute",
             "criterion": "arithmetic_intensity > ridge_point",
@@ -105,14 +140,22 @@
             "hip": "7.16.26315",
             "rotating_buffer_aiter_commit": "a4f7afd69fdc1b05bee8c89b499b3a922966c1d1",
             "rotating_buffer_sha256": "db6026bccf925b4427ef618c454b55033097c2160d554ee4bc440c845b5456f9",
-            "correctness": "16 query rows, all valid context blocks against FP32 FP8-query scoring; reduced full UT and composed-wrapper parity also passed."
+            "correctness_scope": "Historical rotating-buffer baseline checks; the simplified extraction command delegates accuracy tests to upstream ATOM.",
+            "baseline_correctness": "16 query rows, all valid context blocks against FP32 FP8-query scoring; reduced full UT and composed-wrapper parity also passed."
           },
           "notes": [
-            "Run from the corpus root in a compatible pinned ATOM/AITER environment under the shared GPU lock.",
-            "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
-            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus full Q31/Q257 boundary checks.",
-            "FP8 QK dot with BF16 input query cast to FP8 in the native kernel."
+            "Shapes and kernel attribution come from metadata.workload_source; triton.source points to the implementation.",
+            "Run the upstream UT command separately from IR extraction. The runner contains no copied kernel bodies or accuracy oracles.",
+            "The extraction command launches one target kernel; packed-topk score generation is setup only. Reference timings are from the earlier rotating-buffer profiler experiment."
           ],
+          "workload_evidence": {
+            "breakdown_sheet": "MI455-M3-TP4-1106-bs32",
+            "breakdown_row": 7,
+            "trace_kernel_name": "_index_block_score_kernel",
+            "trace_occurrences_all_shapes": 57,
+            "shape_mapping": "Prefill Q/context/head_dim follows breakdown row7; packed top-k consumes that score tensor. Decode reproduces B32 x Q4, CP4, using representative context194048 for the approximately 194K trace workload."
+          },
+          "correctness_test_file": "tests/test_minimax_m3_index_topk.py",
           "extraction_validation": {
             "date": "2026-11-26",
             "status": "success",
@@ -123,14 +166,9 @@
               "warp_size": 32,
               "num_warps": 4
             },
-            "correctness": {
-              "status": "pass",
-              "method": "16 query rows against FP32 scoring; full Q31/Q257 boundary checks.",
-              "full_output_checked": false
-            },
             "llir_sha256": "82273faee405c2282946b74ba04d534d31952d9a54694550b6e2463e4be13342",
             "gpu_completion_confirmed": true,
-            "note": "IR fingerprint is evidence for this compiler revision, not a required hash for future codegen."
+            "scope": "Trace-shape target-only IR extraction; native UTs are recorded separately in metadata.correctness_tests."
           }
         },
         {
@@ -164,9 +202,6 @@
             "entry_point": "_local_topk",
             "target": "hip:gfx1250:32",
             "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.local_topk --output-dir /tmp/minimax-m3-corpus"
-          },
-          "environment": {
-            "MINIMAX_M3_NATIVE_TESTS": "1"
           },
           "roofline": {
             "bound": "Compute",
@@ -203,14 +238,22 @@
             "hip": "7.16.26315",
             "rotating_buffer_aiter_commit": "a4f7afd69fdc1b05bee8c89b499b3a922966c1d1",
             "rotating_buffer_sha256": "db6026bccf925b4427ef618c454b55033097c2160d554ee4bc440c845b5456f9",
-            "correctness": "Full packed-key reference for ascending shard scores, pinned image's 16-bit block-id encoding."
+            "correctness_scope": "Historical rotating-buffer baseline checks; the simplified extraction command delegates accuracy tests to upstream ATOM.",
+            "baseline_correctness": "Full packed-key reference for ascending shard scores, pinned image's 16-bit block-id encoding."
           },
           "notes": [
-            "Run from the corpus root in a compatible pinned ATOM/AITER environment under the shared GPU lock.",
-            "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
-            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus full Q31/Q257 boundary checks.",
-            "Top-k uses integer comparisons rather than matrix FLOPs; reference efficiency must not be presented as FP MFU."
+            "Shapes and kernel attribution come from metadata.workload_source; triton.source points to the implementation.",
+            "Run the upstream UT command separately from IR extraction. The runner contains no copied kernel bodies or accuracy oracles.",
+            "The extraction command launches one target kernel; packed-topk score generation is setup only. Reference timings are from the earlier rotating-buffer profiler experiment."
           ],
+          "workload_evidence": {
+            "breakdown_sheet": "MI455-M3-TP4-1106-bs32",
+            "breakdown_row": 46,
+            "trace_kernel_name": "_local_topk",
+            "trace_occurrences_all_shapes": 23826,
+            "shape_mapping": "Prefill Q/context/head_dim follows breakdown row7; packed top-k consumes that score tensor. Decode reproduces B32 x Q4, CP4, using representative context194048 for the approximately 194K trace workload."
+          },
+          "correctness_test_file": "tests/model_ops/test_indexer_cp_parity.py",
           "extraction_validation": {
             "date": "2026-11-26",
             "status": "success",
@@ -221,14 +264,9 @@
               "warp_size": 32,
               "num_warps": 8
             },
-            "correctness": {
-              "status": "pass",
-              "method": "Full packed-key oracle for ascending rank-local shard scores.",
-              "full_output_checked": true
-            },
             "llir_sha256": "0b4ce503f23b414e6632027e5343225fad71ed7c44a9fa3c156d3d4bf0b73064",
             "gpu_completion_confirmed": true,
-            "note": "IR fingerprint is evidence for this compiler revision, not a required hash for future codegen."
+            "scope": "Trace-shape target-only IR extraction; native UTs are recorded separately in metadata.correctness_tests."
           }
         },
         {
@@ -259,9 +297,6 @@
             "entry_point": "_topk_index_packed_kernel",
             "target": "hip:gfx1250:32",
             "run_command": "python3 MI450/agent/resources/run_minimax_m3_compute.py --case minimax_m3.packed_topk --output-dir /tmp/minimax-m3-corpus"
-          },
-          "environment": {
-            "MINIMAX_M3_NATIVE_TESTS": "1"
           },
           "roofline": {
             "bound": "Compute",
@@ -298,14 +333,22 @@
             "hip": "7.16.26315",
             "rotating_buffer_aiter_commit": "a4f7afd69fdc1b05bee8c89b499b3a922966c1d1",
             "rotating_buffer_sha256": "db6026bccf925b4427ef618c454b55033097c2160d554ee4bc440c845b5456f9",
-            "correctness": "Full stable score/id sort and causal sparse-table emission reference using precomputed scores."
+            "correctness_scope": "Historical rotating-buffer baseline checks; the simplified extraction command delegates accuracy tests to upstream ATOM.",
+            "baseline_correctness": "Full stable score/id sort and causal sparse-table emission reference using precomputed scores."
           },
           "notes": [
-            "Run from the corpus root in a compatible pinned ATOM/AITER environment under the shared GPU lock.",
-            "The corpus command validates and exports exactly one target LLVM IR; it does not benchmark. Performance above comes from the separate rotating-buffer profiler experiment.",
-            "Native source and launch policy are unchanged. Full output is checked for top-k; score checks 16 query rows against FP32 plus full Q31/Q257 boundary checks.",
-            "Top-k uses integer comparisons rather than matrix FLOPs; reference efficiency must not be presented as FP MFU."
+            "Shapes and kernel attribution come from metadata.workload_source; triton.source points to the implementation.",
+            "Run the upstream UT command separately from IR extraction. The runner contains no copied kernel bodies or accuracy oracles.",
+            "The extraction command launches one target kernel; packed-topk score generation is setup only. Reference timings are from the earlier rotating-buffer profiler experiment."
           ],
+          "workload_evidence": {
+            "breakdown_sheet": "MI455-M3-TP4-1106-bs32",
+            "breakdown_row": 8,
+            "trace_kernel_name": "_topk_index_packed_kernel",
+            "trace_occurrences_all_shapes": 57,
+            "shape_mapping": "Prefill Q/context/head_dim follows breakdown row7; packed top-k consumes that score tensor. Decode reproduces B32 x Q4, CP4, using representative context194048 for the approximately 194K trace workload."
+          },
+          "correctness_test_file": "tests/test_minimax_m3_index_topk.py",
           "extraction_validation": {
             "date": "2026-11-26",
             "status": "success",
@@ -316,14 +359,9 @@
               "warp_size": 32,
               "num_warps": 1
             },
-            "correctness": {
-              "status": "pass",
-              "method": "Full stable sort, causal page emission and sparse length oracle.",
-              "full_output_checked": true
-            },
             "llir_sha256": "a73132f0aa0a1acd0751bf410ab3b4fe3d3348e49138eac492aec276b9c99cf6",
             "gpu_completion_confirmed": true,
-            "note": "IR fingerprint is evidence for this compiler revision, not a required hash for future codegen."
+            "scope": "Trace-shape target-only IR extraction; native UTs are recorded separately in metadata.correctness_tests."
           }
         }
       ]
