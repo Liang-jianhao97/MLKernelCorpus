@@ -7,7 +7,6 @@
     "atom_commit": "f7cc3a6a47f72444fecb0c3a6b1ea79493bc0706",
     "aiter_repo": "https://github.com/ROCm/aiter.git",
     "aiter_commit": "f4bc2aa3f7f13c9ac983dc2b9f41fd0fcaa71cb1",
-    "instructions": "MI450/agent/knowledge/atom_configs.md",
     "selection_rule": "Useful work / estimated logical bytes > compute reference / HBM reference. Compute-side roofline classification is not proof of an observed compute bottleneck. Integer compare counts are separate from FLOPs.",
     "native_sources": [
       {
@@ -23,7 +22,9 @@
       "repo": "https://github.com/ROCm/aiter.git",
       "commit": "a4f7afd69fdc1b05bee8c89b499b3a922966c1d1",
       "file": "op_tests/triton_tests/utils/minimax_m3.py"
-    }
+    },
+    "working_directory": "MLKernelCorpus repository root",
+    "runtime_setup": "Use the pinned ATOM/AITER checkouts on PYTHONPATH in a compatible ROCm PyTorch environment, select one gfx1250 GPU, and run commands under the shared GPU lock."
   },
   "models": {
     "minimax-m3": {

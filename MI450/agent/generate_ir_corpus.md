@@ -242,7 +242,6 @@ For **each manifest file**, process **each kernel entry** using this procedure:
 | `vanilla_kernel_manifest.json` | `MI450/kernels/triton/` |
 | `best_kernel_manifest.json` | `MI450/kernels/best/` |
 | `aiter_model_manifest.json` | `MI450/kernels/aiter/` |
-| `atom_model_manifest.json` (pinned, see below) | `MI450/kernels/atom/` |
 
 ### Processing Order
 
@@ -253,19 +252,6 @@ Process manifests in this order (OAI kernels are highest priority):
 3. `best_kernel_manifest.json` → `MI450/kernels/best/`
 4. `vanilla_kernel_manifest.json` → `MI450/kernels/triton/`
 5. `aiter_model_manifest.json` → `MI450/kernels/aiter/`
-
-### Additional pinned ATOM model cases
-
-`atom_model_manifest.json` contains the three MiniMax-M3 compute-side roofline
-selections. Preserve this curated manifest unless explicitly asked to regenerate
-it. Follow `knowledge/atom_configs.md` for its pinned source dependencies and run
-each entry's `triton.run_command` from the corpus root under the shared GPU lock.
-These commands require a gfx1250 GPU, validate correctness, and export exactly
-one target `.llir` plus a JSON evidence record per case. Collect those named files
-into `MI450/kernels/atom/`; do not collect their preparation/reference cache IR.
-Include this source group in the Phase 5 mappings, deduplication and final report.
-If its runtime dependencies are unavailable in a cross-compilation-only run,
-record those entries as skipped with the reason rather than silently omitting them.
 
 ## Phase 5: Create Mapping Files
 

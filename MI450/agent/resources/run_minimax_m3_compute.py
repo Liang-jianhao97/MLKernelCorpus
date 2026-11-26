@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate one pinned ATOM workload and export only its target kernel's LLVM IR.
 
-Run from the corpus root, inside the shared GPU lock. See ../knowledge/atom_configs.md.
+Run from the corpus root, inside the shared GPU lock.
 The native kernel bodies remain upstream; local fixtures supply inputs and oracles.
 """
 
