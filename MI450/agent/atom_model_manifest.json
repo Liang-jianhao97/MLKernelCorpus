@@ -49,7 +49,7 @@
     },
     "selection_rule": "Useful work / estimated logical bytes > compute reference / HBM reference. Compute-side roofline classification is not proof of an observed compute bottleneck. Integer compare counts are separate from FLOPs.",
     "working_directory": "MLKernelCorpus repository root",
-    "runtime_setup": "Use the pinned ATOM/AITER checkouts on PYTHONPATH in a compatible ROCm PyTorch environment, select one gfx1250 GPU, and run commands under the shared GPU lock."
+    "runtime_setup": "Use the pinned ATOM/AITER checkouts on PYTHONPATH in a compatible ROCm PyTorch environment and select one gfx1250 GPU."
   },
   "models": {
     "minimax-m3": {

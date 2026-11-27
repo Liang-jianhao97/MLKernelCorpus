@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Launch one trace-derived ATOM workload and export only its target kernel's LLVM IR.
-
-Run from the corpus root, inside the shared GPU lock.
-Shapes come from the MiniMax-M3 trace/breakdown identified in the manifest.
-Kernel bodies and accuracy tests remain upstream in the pinned ATOM checkout.
-"""
+"""Export LLVM IR for the MiniMax-M3 kernels in the manifest."""
 
 import argparse
 import hashlib
@@ -145,7 +140,7 @@ def build_case(entry):
     }
     if entry["case_id"].endswith("prefill_score"):
         return lambda: prefill_score(**data)
-    score = prefill_score(**data)  # Setup only; excluded from target capture.
+    score = prefill_score(**data)  # Precompute selector input.
     op = importlib.import_module("atom.model_ops.minimax_m3.index_topk")
     _, emit = op._alloc_emit(
         query, heads, shape["topk"], data["block_table"], True, score.device
@@ -196,7 +191,6 @@ def run(args, result):
         captured.append(compiled)
         return compiled
 
-    # Scope capture to the target invocation, after all setup/reference kernels.
     kernel.run = capture
     try:
         _output = invoke()
