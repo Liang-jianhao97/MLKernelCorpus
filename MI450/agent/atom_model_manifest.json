@@ -7,8 +7,6 @@
       "trace": "c32_agentx_rank0.pt.trace.json.gz",
       "breakdown": "M3_TP4_layer_breakdown_1106.xlsx",
       "sheet": "MI455-M3-TP4-1106-bs32",
-      "shared_by": "Li, Rui",
-      "shared_on": "2026-11-16",
       "trace_stack": {
         "ATOM": "17a48053c",
         "AITER": "ea8be1a18"
@@ -55,13 +53,11 @@
   },
   "models": {
     "minimax-m3": {
-      "model_attribution": "Kernel selection and shapes originate from the Li, Rui MiniMax-M3 trace and breakdown listed in metadata.workload_source; ATOM is the implementation source.",
+      "model_attribution": "Kernel selection and shapes originate from the MiniMax-M3 trace and breakdown listed in metadata.workload_source; ATOM is the implementation source.",
       "model_source": {
         "trace": "c32_agentx_rank0.pt.trace.json.gz",
         "breakdown": "M3_TP4_layer_breakdown_1106.xlsx",
         "sheet": "MI455-M3-TP4-1106-bs32",
-        "shared_by": "Li, Rui",
-        "shared_on": "2026-11-16",
         "trace_stack": {
           "ATOM": "17a48053c",
           "AITER": "ea8be1a18"
