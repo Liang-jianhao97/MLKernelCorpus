@@ -1401,7 +1401,7 @@
         "derivation": "B=o_groups/TP=16; N=o_lora_rank=1024; K=(n_heads/TP)*head_dim/(o_groups/TP)=128*512/16=4096; M=16384 from prefill ubench."
       },
       "aiter_config_files": [
-        "aiter/ops/triton/configs/gfx1250/gluon/gemm/batched_gemm_a16w16/BATCHED_GEMM-A16W16-B=16-N=1024-K=4096.json"
+        "aiter/ops/triton/configs/gfx1250/gluon/gemm/batched_gemm_a16w16_multicast/DEFAULT.json"
       ],
       "kernels": [
         {
@@ -1418,39 +1418,40 @@
             "bias": false
           },
           "operation": "Y[b] = X[b] @ W[b].T; X and Y are transposed views of contiguous [M,B,K] and [M,B,N] storage; W[B,N,K] contiguous",
-          "aiter_kernel_name": "_batched_gemm_bf16_bandwidth_bound_kernel",
+          "aiter_kernel_name": "_batched_gemm_bf16_multicast_kernel",
           "framework": "gluon",
           "tuning_config": {
-            "BLOCK_SIZE_M": 128,
-            "BLOCK_SIZE_N": 128,
+            "BLOCK_SIZE_M": 256,
+            "BLOCK_SIZE_N": 256,
             "BLOCK_SIZE_K": 128,
-            "num_warps": 4,
-            "NUM_BUFFERS": 3,
-            "waves_per_eu": 1,
-            "NUM_KSPLIT": 1,
-            "cache_modifier": null,
-            "kernel_type": "bandwidth_bound"
+            "CTAS_M": 4,
+            "CTAS_N": 4,
+            "num_warps": 4
           },
           "environment": {
-            "AITER_TRITON_ONLY": "1",
-            "AITER_BATCHED_BF16_TDM_STORE": "1"
+            "AITER_TRITON_ONLY": "1"
           },
           "gluon": {
-            "source": "aiter/ops/triton/_gluon_kernels/gfx1250/gemm/batched/batched_gemm_bf16.py",
+            "source": "aiter/ops/triton/_gluon_kernels/gfx1250/gemm/batched/batched_gemm_bf16_multicast.py",
             "source_repo": "aiter",
-            "source_commit": "6a4fa17deb060989f12ec10c366775034defe5f2",
-            "entry_point": "_batched_gemm_bf16_bandwidth_bound_kernel",
+            "source_commit": "89a2112f8f0425a32c2552d218a80cb40c7597c7",
+            "entry_point": "_batched_gemm_bf16_multicast_kernel",
             "target": "hip:gfx1250:32",
-            "run_command": "AITER_TRITON_ONLY=1 AITER_BATCHED_BF16_TDM_STORE=1 python3 -c \"import torch; from aiter.ops.triton.gemm.batched.batched_gemm_bf16 import batched_gemm_bf16; torch.manual_seed(0); x=torch.randint(-3,4,(16384,16,4096),device='cuda',dtype=torch.bfloat16).transpose(0,1); w=torch.randint(-3,4,(16,1024,4096),device='cuda',dtype=torch.bfloat16); y=torch.empty((16384,16,1024),device='cuda',dtype=torch.bfloat16).transpose(0,1); batched_gemm_bf16(x,w,bias=None,dtype=torch.bfloat16,YQ=y,backend='gluon',config={'BLOCK_SIZE_M': 128, 'BLOCK_SIZE_N': 128, 'BLOCK_SIZE_K': 128, 'num_warps': 4, 'NUM_BUFFERS': 3, 'waves_per_eu': 1, 'NUM_KSPLIT': 1, 'cache_modifier': None, 'kernel_type': 'bandwidth_bound'}); torch.cuda.synchronize()\"",
-            "compile_call": "batched_gemm_bf16(x, w, bias=None, dtype=torch.bfloat16, YQ=y, backend='gluon', config=config)",
-            "benchmark_command": "env -u TRITON_ALWAYS_COMPILE AITER_TRITON_ONLY=1 AITER_BATCHED_BF16_TDM_STORE=1 python3 -c \"import torch; from aiter.ops.triton.gemm.batched.batched_gemm_bf16 import batched_gemm_bf16; torch.manual_seed(0); x=torch.randint(-3,4,(16384,16,4096),device='cuda',dtype=torch.bfloat16).transpose(0,1); w=torch.randint(-3,4,(16,1024,4096),device='cuda',dtype=torch.bfloat16); y=torch.empty((16384,16,1024),device='cuda',dtype=torch.bfloat16).transpose(0,1); batched_gemm_bf16(x,w,bias=None,dtype=torch.bfloat16,YQ=y,backend='gluon',config={'BLOCK_SIZE_M': 128, 'BLOCK_SIZE_N': 128, 'BLOCK_SIZE_K': 128, 'num_warps': 4, 'NUM_BUFFERS': 3, 'waves_per_eu': 1, 'NUM_KSPLIT': 1, 'cache_modifier': None, 'kernel_type': 'bandwidth_bound'}); torch.cuda.synchronize(); import triton; fn=lambda: batched_gemm_bf16(x, w, bias=None, dtype=torch.bfloat16, YQ=y, backend='gluon', config={'BLOCK_SIZE_M': 128, 'BLOCK_SIZE_N': 128, 'BLOCK_SIZE_K': 128, 'num_warps': 4, 'NUM_BUFFERS': 3, 'waves_per_eu': 1, 'NUM_KSPLIT': 1, 'cache_modifier': None, 'kernel_type': 'bandwidth_bound'}); ms=triton.testing.do_bench_cudagraph(fn,rep=20,return_mode='mean'); print({'us':ms*1000,'tflops':2199023255552/ms/1e9})\""
+            "run_command": "AITER_TRITON_ONLY=1 python3 -c \"import torch; from aiter.ops.triton.gemm.batched.batched_gemm_bf16 import batched_gemm_bf16; torch.manual_seed(0); x=torch.randint(-3,4,(16384,16,4096),device='cuda',dtype=torch.bfloat16).transpose(0,1); w=torch.randint(-3,4,(16,1024,4096),device='cuda',dtype=torch.bfloat16); y=torch.empty((16384,16,1024),device='cuda',dtype=torch.bfloat16).transpose(0,1); batched_gemm_bf16(x,w,bias=None,dtype=torch.bfloat16,YQ=y,backend='gluon',kernel_type='multicast'); torch.cuda.synchronize()\"",
+            "compile_call": "batched_gemm_bf16(x,w,bias=None,dtype=torch.bfloat16,YQ=y,backend='gluon',kernel_type='multicast')",
+            "benchmark_command": "env -u TRITON_ALWAYS_COMPILE AITER_TRITON_ONLY=1 python3 -c \"import torch; from aiter.ops.triton.gemm.batched.batched_gemm_bf16 import batched_gemm_bf16; torch.manual_seed(0); x=torch.randint(-3,4,(16384,16,4096),device='cuda',dtype=torch.bfloat16).transpose(0,1); w=torch.randint(-3,4,(16,1024,4096),device='cuda',dtype=torch.bfloat16); y=torch.empty((16384,16,1024),device='cuda',dtype=torch.bfloat16).transpose(0,1); batched_gemm_bf16(x,w,bias=None,dtype=torch.bfloat16,YQ=y,backend='gluon',kernel_type='multicast'); torch.cuda.synchronize(); import triton; import triton.testing; fn=lambda: batched_gemm_bf16(x,w,bias=None,dtype=torch.bfloat16,YQ=y,backend='gluon',kernel_type='multicast'); ms=triton.testing.do_bench_cudagraph(fn,rep=20,return_mode='mean'); print({'us':ms*1000,'tflops':2199023255552/ms/1e9})\"",
+            "source_branch": "jianlian/gfx1250-bmm-bf16-multicast",
+            "aiter_benchmark_command": "AITER_TRITON_ONLY=1 python3 op_tests/op_benchmarks/triton/bench_batched_gemm_bf16.py --shape 16 16384 1024 4096 --backend gluon --kernel-type multicast --token-major --no-bias --rot-bufs-min-pool-len 1 --rot-bufs-target-mb 1 --graph-kernels-per-graph 32 --graph-warmup-replays 10 --graph-num-replays 5"
           },
           "triton": null,
           "notes": [
-            "Run with the referenced AITER revision importable in the selected Triton environment; no corpus-specific runner is required.",
-            "The command invokes AITER directly, preserving the model's token-major input/output strides and no-bias path.",
-            "The explicit config preserves the selected kernel when comparing compiler revisions; bandwidth_bound is the implementation name.",
-            "wave32 and num_warps=4 give four waves per workgroup; waves_per_eu=1 is a compiler hint, not measured occupancy."
+            "Run from the referenced AITER checkout with the selected Triton environment; commands call the public AITER API and require no corpus-specific runner or kernel overlay.",
+            "kernel_type=multicast is opt-in. AITER loads the tracked JSON configuration; tuning_config records its resolved values at source_commit.",
+            "The command preserves token-major input/output, contiguous batch-major weights, BF16 output, and no bias. The kernel uses TDM stores directly; no AITER_BATCHED_BF16_TDM_STORE override is required.",
+            "wave32 and num_warps=4 give four waves per CTA; the M/N cluster contains 4x4 CTAs. This is not a single-wave kernel.",
+            "On shared nodes acquire the official GPU lock before either command. Keep the source/config fixed when comparing compiler revisions.",
+            "benchmark_command preserves the historical seed-0 integer-input, fresh-process 20 ms cudagraph protocol. Run it in three fresh processes and report the median.",
+            "aiter_benchmark_command uses the native RotatingBufferBench and its input generator; its throughput is a separate protocol and must not be substituted for this performance baseline."
           ],
           "tensor_strides": {
             "x": [
@@ -1475,6 +1476,106 @@
             "basis": "2*B*M*N*K FLOPs divided by one BF16 read of X/W and one BF16 write of Y; ideal traffic estimate, not a measured bottleneck classification."
           },
           "performance": {
+            "us": 749.7688702174595,
+            "tflops": 2932.9348588641797,
+            "measured_on": "2026-11-28",
+            "hardware": "MI450 gfx1250, d01-3 HIP device 0 (DRM card1), SPX/NPS1, 256 CUs; official shared GPU lock; own isolated container",
+            "aiter_commit": "89a2112f8f0425a32c2552d218a80cb40c7597c7",
+            "triton_commit": "b760c68dfda067938d72c387d4c44cd9f557a763",
+            "triton_version": "3.9.0",
+            "llvm_commit": "18f9e623e4c891ba31ff817c07197707ac9bc593",
+            "llvm_build_number": 2,
+            "amd_codegen_revision": "08b05a3352eeadd10eba4a25ffc19c2abb226448-2",
+            "method": "triton.testing.do_bench_cudagraph(fn, rep=20, return_mode='mean')",
+            "timing_scope": "Median of three fresh-process 20 ms cudagraph mean measurements, one warm call before timing, fixed preallocated buffers, no cache flush; initialization, compilation and reference checks excluded.",
+            "measurement_runs": 3,
+            "correctness": "Full-output exact FP32 matmul rounded to BF16 for seed-0 integer inputs [-3,3] after each fresh-process measurement. Separate random-BF16 steady runs pass full-output finite checks and atol=rtol=0.01 before and after timing. All 17 multicast API correctness/guard tests pass.",
+            "comparison": "Use benchmark_command with the pinned AITER, Triton/LLVM and runtime on the same hardware. Clocks were not fixed or changed; 2500 W cap was observed. This short integer-input baseline is not sustained random-input throughput or an automatic regression threshold.",
+            "torch_version": "2.11.0+rocm10.1.0a20260811-bkc.20260820",
+            "container_image_sha256": "9e4adc9f851ac79259612e86e9acc8fc78eee418ff1ae775a3d4d6c8f5952892",
+            "samples_us": [
+              749.5575564248221,
+              750.0581128256662,
+              749.7688702174595
+            ],
+            "matched_comparison": {
+              "original_aiter_configuration": {
+                "us": 1485.0547671318054,
+                "tflops": 1480.7691300160827,
+                "configuration": "128x128x128, four waves, three buffers, waves_per_eu=1, splitK=1, TDM_STORE=1",
+                "source": "Same AITER checkout and compiler/runtime as the optimized measurement; original bandwidth_bound path with explicit historical configuration."
+              },
+              "flydsl": {
+                "us": 829.1123849374277,
+                "tflops": 2652.261979801397,
+                "samples_us": [
+                  829.1123849374277,
+                  827.6971181233724,
+                  829.8448986477323
+                ],
+                "flydsl_version": "0.4.2",
+                "source_repo": "https://github.com/ROCm/aiter",
+                "source_commit": "ab097e80cd582c33b1d1828df8176bed5bf7ee1b",
+                "source_file": "aiter/ops/flydsl/kernels/gemm_a16w16_kernel_gfx1250.py",
+                "tested_kernel_sha256": "ee4b1fe39ac8f02366562c6fc57a95476e9f169b1a0c9a5e2d5e30aa18b092cb",
+                "configuration": "Batch-stride adaptation of the referenced GEMM, one BMM launch; 256x256x128, two buffers, 2x2 waves, interleave=True, splitK=1, no M/N multicast; expert/coexec/post-misched LLVM hints enabled.",
+                "scope": "Same inputs, output strides, device, ROCm/Torch runtime and cudagraph timing as Gluon. Each DSL uses its own compiler backend. This tests the stated FlyDSL implementation/configuration, not the best possible FlyDSL throughput.",
+                "gluon_throughput_gain_percent": 10.582396505333147,
+                "gluon_latency_reduction_percent": 9.569693585744254
+              }
+            },
+            "random_input_steady_crosscheck": {
+              "method": "Seed-0 torch.randn BF16, same token-major strides; 32 calls/graph, approximately 3 s warmup, five approximately 1 s measurements per case, forward/reverse order; pooled median of ten samples.",
+              "baseline": {
+                "us": 1827.0894156561956,
+                "tflops": 1203.5663042589654,
+                "repeat_tflops": [
+                  1205.897674767281,
+                  1201.869370764778
+                ],
+                "passed": true
+              },
+              "optimized": {
+                "us": 899.5854183491234,
+                "tflops": 2444.4852158537024,
+                "repeat_tflops": [
+                  2448.0744636988666,
+                  2441.5384365130653
+                ],
+                "passed": true
+              },
+              "fly": {
+                "us": 986.8100081631577,
+                "tflops": 2228.416044994567,
+                "repeat_tflops": [
+                  2155.0391910539824,
+                  2302.004581003769
+                ],
+                "passed": true
+              },
+              "caveat": "FlyDSL repeat medians span 2155-2302 TFLOPS and some no-cluster ablations are bimodal. Core-frequency changes were observed; their root cause is not isolated. Do not infer a fixed small performance gap from these runs."
+            },
+            "literal_command_verification": {
+              "measurement_runs": 3,
+              "median_tflops": 2923.1567034203563,
+              "samples": [
+                {
+                  "us": 762.8651823316302,
+                  "tflops": 2882.584375958645
+                },
+                {
+                  "us": 751.4084884098597,
+                  "tflops": 2926.5350198606366
+                },
+                {
+                  "us": 752.2768974304199,
+                  "tflops": 2923.1567034203563
+                }
+              ],
+              "result": "Both committed run_command and benchmark_command execute without research helper imports. Source checksums match the five AITER commit files; compiled kernel entry point matches the manifest. Separate verification run, not part of the matched FlyDSL comparison."
+            }
+          },
+          "historical_performance": {
             "us": 1491.2738545735679,
             "tflops": 1474.593850624984,
             "measured_on": "2026-11-11",
