@@ -1573,6 +1573,124 @@
                 }
               ],
               "result": "Both committed run_command and benchmark_command execute without research helper imports. Source checksums match the five AITER commit files; compiled kernel entry point matches the manifest. Separate verification run, not part of the matched FlyDSL comparison."
+            },
+            "native_flydsl_matched_comparison": {
+              "measured_on": "2026-11-28",
+              "scope": "Native ROCm/FlyDSL BF16 BMM development-branch kernel, locally adapted for token-major X/Y, W[B,N,K] and the installed FlyDSL 0.4.2 API. Not an unmodified-upstream or best-possible-FlyDSL claim. Historical AITER GEMM batch-adapter measurements above remain separate.",
+              "hardware": "d01-3, MI450 gfx1250, SPX/NPS1, 256 CUs; each GPU command takes the official shared lock and passes an idle/FD-owner check; own jianlian-bmm-old-20261128 container",
+              "environment": "Same image, Torch/HIP, Triton and AITER commits as the parent performance record. FlyDSL 0.4.2. Each DSL uses its own compiler backend; no claim of identical LLVM binaries.",
+              "input": "B=16 M=16384 N=1024 K=4096, BF16 inputs/output, FP32 accumulation, no bias; X strides [4096,65536,1], W [4194304,4096,1], Y [1024,16384,1]; no packing/copy kernel.",
+              "method": "Seed-0 integers [-3,3], one warm call, do_bench_cudagraph(rep=20, return_mode=mean), median of three fresh processes per implementation in alternating order; full-output correctness after timing.",
+              "gluon": {
+                "us": 751.92003931318,
+                "tflops": 2924.544021410355,
+                "samples_us": [
+                  751.8973078046525,
+                  753.020749773298,
+                  751.92003931318
+                ],
+                "configuration": "256x256x128, four waves, two buffers, 4x4 CTA cluster; unchanged AITER multicast implementation",
+                "aiter_commit": "89a2112f8f0425a32c2552d218a80cb40c7597c7"
+              },
+              "original_aiter_configuration": {
+                "us": 1485.3741884231567,
+                "tflops": 1480.4506990164132,
+                "samples_us": [
+                  1484.95032787323,
+                  1489.4498109817505,
+                  1485.3741884231567
+                ]
+              },
+              "flydsl_native": {
+                "us": 887.4061999113663,
+                "tflops": 2478.0345863840453,
+                "samples_us": [
+                  887.4061999113663,
+                  888.0116752956225,
+                  887.1344607809316
+                ],
+                "source_repo": "https://github.com/ROCm/FlyDSL",
+                "source_commit": "7bc8f138e9b3e284b60699471ed4072db39b58d3",
+                "source_file": "kernels/bmm_gfx1250.py",
+                "source_sha256": "c97df16457610d69777e5d7f6f2c6d67e3f3c8b8ea87ddf88f1133b61a2a73d6",
+                "tested_kernel_sha256": "0337fa43b62407b4d3ab9fa924d0a5176547ed3aa5611f61bf525381a96981d9",
+                "configuration": "256x256x128, m_warp=2 n_warp=2, two buffers, LDS padding=8 BF16 elements, prefetch distance=2, TDM store ON, expert scheduling ON, no CTA multicast",
+                "adaptation": "A/C token-major addresses; W[N,K] TDM/LDS layout and contiguous-K B loads; current Python/ROCDL API and AST branch-state compatibility; A address carry fix; complete tiles only.",
+                "reproduction_artifact": "Local native_bmm_token_major_20261128.zip contains the adapter, pinned helper sources, patch, benchmark and exact host/container commands. This adapter is not committed as a Gluon corpus workload."
+              },
+              "flydsl_native_default_configuration": {
+                "us": 1853.1109428405762,
+                "tflops": 1186.6657331272274,
+                "samples_us": [
+                  1855.5133819580078,
+                  1850.6179428100586,
+                  1853.1109428405762
+                ],
+                "configuration": "Same layout/API adapter, 128x128x128, m_warp=2 n_warp=4, three buffers"
+              },
+              "gluon_throughput_gain_percent": 18.018692615499667,
+              "gluon_latency_reduction_percent": 15.26765990723511,
+              "random_input_steady_crosscheck": {
+                "method": "Seed-0 torch.randn BF16; 32 calls/graph, approximately 3 s warmup, five approximately 1 s samples per run; Gluon/FlyDSL/FlyDSL/Gluon order; pooled median of ten samples per implementation.",
+                "gluon": {
+                  "us": 901.0305404663086,
+                  "tflops": 2440.564616615485,
+                  "samples_us": [
+                    898.0274200439453,
+                    898.8746643066406,
+                    900.981616973877,
+                    901.7607688903809,
+                    901.6219139099121,
+                    898.866081237793,
+                    899.5467185974121,
+                    901.0794639587402,
+                    904.0221214294434,
+                    901.7579078674316
+                  ],
+                  "repeat_tflops": [
+                    2440.697139790543,
+                    2440.4321078309376
+                  ]
+                },
+                "flydsl_native": {
+                  "us": 1046.6419668758617,
+                  "tflops": 2101.0272138388445,
+                  "samples_us": [
+                    1044.8568007525275,
+                    1044.7118422564338,
+                    1045.6737069522633,
+                    1050.5124260397517,
+                    1047.4647073184742,
+                    1046.062245088465,
+                    1046.305488137638,
+                    1046.9784456140853,
+                    1052.0461587344898,
+                    1047.1409068388098
+                  ],
+                  "repeat_tflops": [
+                    2102.9726968666996,
+                    2100.351984096678
+                  ]
+                },
+                "gluon_throughput_gain_percent": 16.160542830678647,
+                "gluon_latency_reduction_percent": 13.912248029208207
+              },
+              "correctness": "All short-run outputs exactly match FP32 matmul rounded to BF16. Steady random runs pass full finite/allclose checks (atol=rtol=0.01) before and after timing. Additional full-shape native FlyDSL random seeds 1 and 2 pass. Each full check covers 268435456 elements.",
+              "compiled_resources": {
+                "gluon": {
+                  "vgpr_count": 1024,
+                  "sgpr_count": 77,
+                  "scratch_bytes_per_thread": 0,
+                  "dynamic_lds_bytes": 313296
+                },
+                "flydsl_native": {
+                  "vgpr_count": 746,
+                  "sgpr_count": 66,
+                  "scratch_bytes_per_thread": 0,
+                  "static_lds_bytes": 280576
+                }
+              },
+              "limitations": "No global optimality claim. Multicast, pipeline and LLVM scheduling contributions have not been fully isolated. No new Gluon configuration beat the current delivery. Clocks/power were not changed. A guard rejected one invocation before launch when another GPU process was present; it was retried after the node became idle."
             }
           },
           "historical_performance": {
