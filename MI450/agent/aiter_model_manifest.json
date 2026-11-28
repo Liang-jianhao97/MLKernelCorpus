@@ -1516,10 +1516,10 @@
                 "flydsl_version": "0.4.2",
                 "source_repo": "https://github.com/ROCm/aiter",
                 "source_commit": "ab097e80cd582c33b1d1828df8176bed5bf7ee1b",
-                "source_file": "aiter/ops/flydsl/kernels/gemm_a16w16_kernel_gfx1250.py",
+                "source_file": "aiter/ops/flydsl/kernels/gemm_a16w16_tdm_gfx1250.py",
                 "tested_kernel_sha256": "ee4b1fe39ac8f02366562c6fc57a95476e9f169b1a0c9a5e2d5e30aa18b092cb",
                 "configuration": "Batch-stride adaptation of the referenced GEMM, one BMM launch; 256x256x128, two buffers, 2x2 waves, interleave=True, splitK=1, no M/N multicast; expert/coexec/post-misched LLVM hints enabled.",
-                "scope": "Same inputs, output strides, device, ROCm/Torch runtime and cudagraph timing as Gluon. Each DSL uses its own compiler backend. This tests the stated FlyDSL implementation/configuration, not the best possible FlyDSL throughput.",
+                "scope": "Same inputs, output strides, device, ROCm/Torch runtime and cudagraph timing as Gluon. Each DSL uses its own compiler backend. This is a local batch-stride adaptation of the pinned AITER TDM GEMM, not a measurement of FlyDSL's native BF16 BMM development branch (ROCm/FlyDSL@7bc8f138e9b3e284b60699471ed4072db39b58d3, kernels/bmm_gfx1250.py) or current main. The gain applies only to the stated tested implementation/configuration, not the best possible FlyDSL throughput.",
                 "gluon_throughput_gain_percent": 10.582396505333147,
                 "gluon_latency_reduction_percent": 9.569693585744254
               }
